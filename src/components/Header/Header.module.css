@@ -18,7 +18,6 @@
   gap: 15px;
   width: 552px;
   border-radius: 30px;
-  /* overflow: hidden; */
   padding: 6px 6px 6px 23px;
   border: 1px solid var(--black, #000);
 }
@@ -33,8 +32,4 @@
 
 .navigateList {
   display: flex;
-}
-
-.navigateItem {
-  /* line-height: 1.5; */
 }

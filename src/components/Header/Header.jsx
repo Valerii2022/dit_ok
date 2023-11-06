@@ -77,7 +77,9 @@ const selectStyles = {
 const Header = () => {
   return (
     <header className={css.container}>
-      <img src="./public/DitOk.png" alt="Logo" />
+      <NavLink to="/">
+        <img src="./public/DitOk.png" alt="Logo" />
+      </NavLink>
       <div className={css.searchName}>
         <Select
           styles={selectStyles}
@@ -92,16 +94,16 @@ const Header = () => {
       <nav className={css.navigation}>
         <ul className={css.navigateList}>
           <li className={css.navigateItem}>
-            <NavLink to="/">Про нас</NavLink>
+            <NavLink to="/about">Про нас</NavLink>
           </li>
           <li className={css.navigateItem}>
-            <NavLink to="/">Доставка і повернення</NavLink>
+            <NavLink to="/delivery">Доставка і повернення</NavLink>
           </li>
           <li className={css.navigateItem}>
-            <NavLink to="/content">Гарантія і повернення</NavLink>
+            <NavLink to="/guarantee">Гарантія і повернення</NavLink>
           </li>
           <li className={css.navigateItem}>
-            <NavLink to="/content">Увійти</NavLink>
+            <NavLink to="/login">Увійти</NavLink>
           </li>
         </ul>
       </nav>
