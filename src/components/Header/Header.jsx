@@ -78,7 +78,7 @@ const Header = () => {
   return (
     <header className={css.container}>
       <NavLink to="/">
-        <img src="./public/DitOk.png" alt="Logo" />
+        <span className={css.logo}>DitOk</span>
       </NavLink>
       <div className={css.searchName}>
         <Select
