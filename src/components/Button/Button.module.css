@@ -1,0 +1,8 @@
+.button {
+  background-color: var(--yellow);
+  border-radius: 20px;
+  border: var(--yellow);
+  line-height: 1.5;
+  padding: 10px;
+  width: 100%;
+}

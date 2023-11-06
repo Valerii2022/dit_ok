@@ -5,5 +5,36 @@
 }
 
 .container {
-  padding: 15px;
+  display: flex;
+  align-items: center;
+  width: 1440px;
+  padding: 30px 80px 23px;
+  margin: 0 auto;
+}
+
+.searchName {
+  margin-left: 21px;
+  display: flex;
+  gap: 15px;
+  width: 552px;
+  border-radius: 30px;
+  /* overflow: hidden; */
+  padding: 6px 6px 6px 23px;
+  border: 1px solid var(--black, #000);
+}
+
+.selectInput {
+  width: 100%;
+}
+
+.btnWrap {
+  width: 112px;
+}
+
+.navigateList {
+  display: flex;
+}
+
+.navigateItem {
+  /* line-height: 1.5; */
 }
