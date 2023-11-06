@@ -1,3 +1,21 @@
 .container {
   text-align: center;
 }
+
+.logInLink {
+  display: block;
+  margin: 0 auto;
+  width: 414px;
+  height: 79px;
+  margin-bottom: 15px;
+}
+
+.linkWrap {
+  font-size: 20px;
+  line-height: 1.2;
+}
+
+.navlink {
+  text-decoration: underline;
+  margin-left: 4px;
+}

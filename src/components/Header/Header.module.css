@@ -19,7 +19,7 @@
   font-family: "Sansation", sans-serif;
   font-size: 32px;
   font-weight: 700;
-  line-height: 1.5;
+  line-height: 1.125;
 }
 
 .searchWrap {
@@ -46,6 +46,7 @@
   color: var(--black, #000);
   font-family: Montserrat;
   font-size: 16px;
+  line-height: 1.22;
 }
 
 .input::placeholder {
@@ -66,6 +67,7 @@
 
   font-family: Montserrat;
   font-size: 16px;
+  line-height: 1.22;
 }
 
 .categoryBtn:before {
@@ -99,4 +101,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.navigateItem {
+  line-height: 1.22;
 }
