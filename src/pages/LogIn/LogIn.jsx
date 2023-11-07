@@ -1,11 +1,12 @@
 import { NavLink } from "react-router-dom";
 import css from "./LogIn.module.css";
 import Button from "../../components/Button/Button";
+import logImg from "../../images/log-in.jpg";
 
 const LogIn = () => {
   return (
     <section className={css.container}>
-      <img src="/log-in.png" alt="Child on play" width={413} />
+      <img src={logImg} alt="Child on play" width={413} />
       <div>
         <h2 className={css.title}>Увійти</h2>
         <form className={css.form}>

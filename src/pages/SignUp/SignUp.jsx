@@ -1,13 +1,14 @@
 import { NavLink } from "react-router-dom";
 import css from ".//SignUp.module.css";
 import Button from "../../components/Button/Button";
+import signupImg from "../../images/sign-up.jpg";
 
 const SignUp = () => {
   return (
     <section className={css.container}>
-      <img src="/sign-up.jpg" alt="Child with camera" width={413} />
+      <img src={signupImg} alt="Child with camera" width={413} />
       <div>
-        <h2 className={css.title}>Зареєструватися</h2>
+        <h2 className={css.title}>Реєстрація</h2>
         <form className={css.form}>
           <div className={css.inputWrapper}>
             <label className={css.label}>
