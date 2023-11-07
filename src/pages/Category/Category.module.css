@@ -4,6 +4,11 @@
   padding: 0 80px;
 }
 
+.breadcrumbs {
+  margin-top: 27px;
+  margin-bottom: 50px;
+}
+
 .title {
   font-family: "Sansation", sans-serif;
   font-size: 28px;
@@ -16,10 +21,14 @@
 /* =========================================================card styles============ */
 .caruselWrap {
   display: flex;
-  gap: 20px;
+  flex-wrap: wrap;
+  column-gap: 20px;
+  row-gap: 50px;
 }
 
 .card {
+  width: calc((100% - 60px) / 4);
+
   padding: 12px;
   border-radius: 30px;
   border: 1px solid var(--black);
@@ -73,72 +82,15 @@
   outline: none;
 }
 
-/* =========================================================newArrivalsSection==== */
-.newArrivalsSection {
-  padding: 27px 0 80px 0;
-}
-
-/* =========================================================discontSection==== */
 .discontSection {
-  padding: 27px 0 86px 0;
-}
-
-/* ==========================================================reviewsSection====== */
-.reviewsSection {
   background-color: var(--light-yellow);
-  padding: 44px 0;
+  padding: 50px 0 69px 0;
 }
 
-.reviewsList {
-  display: flex;
-  gap: 20px;
+.categoryTop {
+  padding-bottom: 80px;
 }
 
-.reviewCard {
-  padding: 10px;
-  border-radius: 30px;
-  background: var(--white);
-
-  display: flex;
-  align-items: start;
-  gap: 20px;
-
-  line-height: 1.22;
-}
-
-.reviewTitle {
-  margin-bottom: 12px;
-}
-
-/* ===================================================about us===================== */
-
-.aboutSection {
-  padding: 116px 0 86px 0;
-}
-
-.aboutContentWrap {
-  display: flex;
-  align-items: start;
-  gap: 21px;
-}
-
-.aboutContentList li {
-  padding-left: 12px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.aboutContentList li::before {
-  content: "";
-  display: block;
-  width: 2px;
-  height: 2px;
-  background-color: var(--black);
-}
-
-.aboutContent {
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
+.categoryBottom {
+  padding: 80px 0;
 }

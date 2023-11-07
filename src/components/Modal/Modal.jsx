@@ -1,10 +1,13 @@
 import { useEffect } from "react";
 import css from "./Modal.module.css";
 import { createPortal } from "react-dom";
+import { useNavigate } from "react-router-dom";
 
 const modalRoot = document.querySelector("#modal-root");
 
 const Modal = ({ handleModalClose }) => {
+  const navigate = useNavigate();
+
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.code === "Escape") {
@@ -25,18 +28,40 @@ const Modal = ({ handleModalClose }) => {
     }
   };
 
+  const handleCategoryClick = (e) => {
+    console.dir(e.target.id);
+    navigate("/category");
+    handleModalClose(false);
+  };
+
   return createPortal(
     <div className={css.overlay} onClick={handleOverlayClick}>
       <div className={css.modal}>
-        <ul className={css.categoryList}>
-          <li className={css.category}>Одяг та взуття</li>
-          <li className={css.category}>Іграшки</li>
-          <li className={css.category}>Дитяча кімната</li>
-          <li className={css.category}>Коляски</li>
-          <li className={css.category}>Автокрісла</li>
-          <li className={css.category}>Все для годування</li>
-          <li className={css.category}>Догляд, гігієна та купання</li>
-          <li className={css.category}>Дитячий транспорт</li>
+        <ul className={css.categoryList} onClick={handleCategoryClick}>
+          <li className={css.category} id={"cloth"}>
+            Одяг та взуття
+          </li>
+          <li className={css.category} id={"toys"}>
+            Іграшки
+          </li>
+          <li className={css.category} id={"room"}>
+            Дитяча кімната
+          </li>
+          <li className={css.category} id={"carriage"}>
+            Коляски
+          </li>
+          <li className={css.category} id={"seats"}>
+            Автокрісла
+          </li>
+          <li className={css.category} id={"feeding"}>
+            Все для годування
+          </li>
+          <li className={css.category} id={"care"}>
+            Догляд, гігієна та купання
+          </li>
+          <li className={css.category} id={"transport"}>
+            Дитячий транспорт
+          </li>
         </ul>
       </div>
     </div>,

@@ -19,7 +19,7 @@ const Footer = () => {
               <NavLink to="/guarantee">Гарантія</NavLink>
             </li>
             <li className={css.link}>
-              <NavLink to="/">Бренди</NavLink>
+              <NavLink to="/category">Бренди</NavLink>
             </li>
             <li className={css.link}>
               <NavLink to="/">Акції</NavLink>

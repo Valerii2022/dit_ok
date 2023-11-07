@@ -6,6 +6,7 @@ import Delivery from "../pages/Delivery/Delivery.jsx";
 import Guarantee from "../pages/Guarantee/Guarantee.jsx";
 import LogIn from "../pages/LogIn/LogIn.jsx";
 import SignUp from "../pages/SignUp/SignUp.jsx";
+import Category from "../pages/Category/Category.jsx";
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
           <Route path="/guarantee" element={<Guarantee />} />
           <Route path="/login" element={<LogIn />} />
           <Route path="/signup" element={<SignUp />} />
+          <Route path="/category" element={<Category />} />
         </Route>
 
         <Route path="*" element={<Navigate to="/" />} />
