@@ -1,9 +1,8 @@
 {
   "name": "dit_ok",
-  "private": false,
+  "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://Valerii2022.github.io/dit_ok/",
   "scripts": {
     "dev": "vite",
     "build": "vite build --base=/dit_ok/",
