@@ -5,7 +5,7 @@ import Button from "../../components/Button/Button";
 const LogIn = () => {
   return (
     <section className={css.container}>
-      <img src="/public/log-in.png" alt="Child on play" />
+      <img src="/log-in.png" alt="Child on play" />
       <div>
         <h2 className={css.title}>Увійти</h2>
         <form className={css.form}>

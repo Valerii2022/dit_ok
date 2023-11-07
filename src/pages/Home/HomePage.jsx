@@ -11,12 +11,7 @@ const Home = () => {
           <Carousel.Item>
             <div className={css.card}>
               <div className={css.imageWrap}>
-                <img
-                  src="../../../public/truck.jpg"
-                  alt="Truck"
-                  width={280}
-                  height={280}
-                />
+                <img src="/truck.jpg" alt="Truck" width={280} height={280} />
                 <div className={css.addToFavourites}></div>
               </div>
               <p>
@@ -34,12 +29,7 @@ const Home = () => {
           </Carousel.Item>
           <Carousel.Item>
             <div className={css.card}>
-              <img
-                src="../../../public/truck.jpg"
-                alt="Truck"
-                width={280}
-                height={280}
-              />
+              <img src="/truck.jpg" alt="Truck" width={280} height={280} />
               <p>
                 Утепленний комплекс (штанці і кофтинка) для хлопчика. Сірий.
                 Поліестер 30%, бавовна 70% Flamingo
@@ -55,12 +45,7 @@ const Home = () => {
           </Carousel.Item>
           <Carousel.Item>
             <div className={css.card}>
-              <img
-                src="../../../public/truck.jpg"
-                alt="Truck"
-                width={280}
-                height={280}
-              />
+              <img src="/truck.jpg" alt="Truck" width={280} height={280} />
               <p>
                 Утепленний комплекс (штанці і кофтинка) для хлопчика. Сірий.
                 Поліестер 30%, бавовна 70% Flamingo
@@ -76,12 +61,7 @@ const Home = () => {
           </Carousel.Item>
           <Carousel.Item>
             <div className={css.card}>
-              <img
-                src="../../../public/truck.jpg"
-                alt="Truck"
-                width={280}
-                height={280}
-              />
+              <img src="/truck.jpg" alt="Truck" width={280} height={280} />
               <p>
                 Утепленний комплекс (штанці і кофтинка) для хлопчика. Сірий.
                 Поліестер 30%, бавовна 70% Flamingo
@@ -97,12 +77,7 @@ const Home = () => {
           </Carousel.Item>
           <Carousel.Item>
             <div className={css.card}>
-              <img
-                src="../../../public/truck.jpg"
-                alt="Truck"
-                width={280}
-                height={280}
-              />
+              <img src="/truck.jpg" alt="Truck" width={280} height={280} />
               <p>
                 Утепленний комплекс (штанці і кофтинка) для хлопчика. Сірий.
                 Поліестер 30%, бавовна 70% Flamingo
@@ -119,12 +94,7 @@ const Home = () => {
           <Carousel.Item>
             <div className={css.card}>
               <div className={css.imageWrap}>
-                <img
-                  src="../../../public/truck.jpg"
-                  alt="Truck"
-                  width={280}
-                  height={280}
-                />
+                <img src="/truck.jpg" alt="Truck" width={280} height={280} />
                 <div className={css.addToFavourites}></div>
               </div>
               <p>
