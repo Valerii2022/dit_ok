@@ -16,6 +16,8 @@
 }
 
 .logo {
+  align-self: center;
+
   font-family: "Sansation", sans-serif;
   font-size: 32px;
   font-weight: 700;

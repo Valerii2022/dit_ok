@@ -9,16 +9,12 @@
   justify-content: center;
   background-color: rgba(0, 0, 0, 0.52);
 }
-.overlayInner {
-  position: absolute;
-  width: 1440px;
-  height: 100%;
-}
 
 .modal {
   position: absolute;
-  left: 188px;
-  top: 96px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 
   width: 389px;
   padding: 16px 23px;

@@ -27,7 +27,7 @@ const Header = () => {
             />
           </label>
           <button className={css.categoryBtn} onClick={handleCategoryModalOpen}>
-            Категорія{" "}
+            Категорія
           </button>
           <div className={css.btnWrap}>
             <Button title={"Знайти"} />
@@ -50,7 +50,7 @@ const Header = () => {
           </li>
         </ul>
       </nav>
-      {isModalOpen && <Modal />}
+      {isModalOpen && <Modal handleModalClose={handleCategoryModalOpen} />}
     </header>
   );
 };

@@ -50,7 +50,7 @@ const Footer = () => {
                 required
                 className={css.input}
                 type="email"
-                name="email"
+                name="emailFooter"
                 placeholder="Введіть ваш Email"
               />
             </label>

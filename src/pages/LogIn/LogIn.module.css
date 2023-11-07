@@ -1,5 +1,48 @@
 .container {
+  width: 1440px;
+  padding: 27px 188px 50px 77px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  gap: 132px;
+}
+
+.formWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+}
+
+.title {
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 1.225;
   text-align: center;
+}
+
+.label {
+  font-size: 28px;
+  line-height: 1.225;
+
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.label:first-child {
+  margin-bottom: 50px;
+}
+
+.input {
+  height: 79px;
+  width: 630px;
+  padding: 10px 23px;
+
+  border-radius: 20px;
+  border: 1px solid var(--black);
+
+  font-size: 28px;
+  line-height: 1.225;
 }
 
 .logInLink {
@@ -11,6 +54,7 @@
 }
 
 .linkWrap {
+  text-align: center;
   font-size: 20px;
   line-height: 1.2;
 }
