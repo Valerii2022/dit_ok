@@ -1,13 +1,13 @@
 import css from "./Home.module.css";
-import Carousel from "better-react-carousel";
-import Button from "../../components/Button/Button.jsx";
+// import Carousel from "better-react-carousel";
+// import Button from "../../components/Button/Button.jsx";
 
 const Home = () => {
   return (
     <div className={css.container}>
       <section>
         <h2 className={css.title}>Нові надходження</h2>
-        <Carousel cols={4} rows={1} gap={20} loop>
+        {/* <Carousel cols={4} rows={1} gap={20} loop>
           <Carousel.Item>
             <div className={css.card}>
               <div className={css.imageWrap}>
@@ -110,7 +110,7 @@ const Home = () => {
               </div>
             </div>
           </Carousel.Item>
-        </Carousel>
+        </Carousel> */}
       </section>
     </div>
   );
