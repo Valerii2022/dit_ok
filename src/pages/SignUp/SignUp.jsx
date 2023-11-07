@@ -4,7 +4,7 @@ import Button from "../../components/Button/Button";
 
 const SignUp = () => {
   return (
-    <div className={css.container}>
+    <section className={css.container}>
       <img src="/public/sign-up.jpg" alt="Child with camera" />
       <div>
         <h2 className={css.title}>Зареєструватися</h2>
@@ -52,7 +52,7 @@ const SignUp = () => {
           </div>
         </form>
       </div>
-    </div>
+    </section>
   );
 };
 

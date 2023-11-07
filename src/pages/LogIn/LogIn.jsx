@@ -4,7 +4,7 @@ import Button from "../../components/Button/Button";
 
 const LogIn = () => {
   return (
-    <div className={css.container}>
+    <section className={css.container}>
       <img src="/public/log-in.png" alt="Child on play" />
       <div>
         <h2 className={css.title}>Увійти</h2>
@@ -32,7 +32,7 @@ const LogIn = () => {
           </div>
         </form>
       </div>
-    </div>
+    </section>
   );
 };
 
