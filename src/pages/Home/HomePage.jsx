@@ -17,17 +17,7 @@ const Home = () => {
                   width={280}
                   height={280}
                 />
-                <div className={css.addToFavourites}>
-                  <img
-                    src="../../../public/heart.svg"
-                    alt=""
-                    width={30}
-                    height={30}
-                  />
-                  {/* <svg width="30" height="30">
-                    <use href="../../../public/heart.svg"></use>
-                  </svg> */}
-                </div>
+                <div className={css.addToFavourites}></div>
               </div>
               <p>
                 Утепленний комплекс (штанці і кофтинка) для хлопчика. Сірий.
