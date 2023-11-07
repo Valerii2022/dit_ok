@@ -5,7 +5,7 @@ import Button from "../../components/Button/Button";
 const SignUp = () => {
   return (
     <section className={css.container}>
-      <img src="/sign-up.jpg" alt="Child with camera" />
+      <img src="/sign-up.jpg" alt="Child with camera" width={413} />
       <div>
         <h2 className={css.title}>Зареєструватися</h2>
         <form className={css.form}>
