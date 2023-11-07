@@ -5,8 +5,11 @@ import itemImg from "../../images/truck.jpg";
 import reviewerImg from "../../images/reviewer.jpg";
 import aboutImg from "../../images/about.jpg";
 import heartSvg from "../../images/heart.svg";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
+  const navigate = useNavigate();
+
   return (
     <>
       <div className={css.container}>
@@ -26,10 +29,22 @@ const Home = () => {
               </p>
               <p>1440 грн</p>
               <div className={css.cardBottom}>
-                <div className={css.btnWrap}>
+                <div
+                  className={css.btnWrap}
+                  onClick={() => {
+                    navigate("/order");
+                  }}
+                >
                   <Button title={"Купити"} />
                 </div>
-                <button className={css.moreBtn}>Докладніше</button>
+                <button
+                  className={css.moreBtn}
+                  onClick={() => {
+                    navigate("/item");
+                  }}
+                >
+                  Докладніше
+                </button>
               </div>
             </li>
             <li className={css.card}>

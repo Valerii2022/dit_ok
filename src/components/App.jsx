@@ -7,6 +7,8 @@ import Guarantee from "../pages/Guarantee/Guarantee.jsx";
 import LogIn from "../pages/LogIn/LogIn.jsx";
 import SignUp from "../pages/SignUp/SignUp.jsx";
 import Category from "../pages/Category/Category.jsx";
+import Item from "../pages/Item/Item.jsx";
+import Order from "../pages/Order/Order.jsx";
 
 const App = () => {
   return (
@@ -20,6 +22,8 @@ const App = () => {
           <Route path="/login" element={<LogIn />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/category" element={<Category />} />
+          <Route path="/item" element={<Item />} />
+          <Route path="/order" element={<Order />} />
         </Route>
 
         <Route path="*" element={<Navigate to="/" />} />

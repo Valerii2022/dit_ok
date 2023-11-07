@@ -1,0 +1,19 @@
+.container {
+  width: 1440px;
+  margin: 0 auto;
+  padding: 0 80px;
+}
+
+.breadcrumbs {
+  margin-top: 27px;
+  margin-bottom: 50px;
+}
+
+.breadcrumbs span {
+  padding-right: 6px;
+}
+
+.breadcrumbs span::after {
+  content: "/";
+  padding-left: 6px;
+}
