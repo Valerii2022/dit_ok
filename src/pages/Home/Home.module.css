@@ -1,7 +1,7 @@
 .container {
   width: 1440px;
   margin: 0 auto;
-  padding: 27px 80px 80px 80px;
+  padding: 0 80px;
 }
 
 .title {
@@ -11,6 +11,12 @@
   line-height: 1.12;
 
   margin-bottom: 50px;
+}
+
+/* =========================================================card styles============ */
+.caruselWrap {
+  display: flex;
+  gap: 20px;
 }
 
 .card {
@@ -64,4 +70,20 @@
   background-color: transparent;
   border: none;
   outline: none;
+}
+
+/* =========================================================newArrivalsSection==== */
+.newArrivalsSection {
+  padding: 27px 0 80px 0;
+}
+
+/* =========================================================newArrivalsSection==== */
+.salesSection {
+  padding: 27px 0 86px 0;
+}
+
+/* ==========================================================reviewsSection====== */
+.reviewsSection {
+  background-color: var(--light-yellow);
+  padding: 44px 0;
 }
