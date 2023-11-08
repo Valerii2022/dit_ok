@@ -10,7 +10,7 @@ const Item = () => {
   const [quantity, setQuantity] = useState(1);
   const [unregisterModal, setUnregisterModal] = useState(false);
   const navigate = useNavigate();
-  const isAuth = false;
+  const isAuth = true;
 
   const handleQuantityChange = (value) => {
     if (value === "increment") {
@@ -91,7 +91,12 @@ const Item = () => {
               <Button title={"Купити"} fontSize={"28"} />
             </div>
             <div>
-              <Button title={`Додати в "Улюблене"`} fontSize={"28"} />
+              <Button
+                title={`Додати в "Улюблене"`}
+                fontSize={"28"}
+                backgroundColor={"#fff"}
+                border={"#fac917"}
+              />
             </div>
           </div>
         </div>

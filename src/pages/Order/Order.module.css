@@ -1,7 +1,7 @@
 .container {
   width: 1440px;
   margin: 0 auto;
-  padding: 0 80px;
+  padding: 0 80px 50px;
 }
 
 .breadcrumbs {
@@ -16,4 +16,104 @@
 .breadcrumbs span::after {
   content: "/";
   padding-left: 6px;
+}
+
+.contentWrapper {
+  display: flex;
+  align-items: start;
+  gap: 37px;
+  margin-bottom: 45px;
+}
+
+.imagesWrapper {
+  width: 200px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.infoWrapper p {
+  color: var(--black);
+  font-family: "Sansation", sans-serif;
+  font-size: 28px;
+  line-height: 1.12;
+}
+
+.generalInfo p {
+  display: flex;
+  gap: 20px;
+}
+
+.generalInfo p:not(:last-child) {
+  margin-bottom: 20px;
+}
+
+.form {
+  font-size: 28px;
+  line-height: 1.22;
+
+  margin-bottom: 50px;
+}
+
+.formTitle {
+  margin-bottom: 50px;
+}
+
+.addressWrapper {
+  display: flex;
+  align-items: flex-end;
+  gap: 237px;
+  margin-bottom: 39px;
+}
+
+.radioBtnWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 31px;
+}
+
+.radioBtnWrapper label {
+  display: flex;
+  gap: 15px;
+}
+.radioBtnWrapper input {
+  width: 40px;
+  height: 40px;
+}
+
+.inputLabel {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.inputField,
+.textareaField {
+  padding: 22px;
+  border-radius: 20px;
+  border: 1px solid var(--black);
+
+  font-size: 28px;
+  line-height: 1.22;
+}
+
+.inputField {
+  width: 630px;
+  height: 79px;
+}
+
+.textareaField {
+  width: 1279px;
+  height: 199px;
+}
+
+.inputField::placeholder,
+.textareaField::placeholder {
+  color: var(--light-grey);
+}
+
+.btnWrapper {
+  width: 414px;
+  height: 79px;
+  margin: 0 auto;
 }

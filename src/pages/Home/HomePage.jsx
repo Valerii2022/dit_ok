@@ -6,9 +6,18 @@ import reviewerImg from "../../images/reviewer.jpg";
 import aboutImg from "../../images/about.jpg";
 import heartSvg from "../../images/heart.svg";
 import { useNavigate } from "react-router-dom";
+import closeIcon from "../../images/close.svg";
+import { useState } from "react";
+import Modal from "../../components/Modal/Modal";
 
 const Home = () => {
+  const [unregisterModal, setUnregisterModal] = useState(false);
   const navigate = useNavigate();
+  const isAuth = false;
+
+  const handleUnregisterModalOpen = () => {
+    setUnregisterModal(false);
+  };
 
   return (
     <>
@@ -32,7 +41,9 @@ const Home = () => {
                 <div
                   className={css.btnWrap}
                   onClick={() => {
-                    navigate("/order");
+                    {
+                      isAuth ? navigate("/order") : setUnregisterModal(true);
+                    }
                   }}
                 >
                   <Button title={"Купити"} />
@@ -392,6 +403,25 @@ const Home = () => {
           </div>
         </section>
       </div>
+      {unregisterModal && (
+        <Modal handleModalClose={handleUnregisterModalOpen}>
+          <div className={css.modalContainer}>
+            <img
+              className={css.closeIcon}
+              src={closeIcon}
+              alt="Close icon"
+              onClick={handleUnregisterModalOpen}
+            />
+            <p>Для замовлення увійдіть в аккаунт!</p>
+            <div
+              className={css.modalBtnWrap}
+              onClick={() => navigate("/login")}
+            >
+              <Button title={"Увійти"} fontSize={"28"} />
+            </div>
+          </div>
+        </Modal>
+      )}
     </>
   );
 };

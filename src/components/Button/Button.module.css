@@ -1,7 +1,7 @@
 .button {
   background-color: var(--yellow);
   border-radius: 20px;
-  border: var(--yellow);
+  border: 2px solid var(--yellow);
 
   font-family: Montserrat;
   font-size: 16px;
