@@ -1,0 +1,63 @@
+.container {
+  width: 1440px;
+  margin: 0 auto;
+  padding: 0 80px 40px;
+}
+
+.breadcrumbs {
+  margin-top: 27px;
+  margin-bottom: 50px;
+}
+
+.breadcrumbs span {
+  padding-right: 6px;
+}
+
+.breadcrumbs span::after {
+  content: "/";
+  padding-left: 6px;
+}
+
+.btnWrapper {
+  width: 414px;
+  height: 79px;
+  margin: 0 auto;
+}
+
+/* ======================================Modal======== */
+
+.modalContainer {
+  padding: 70px 60px 40px;
+  text-align: center;
+  position: relative;
+}
+
+.closeIcon {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  cursor: pointer;
+}
+
+.titleWrapper {
+  margin-bottom: 60px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.modalContainer p {
+  width: 530px;
+
+  color: var(--black);
+  font-family: "Sansation", sans-serif;
+  font-size: 28px;
+  line-height: 1.12;
+}
+
+.modalBtnWrap {
+  width: 605px;
+  height: 79px;
+  margin: 0 auto;
+}

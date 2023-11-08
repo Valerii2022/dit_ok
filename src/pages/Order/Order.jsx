@@ -49,7 +49,7 @@ const Order = () => {
         </div>
       </div>
       <form className={css.form}>
-        <p className={css.formTitle}>Дані для доставки</p>
+        <h2 className={css.formTitle}>Дані для доставки</h2>
         <div className={css.addressWrapper}>
           <label className={css.inputLabel}>
             Адреса
@@ -83,7 +83,7 @@ const Order = () => {
       <div
         className={css.btnWrapper}
         onClick={() => {
-          navigate("/home");
+          navigate("/payment");
         }}
       >
         <Button title={"Перейти до оплати"} fontSize={"28"} />

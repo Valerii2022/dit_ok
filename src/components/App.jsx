@@ -9,6 +9,7 @@ import SignUp from "../pages/SignUp/SignUp.jsx";
 import Category from "../pages/Category/Category.jsx";
 import Item from "../pages/Item/Item.jsx";
 import Order from "../pages/Order/Order.jsx";
+import Payment from "../pages/Payment/Payment.jsx";
 
 const App = () => {
   return (
@@ -24,6 +25,7 @@ const App = () => {
           <Route path="/category" element={<Category />} />
           <Route path="/item" element={<Item />} />
           <Route path="/order" element={<Order />} />
+          <Route path="/payment" element={<Payment />} />
         </Route>
 
         <Route path="*" element={<Navigate to="/" />} />
