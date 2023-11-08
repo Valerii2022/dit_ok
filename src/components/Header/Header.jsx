@@ -3,12 +3,20 @@ import css from "./Header.module.css";
 import Button from "../Button/Button";
 import Modal from "../Modal/Modal";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
   const [isModalOpen, setIsOpenModal] = useState(false);
+  const navigate = useNavigate();
 
   const handleCategoryModalOpen = () => {
     setIsOpenModal(!isModalOpen);
+  };
+
+  const handleCategoryClick = (e) => {
+    console.dir(e.target.id);
+    navigate("/category");
+    handleCategoryModalOpen(false);
   };
 
   return (
@@ -50,7 +58,36 @@ const Header = () => {
           </li>
         </ul>
       </nav>
-      {isModalOpen && <Modal handleModalClose={handleCategoryModalOpen} />}
+      {isModalOpen && (
+        <Modal handleModalClose={handleCategoryModalOpen}>
+          <ul className={css.categoryList} onClick={handleCategoryClick}>
+            <li className={css.category} id={"cloth"}>
+              Одяг та взуття
+            </li>
+            <li className={css.category} id={"toys"}>
+              Іграшки
+            </li>
+            <li className={css.category} id={"room"}>
+              Дитяча кімната
+            </li>
+            <li className={css.category} id={"carriage"}>
+              Коляски
+            </li>
+            <li className={css.category} id={"seats"}>
+              Автокрісла
+            </li>
+            <li className={css.category} id={"feeding"}>
+              Все для годування
+            </li>
+            <li className={css.category} id={"care"}>
+              Догляд, гігієна та купання
+            </li>
+            <li className={css.category} id={"transport"}>
+              Дитячий транспорт
+            </li>
+          </ul>
+        </Modal>
+      )}
     </header>
   );
 };
