@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import css from "./LogIn.module.css";
 import Button from "../../components/Button/Button";
-import logImg from "../../images/log-in.jpg";
+import logImg from "../../images/login.png";
 
 const LogIn = () => {
   return (

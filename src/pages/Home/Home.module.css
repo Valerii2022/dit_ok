@@ -20,6 +20,7 @@
 }
 
 .card {
+  width: calc((100% - 60px) / 4);
   padding: 12px;
   border-radius: 30px;
   border: 1px solid var(--black);
@@ -49,6 +50,13 @@
   border-radius: 50%;
   background-color: var(--yellow);
   cursor: pointer;
+}
+
+.salePrice {
+  color: var(--grey);
+  text-decoration: line-through;
+  margin-left: 12px;
+  display: inline-block;
 }
 
 .cardBottom {
@@ -95,6 +103,7 @@
 }
 
 .reviewCard {
+  width: calc((100% - 40px) / 3);
   padding: 10px;
   border-radius: 30px;
   background: var(--white);

@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import css from ".//SignUp.module.css";
 import Button from "../../components/Button/Button";
-import signupImg from "../../images/sign-up.jpg";
+import signupImg from "../../images/signup.png";
 
 const SignUp = () => {
   return (

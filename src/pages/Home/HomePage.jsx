@@ -1,19 +1,22 @@
 import css from "./Home.module.css";
 // import Carousel from "better-react-carousel";
 import Button from "../../components/Button/Button.jsx";
-import itemImg from "../../images/truck.jpg";
-import reviewerImg from "../../images/reviewer.jpg";
-import aboutImg from "../../images/about.jpg";
+import aboutImg from "../../images/about.png";
 import heartSvg from "../../images/heart.svg";
+import favouriteSvg from "../../images/markedHeart.svg";
 import { useNavigate } from "react-router-dom";
 import closeIcon from "../../images/close.svg";
 import { useState } from "react";
 import Modal from "../../components/Modal/Modal";
+import images from "../../redux/images.js";
+import reviews from "../../redux/feedback.js";
 
 const Home = () => {
   const [unregisterModal, setUnregisterModal] = useState(false);
   const navigate = useNavigate();
   const isAuth = false;
+
+  const favourites = [3, 1];
 
   const handleUnregisterModalOpen = () => {
     setUnregisterModal(false);
@@ -25,96 +28,63 @@ const Home = () => {
         <section className={css.newArrivalsSection}>
           <h2 className={css.title}>Нові надходження</h2>
           <ul className={css.caruselWrap}>
-            <li className={css.card}>
-              <div className={css.imageWrap}>
-                <img src={itemImg} alt="Truck" width={280} height={280} />
-                <div className={css.addToFavourites}>
-                  <img src={heartSvg} alt="Heart" width={30} />
-                </div>
-              </div>
-              <p>
-                Утепленний комплекс (штанці і кофтинка) для хлопчика. Сірий.
-                Поліестер 30%, бавовна 70% Flamingo
-              </p>
-              <p>1440 грн</p>
-              <div className={css.cardBottom}>
-                <div
-                  className={css.btnWrap}
-                  onClick={() => {
-                    {
-                      isAuth ? navigate("/order") : setUnregisterModal(true);
-                    }
-                  }}
-                >
-                  <Button title={"Купити"} />
-                </div>
-                <button
-                  className={css.moreBtn}
-                  onClick={() => {
-                    navigate("/item");
-                  }}
-                >
-                  Докладніше
-                </button>
-              </div>
-            </li>
-            <li className={css.card}>
-              <div className={css.imageWrap}>
-                <img src={itemImg} alt="Truck" width={280} height={280} />
-                <div className={css.addToFavourites}>
-                  <img src={heartSvg} alt="Heart" width={30} />
-                </div>
-              </div>
-              <p>
-                Утепленний комплекс (штанці і кофтинка) для хлопчика. Сірий.
-                Поліестер 30%, бавовна 70% Flamingo
-              </p>
-              <p>1440 грн</p>
-              <div className={css.cardBottom}>
-                <div className={css.btnWrap}>
-                  <Button title={"Купити"} />
-                </div>
-                <button className={css.moreBtn}>Докладніше</button>
-              </div>
-            </li>
-            <li className={css.card}>
-              <div className={css.imageWrap}>
-                <img src={itemImg} alt="Truck" width={280} height={280} />
-                <div className={css.addToFavourites}>
-                  <img src={heartSvg} alt="Heart" width={30} />
-                </div>
-              </div>
-              <p>
-                Утепленний комплекс (штанці і кофтинка) для хлопчика. Сірий.
-                Поліестер 30%, бавовна 70% Flamingo
-              </p>
-              <p>1440 грн</p>
-              <div className={css.cardBottom}>
-                <div className={css.btnWrap}>
-                  <Button title={"Купити"} />
-                </div>
-                <button className={css.moreBtn}>Докладніше</button>
-              </div>
-            </li>
-            <li className={css.card}>
-              <div className={css.imageWrap}>
-                <img src={itemImg} alt="Truck" width={280} height={280} />
-                <div className={css.addToFavourites}>
-                  <img src={heartSvg} alt="Heart" width={30} />
-                </div>
-              </div>
-              <p>
-                Утепленний комплекс (штанці і кофтинка) для хлопчика. Сірий.
-                Поліестер 30%, бавовна 70% Flamingo
-              </p>
-              <p>1440 грн</p>
-              <div className={css.cardBottom}>
-                <div className={css.btnWrap}>
-                  <Button title={"Купити"} />
-                </div>
-                <button className={css.moreBtn}>Докладніше</button>
-              </div>
-            </li>
+            {images.map((elem) => {
+              const description = [
+                elem.description,
+                elem.color,
+                elem.brand,
+                elem.material,
+              ].join(". ");
+              return (
+                <li key={elem.id} className={css.card}>
+                  <div className={css.imageWrap}>
+                    <img src={elem.src} alt="Truck" width={280} height={280} />
+                    <div className={css.addToFavourites}>
+                      {favourites.includes(elem.id) ? (
+                        <img src={favouriteSvg} alt="Heart" width={30} />
+                      ) : (
+                        <img src={heartSvg} alt="Heart" width={30} />
+                      )}
+                    </div>
+                  </div>
+                  <p>
+                    {description.length < 120
+                      ? `${description}.`
+                      : `${description.slice(0, 110)}...`}
+                  </p>
+                  {elem.sale ? (
+                    <p>
+                      <span>{elem.sale} грн</span>
+                      <span className={css.salePrice}>{elem.price} грн</span>
+                    </p>
+                  ) : (
+                    <p>{elem.price} грн</p>
+                  )}
+                  <div className={css.cardBottom}>
+                    <div
+                      className={css.btnWrap}
+                      onClick={() => {
+                        {
+                          isAuth
+                            ? navigate("/order")
+                            : setUnregisterModal(true);
+                        }
+                      }}
+                    >
+                      <Button title={"Купити"} />
+                    </div>
+                    <button
+                      className={css.moreBtn}
+                      onClick={() => {
+                        navigate("/item");
+                      }}
+                    >
+                      Докладніше
+                    </button>
+                  </div>
+                </li>
+              );
+            })}
           </ul>
           {/* <Carousel cols={4} rows={1} gap={20} loop>
           <Carousel.Item>
@@ -226,82 +196,63 @@ const Home = () => {
         <section className={css.discontSection}>
           <h2 className={css.title}>Акції</h2>
           <ul className={css.caruselWrap}>
-            <li className={css.card}>
-              <div className={css.imageWrap}>
-                <img src={itemImg} alt="Truck" width={280} height={280} />
-                <div className={css.addToFavourites}>
-                  <img src={heartSvg} alt="Heart" width={30} />
-                </div>
-              </div>
-              <p>
-                Утепленний комплекс (штанці і кофтинка) для хлопчика. Сірий.
-                Поліестер 30%, бавовна 70% Flamingo
-              </p>
-              <p>1440 грн</p>
-              <div className={css.cardBottom}>
-                <div className={css.btnWrap}>
-                  <Button title={"Купити"} />
-                </div>
-                <button className={css.moreBtn}>Докладніше</button>
-              </div>
-            </li>
-            <li className={css.card}>
-              <div className={css.imageWrap}>
-                <img src={itemImg} alt="Truck" width={280} height={280} />
-                <div className={css.addToFavourites}>
-                  <img src={heartSvg} alt="Heart" width={30} />
-                </div>
-              </div>
-              <p>
-                Утепленний комплекс (штанці і кофтинка) для хлопчика. Сірий.
-                Поліестер 30%, бавовна 70% Flamingo
-              </p>
-              <p>1440 грн</p>
-              <div className={css.cardBottom}>
-                <div className={css.btnWrap}>
-                  <Button title={"Купити"} />
-                </div>
-                <button className={css.moreBtn}>Докладніше</button>
-              </div>
-            </li>
-            <li className={css.card}>
-              <div className={css.imageWrap}>
-                <img src={itemImg} alt="Truck" width={280} height={280} />
-                <div className={css.addToFavourites}>
-                  <img src={heartSvg} alt="Heart" width={30} />
-                </div>
-              </div>
-              <p>
-                Утепленний комплекс (штанці і кофтинка) для хлопчика. Сірий.
-                Поліестер 30%, бавовна 70% Flamingo
-              </p>
-              <p>1440 грн</p>
-              <div className={css.cardBottom}>
-                <div className={css.btnWrap}>
-                  <Button title={"Купити"} />
-                </div>
-                <button className={css.moreBtn}>Докладніше</button>
-              </div>
-            </li>
-            <li className={css.card}>
-              <div className={css.imageWrap}>
-                <img src={itemImg} alt="Truck" width={280} height={280} />
-                <div className={css.addToFavourites}>
-                  <img src={heartSvg} alt="Heart" width={30} />
-                </div>
-              </div>
-              <p>
-                Утепленний комплекс (штанці і кофтинка) для хлопчика. Сірий.
-                Поліестер 30%, бавовна 70% Flamingo
-              </p>
-              <p>1440 грн</p>
-              <div className={css.cardBottom}>
-                <div className={css.btnWrap}>
-                  <Button title={"Купити"} />
-                </div>
-                <button className={css.moreBtn}>Докладніше</button>
-              </div>
-            </li>
+            {images.map((elem) => {
+              const description = [
+                elem.description,
+                elem.color,
+                elem.brand,
+                elem.material,
+              ].join(". ");
+              return (
+                <li key={elem.id} className={css.card}>
+                  <div className={css.imageWrap}>
+                    <img src={elem.src} alt="Truck" width={280} height={280} />
+                    <div className={css.addToFavourites}>
+                      {favourites.includes(elem.id) ? (
+                        <img src={favouriteSvg} alt="Heart" width={30} />
+                      ) : (
+                        <img src={heartSvg} alt="Heart" width={30} />
+                      )}
+                    </div>
+                  </div>
+                  <p>
+                    {description.length < 120
+                      ? `${description}.`
+                      : `${description.slice(0, 110)}...`}
+                  </p>
+                  {elem.sale ? (
+                    <p>
+                      <span>{elem.sale} грн</span>
+                      <span className={css.salePrice}>{elem.price} грн</span>
+                    </p>
+                  ) : (
+                    <p>{elem.price} грн</p>
+                  )}
+                  <div className={css.cardBottom}>
+                    <div
+                      className={css.btnWrap}
+                      onClick={() => {
+                        {
+                          isAuth
+                            ? navigate("/order")
+                            : setUnregisterModal(true);
+                        }
+                      }}
+                    >
+                      <Button title={"Купити"} />
+                    </div>
+                    <button
+                      className={css.moreBtn}
+                      onClick={() => {
+                        navigate("/item");
+                      }}
+                    >
+                      Докладніше
+                    </button>
+                  </div>
+                </li>
+              );
+            })}
           </ul>
         </section>
       </div>
@@ -309,39 +260,23 @@ const Home = () => {
         <div className={css.container}>
           <h2 className={css.title}>Відгуки</h2>
           <ul className={css.reviewsList}>
-            <li className={css.reviewCard}>
-              <img src={reviewerImg} alt="Reviewer" />
-              <div>
-                <p className={css.reviewTitle}>Алена блаблаблаківна</p>
-                <p>
-                  Дуже круто! Замовила синочку комбінезончик і донечці сукню.
-                  Обидва товари прийшли чудової якості і дуже шкидко! Взагалі
-                  я...
-                </p>
-              </div>
-            </li>
-            <li className={css.reviewCard}>
-              <img src={reviewerImg} alt="Reviewer" />
-              <div>
-                <p className={css.reviewTitle}>Алена блаблаблаківна</p>
-                <p>
-                  Дуже круто! Замовила синочку комбінезончик і донечці сукню.
-                  Обидва товари прийшли чудової якості і дуже шкидко! Взагалі
-                  я...
-                </p>
-              </div>
-            </li>
-            <li className={css.reviewCard}>
-              <img src={reviewerImg} alt="Reviewer" />
-              <div>
-                <p className={css.reviewTitle}>Алена блаблаблаківна</p>
-                <p>
-                  Дуже круто! Замовила синочку комбінезончик і донечці сукню.
-                  Обидва товари прийшли чудової якості і дуже шкидко! Взагалі
-                  я...
-                </p>
-              </div>
-            </li>
+            {reviews.map((elem) => {
+              return (
+                <li key={elem.id} className={css.reviewCard}>
+                  <img src={elem.src} alt="Reviewer" />
+                  <div>
+                    <p className={css.reviewTitle}>{elem.name}</p>
+                    {elem.text.length < 120 ? (
+                      <p>{elem.text}</p>
+                    ) : (
+                      <p className={css.reviewText}>
+                        {elem.text.slice(0, 110)}...
+                      </p>
+                    )}
+                  </div>
+                </li>
+              );
+            })}
           </ul>
         </div>
       </section>
