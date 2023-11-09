@@ -10,13 +10,18 @@ import { useState } from "react";
 import Modal from "../../components/Modal/Modal";
 import images from "../../redux/images.js";
 import reviews from "../../redux/feedback.js";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { getFavourites } from "../../redux/selectors.js";
+import { addToFavourites, removeFromFavourites } from "../../redux/actions.js";
 
 const Home = () => {
   const [unregisterModal, setUnregisterModal] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const isAuth = false;
 
-  const favourites = [3, 1];
+  const favourites = useSelector(getFavourites);
 
   const handleUnregisterModalOpen = () => {
     setUnregisterModal(false);
@@ -39,13 +44,27 @@ const Home = () => {
                 <li key={elem.id} className={css.card}>
                   <div className={css.imageWrap}>
                     <img src={elem.src} alt="Truck" width={280} height={280} />
-                    <div className={css.addToFavourites}>
-                      {favourites.includes(elem.id) ? (
+                    {favourites.includes(elem.id) ? (
+                      <div
+                        id={elem.id}
+                        className={css.addToFavourites}
+                        onClick={(e) =>
+                          dispatch(removeFromFavourites(e.currentTarget.id))
+                        }
+                      >
                         <img src={favouriteSvg} alt="Heart" width={30} />
-                      ) : (
+                      </div>
+                    ) : (
+                      <div
+                        id={elem.id}
+                        className={css.addToFavourites}
+                        onClick={(e) =>
+                          dispatch(addToFavourites(e.currentTarget.id))
+                        }
+                      >
                         <img src={heartSvg} alt="Heart" width={30} />
-                      )}
-                    </div>
+                      </div>
+                    )}
                   </div>
                   <p>
                     {description.length < 120
@@ -207,13 +226,27 @@ const Home = () => {
                 <li key={elem.id} className={css.card}>
                   <div className={css.imageWrap}>
                     <img src={elem.src} alt="Truck" width={280} height={280} />
-                    <div className={css.addToFavourites}>
-                      {favourites.includes(elem.id) ? (
+                    {favourites.includes(elem.id) ? (
+                      <div
+                        id={elem.id}
+                        className={css.addToFavourites}
+                        onClick={(e) =>
+                          dispatch(removeFromFavourites(e.currentTarget.id))
+                        }
+                      >
                         <img src={favouriteSvg} alt="Heart" width={30} />
-                      ) : (
+                      </div>
+                    ) : (
+                      <div
+                        id={elem.id}
+                        className={css.addToFavourites}
+                        onClick={(e) =>
+                          dispatch(addToFavourites(e.currentTarget.id))
+                        }
+                      >
                         <img src={heartSvg} alt="Heart" width={30} />
-                      )}
-                    </div>
+                      </div>
+                    )}
                   </div>
                   <p>
                     {description.length < 120
