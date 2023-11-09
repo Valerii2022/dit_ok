@@ -1,17 +1,12 @@
-import { devToolsEnhancer } from "@redux-devtools/extension";
-import { createStore, combineReducers } from "redux";
-import itemsReducer from "./itemsSlice";
-import usersReducer from "./usersSlice";
-import favouritesReducer from "./favouritesSlice";
-import reviewsReducer from "./reviewsSlice";
+import { itemsReducer } from "./advertsSlice";
+import { usersReducer } from "./usersSlice";
+import { reviewsReducer } from "./reviewsSlice";
+import { configureStore } from "@reduxjs/toolkit";
 
-const reducer = combineReducers({
-  items: itemsReducer,
-  users: usersReducer,
-  favourites: favouritesReducer,
-  reviews: reviewsReducer,
+export const store = configureStore({
+  reducer: {
+    items: itemsReducer,
+    users: usersReducer,
+    reviews: reviewsReducer,
+  },
 });
-
-const enhancer = devToolsEnhancer();
-
-export const store = createStore(reducer, enhancer);

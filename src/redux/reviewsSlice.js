@@ -1,13 +1,16 @@
+import { createSlice } from "@reduxjs/toolkit";
 import reviews from "./feedback";
 
-const reviewsReducer = (state = reviews, action) => {
-  switch (action.type) {
-    case "reviews/get":
-      console.log(state.reviews);
-      return state;
-    default:
-      return state;
-  }
-};
+const reviewsSlice = createSlice({
+  name: "reviews",
+  initialState: reviews,
+  reducers: {
+    allReviews(state, action) {
+      console.log(state, action);
+    },
+  },
+});
 
-export default reviewsReducer;
+export const { allReviews } = reviewsSlice.actions;
+
+export const reviewsReducer = reviewsSlice.reducer;

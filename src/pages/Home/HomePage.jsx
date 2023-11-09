@@ -6,23 +6,29 @@ import heartSvg from "../../images/heart.svg";
 import favouriteSvg from "../../images/markedHeart.svg";
 import { useNavigate } from "react-router-dom";
 import closeIcon from "../../images/close.svg";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Modal from "../../components/Modal/Modal";
 import images from "../../redux/images.js";
 import reviews from "../../redux/feedback.js";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { getFavourites } from "../../redux/selectors.js";
-import { addToFavourites, removeFromFavourites } from "../../redux/actions.js";
+import { getFavourites, getItems } from "../../redux/selectors.js";
+import { addToFavourites, removeFromFavourites } from "../../redux/usersSlice";
+import { fetchAdverts } from "../../redux/operations";
 
 const Home = () => {
   const [unregisterModal, setUnregisterModal] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const isAuth = false;
+  const { adverts, isLoading } = useSelector(getItems);
+
+  useEffect(() => {
+    dispatch(fetchAdverts());
+  }, [dispatch]);
+  console.log(adverts);
 
   const favourites = useSelector(getFavourites);
-  console.log(favourites);
 
   const handleUnregisterModalOpen = () => {
     setUnregisterModal(false);
@@ -34,7 +40,8 @@ const Home = () => {
         <section className={css.newArrivalsSection}>
           <h2 className={css.title}>Нові надходження</h2>
           <ul className={css.caruselWrap}>
-            {images.map((elem) => {
+            {isLoading && <p>Loading...</p>}
+            {adverts.map((elem) => {
               const description = [
                 elem.description,
                 elem.color,
@@ -44,7 +51,7 @@ const Home = () => {
               return (
                 <li key={elem.id} className={css.card}>
                   <div className={css.imageWrap}>
-                    <img src={elem.src} alt="Truck" width={280} height={280} />
+                    <img src={elem.src} alt={elem.alt} />
                     {favourites.includes(elem.id) ? (
                       <div
                         id={elem.id}
@@ -67,7 +74,7 @@ const Home = () => {
                       </div>
                     )}
                   </div>
-                  <p>
+                  <p className={css.description}>
                     {description.length < 120
                       ? `${description}.`
                       : `${description.slice(0, 110)}...`}

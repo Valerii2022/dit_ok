@@ -1,36 +1,37 @@
 import { nanoid } from "nanoid";
+import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = [
-  {
-    id: nanoid(6),
-    favourites: [],
-    isAdmin: true,
-    isAuth: false,
-    user: {
-      name: "Valerii",
-      surname: "Author",
-      phone: "06000000000",
-      email: "author@gmail.com",
-    },
+const initialState = {
+  id: nanoid(6),
+  favourites: [],
+  isAdmin: true,
+  user: {
+    name: "Valerii",
+    surname: "Author",
+    phone: "06000000000",
+    email: "author@gmail.com",
   },
-];
-
-const usersReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case "users/get":
-      console.log(state, "type:", action.type);
-      return state;
-    case "users/add":
-      state[0].favourites = [...state[0].favourites, action.payload];
-      console.log(state[0].favourites);
-      return state;
-    case "users/remove":
-      state[0].favourites.filter((el) => el !== action.payload);
-      console.log(state[0].favourites);
-      return state;
-    default:
-      return state;
-  }
 };
 
-export default usersReducer;
+const usersSlice = createSlice({
+  name: "users",
+  initialState,
+  reducers: {
+    getUser(state, action) {
+      console.log(state, action);
+    },
+    addToFavourites(state, action) {
+      state.favourites = [...state.favourites, action.payload];
+      return state;
+    },
+    removeFromFavourites(state, action) {
+      state.favourites = state.favourites.filter((el) => el !== action.payload);
+      return state;
+    },
+  },
+});
+
+export const { getUser, addToFavourites, removeFromFavourites } =
+  usersSlice.actions;
+
+export const usersReducer = usersSlice.reducer;
