@@ -4,10 +4,13 @@ import Button from "../Button/Button";
 import Modal from "../Modal/Modal";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setCategoryFilter } from "../../redux/filtersSlice";
 
 const Header = () => {
   const [isModalOpen, setIsOpenModal] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleCategoryModalOpen = () => {
     setIsOpenModal(!isModalOpen);
@@ -15,6 +18,7 @@ const Header = () => {
 
   const handleCategoryClick = (e) => {
     console.dir(e.target.id);
+    dispatch(setCategoryFilter(e.target.id));
     navigate("/category");
     handleCategoryModalOpen(false);
   };

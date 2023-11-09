@@ -1,0 +1,30 @@
+.aboutSection {
+  padding: 116px 0 86px 0;
+}
+
+.aboutContentWrap {
+  display: flex;
+  align-items: start;
+  gap: 21px;
+}
+
+.aboutContentList li {
+  padding-left: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.aboutContentList li::before {
+  content: "";
+  display: block;
+  width: 2px;
+  height: 2px;
+  background-color: var(--black);
+}
+
+.aboutContent {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
