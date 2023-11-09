@@ -1,6 +1,7 @@
 import { devToolsEnhancer } from "@redux-devtools/extension";
 import { createStore, combineReducers } from "redux";
 import images from "./images";
+import reviews from "./feedback";
 
 const itemsReducer = (state = images, action) => {
   switch (action.type) {
@@ -23,12 +24,22 @@ const usersReducer = (state = [], action) => {
   }
 };
 
-const favouritesReduser = (state = [], action) => {
+const favouritesReducer = (state = [], action) => {
   switch (action.type) {
     case "favourites/add":
       state = [action.payload];
       return state;
     case "favourites/remove":
+      return state;
+    default:
+      return state;
+  }
+};
+
+const reviewsReducer = (state = reviews, action) => {
+  switch (action.type) {
+    case "reviews/get":
+      console.log(state.reviews);
       return state;
     default:
       return state;
@@ -51,10 +62,15 @@ export const removeFromFavourites = (value) => {
   return { type: "favourites/remove", payload: value };
 };
 
+export const allReviews = (value) => {
+  return { type: "reviews/get", payload: value };
+};
+
 const reducer = combineReducers({
   items: itemsReducer,
   users: usersReducer,
-  favourites: favouritesReduser,
+  favourites: favouritesReducer,
+  reviews: reviewsReducer,
 });
 
 const enhancer = devToolsEnhancer();
