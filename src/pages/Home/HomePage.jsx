@@ -22,6 +22,7 @@ const Home = () => {
   const isAuth = false;
 
   const favourites = useSelector(getFavourites);
+  console.log(favourites);
 
   const handleUnregisterModalOpen = () => {
     setUnregisterModal(false);

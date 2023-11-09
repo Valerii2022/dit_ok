@@ -7,11 +7,11 @@ export const allUsers = (value) => {
 };
 
 export const addToFavourites = (value) => {
-  return { type: "favourites/add", payload: value };
+  return { type: "users/add", payload: value };
 };
 
 export const removeFromFavourites = (value) => {
-  return { type: "favourites/remove", payload: value };
+  return { type: "users/remove", payload: value };
 };
 
 export const allReviews = (value) => {
