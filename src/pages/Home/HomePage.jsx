@@ -17,7 +17,7 @@ const Home = () => {
   const [unregisterModal, setUnregisterModal] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { adverts, isLoading } = useSelector(getItems);
+  const { adverts } = useSelector(getItems);
 
   useEffect(() => {
     dispatch(fetchAdverts());
@@ -35,7 +35,6 @@ const Home = () => {
         <section className={css.newArrivalsSection}>
           <h2 className={css.title}>Нові надходження</h2>
           <ul className={css.caruselWrap}>
-            {isLoading && <p>Loading...</p>}
             {adverts.map((element) => {
               return (
                 <Card
