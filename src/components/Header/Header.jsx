@@ -17,8 +17,7 @@ const Header = () => {
   };
 
   const handleCategoryClick = (e) => {
-    console.dir(e.target.id);
-    dispatch(setCategoryFilter(e.target.id));
+    dispatch(setCategoryFilter(e.target.textContent));
     navigate("/category");
     handleCategoryModalOpen(false);
   };
@@ -65,30 +64,16 @@ const Header = () => {
       {isModalOpen && (
         <Modal handleModalClose={handleCategoryModalOpen}>
           <ul className={css.categoryList} onClick={handleCategoryClick}>
-            <li className={css.category} id={"cloth"}>
+            <li className={css.category} id={"Одяг та взуття"}>
               Одяг та взуття
             </li>
-            <li className={css.category} id={"toys"}>
-              Іграшки
-            </li>
-            <li className={css.category} id={"room"}>
-              Дитяча кімната
-            </li>
-            <li className={css.category} id={"carriage"}>
-              Коляски
-            </li>
-            <li className={css.category} id={"seats"}>
-              Автокрісла
-            </li>
-            <li className={css.category} id={"feeding"}>
-              Все для годування
-            </li>
-            <li className={css.category} id={"care"}>
-              Догляд, гігієна та купання
-            </li>
-            <li className={css.category} id={"transport"}>
-              Дитячий транспорт
-            </li>
+            <li className={css.category}>Іграшки</li>
+            <li className={css.category}>Дитяча кімната</li>
+            <li className={css.category}>Коляски</li>
+            <li className={css.category}>Автокрісла</li>
+            <li className={css.category}>Все для годування</li>
+            <li className={css.category}>Догляд, гігієна та купання</li>
+            <li className={css.category}>Дитячий транспорт</li>
           </ul>
         </Modal>
       )}

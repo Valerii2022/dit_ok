@@ -36,7 +36,7 @@ const Category = () => {
           <NavLink to="/home">Головна /</NavLink>
         </div>
         <section className={css.categoryTop}>
-          <h2 className={css.title}>Одяг і взуття </h2>
+          <h2 className={css.title}>{category ? category : "Всі товари"}</h2>
           <ul className={css.caruselWrap}>
             {filteredAdverts.map((element) => {
               return (

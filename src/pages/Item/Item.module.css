@@ -24,12 +24,35 @@
   gap: 20px;
 }
 
-.imagesWrapper {
+.mainImageWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 413px;
+  height: 413px;
+  margin-bottom: 27px;
+  overflow: hidden;
+  border-radius: 30px;
+  background-color: var(--light-grey);
+  border: 1px solid var(--light-grey);
+}
+
+.imageList {
   display: flex;
   flex-wrap: wrap;
-  column-gap: 19px;
-  row-gap: 27px;
+  gap: 20px;
+}
+
+.imageList li {
+  width: calc((100% - 20px) / 2);
+  height: 197px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  border-radius: 30px;
+  background-color: var(--light-grey);
+  border: 1px solid var(--light-grey);
 }
 
 .infoWrapper p {
@@ -64,16 +87,18 @@
 }
 
 .boxWrapper {
+  width: 416px;
   display: flex;
+  flex-wrap: wrap;
   gap: 20px;
 }
 
 .boxWrapper .box {
   cursor: pointer;
+  width: calc((100% - 60px) / 4);
 }
 
 .box {
-  width: 89px;
   height: 79px;
   border-radius: 20px;
   border: 1px solid var(--black, #000);
@@ -89,6 +114,10 @@
   display: flex;
   gap: 20px;
   align-items: center;
+}
+
+.quantity .box {
+  width: 89px;
 }
 
 .quantity span {

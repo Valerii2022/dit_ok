@@ -21,6 +21,10 @@ const Card = (elem) => {
     cardElement.material,
   ].join(". ");
 
+  const handleMoreBtnClick = () => {
+    navigate("/item", { state: { key: cardElement.id } });
+  };
+
   return (
     <li className={css.card}>
       <div className={css.imageWrap}>
@@ -56,7 +60,7 @@ const Card = (elem) => {
       ) : (
         <p>{cardElement.price} грн</p>
       )}
-      <div className={css.cardBottom}>
+      <div className={css.cardBottom} id={cardElement.id}>
         <div
           className={css.btnWrap}
           onClick={() => {
@@ -67,12 +71,7 @@ const Card = (elem) => {
         >
           <Button title={"Купити"} />
         </div>
-        <button
-          className={css.moreBtn}
-          onClick={() => {
-            navigate("/item");
-          }}
-        >
+        <button className={css.moreBtn} onClick={handleMoreBtnClick}>
           Докладніше
         </button>
       </div>

@@ -17,13 +17,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: var(--light-yellow);
+  background-color: var(--light-grey);
+  border: 1px solid var(--light-grey);
   border-radius: 17px;
   overflow: hidden;
   height: 280px;
-}
-
-.imageWrap img {
 }
 
 .addToFavourites {
