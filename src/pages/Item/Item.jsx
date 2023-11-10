@@ -25,7 +25,9 @@ const Item = () => {
     dispatch(fetchAdverts());
   }, [dispatch]);
 
-  const currentAdvert = adverts.filter((el) => el.id === location.state.key)[0];
+  const currentAdvert = adverts.filter(
+    (el) => el.id === location.state?.key
+  )[0];
   // console.log(currentAdvert);
 
   const handleQuantityChange = (value) => {
