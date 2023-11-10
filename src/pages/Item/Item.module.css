@@ -116,11 +116,19 @@
   align-items: center;
 }
 
+.quantity input {
+  text-align: center;
+}
+
 .quantity .box {
   width: 89px;
 }
 
-.quantity span {
+.quantity button {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  font-family: "Montserrat", sans-serif;
   font-size: 48px;
   font-weight: 200;
   line-height: 1.22;
@@ -135,6 +143,12 @@
 .btnWrapper div {
   width: 413px;
   height: 79px;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 /* ======================================Modal======== */

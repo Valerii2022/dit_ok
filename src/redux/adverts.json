@@ -1,0 +1,91 @@
+[
+  {
+    "src": "https://hips.hearstapps.com/hmg-prod/images/best-toys-gifts-for-2-year-olds-index-64fa3553250b4.png?crop=0.502xw:1.00xh;0,0&resize=360:*",
+    "color": "Синій",
+    "alt": "Toys",
+    "sale": 1250,
+    "material": "Поліестер 30%, бавовна 70%",
+    "brand": "Flamingo",
+    "description": "Утепленний комплекс (штанці і кофтинка) для хлопчика, комплекс (штанці і кофтинка) для хлопчика",
+    "price": 1500,
+    "id": "1",
+    "category": "Коляски",
+    "sizes": [
+      { "size": 122, "quantity": 5 },
+      { "size": 124, "quantity": 10 },
+      { "size": 126, "quantity": 4 },
+      { "size": 130, "quantity": 2 }
+    ],
+    "images": [
+      "https://m.media-amazon.com/images/I/713szPyljLL.jpg",
+      "https://cdn.firstcry.com/education/2022/11/06094158/Toy-Names-For-Kids.jpg",
+      "https://www.closetworksinc.com/wp-content/uploads/2019/11/Untitled-design-5-hero.jpg",
+      "https://rukminim2.flixcart.com/image/850/1000/kltryq80/vehicle-pull-along/z/c/8/unbreakable-automobile-car-toy-set-for-children-kids-toys-original-imagyvdhb2k62nmh.jpeg?q=90"
+    ]
+  },
+  {
+    "src": "https://img.freepik.com/premium-photo/girl-kindergarten-with-plaything_23-2147663730.jpg",
+    "color": "зелений",
+    "alt": "Toys",
+    "sale": false,
+    "material": "Поліестер 30%, бавовна 70%",
+    "brand": "Flamingo",
+    "description": "description 2",
+    "price": 2000,
+    "id": "2",
+    "category": "Автокрісла",
+    "sizes": [
+      { "size": 118, "quantity": 3 },
+      { "size": 126, "quantity": 4 },
+      { "size": 130, "quantity": 2 }
+    ],
+    "images": [
+      "https://m.media-amazon.com/images/I/713szPyljLL.jpg",
+      "https://cdn.firstcry.com/education/2022/11/06094158/Toy-Names-For-Kids.jpg"
+    ]
+  },
+  {
+    "src": "https://www.wickeduncle.co.uk/blog/wp-content/uploads/2021/06/marblerun.jpeg",
+    "color": "Білий",
+    "alt": "Toys",
+    "sale": 850,
+    "material": "Поліестер 30%, бавовна 70%",
+    "brand": "Flamingo",
+    "description": "Утепленний комплекс (штанці і кофтинка) для хлопчика, комплекс (штанці і кофтинка) для хлопчика",
+    "price": 1400,
+    "id": "3",
+    "category": "Іграшки",
+    "sizes": [
+      { "size": 118, "quantity": 3 },
+      { "size": 126, "quantity": 4 },
+      { "size": 130, "quantity": 2 },
+      { "size": 134, "quantity": 6 },
+      { "size": 138, "quantity": 1 }
+    ],
+    "images": [
+      "https://m.media-amazon.com/images/I/713szPyljLL.jpg",
+      "https://cdn.firstcry.com/education/2022/11/06094158/Toy-Names-For-Kids.jpg",
+      "https://rukminim2.flixcart.com/image/850/1000/kltryq80/vehicle-pull-along/z/c/8/unbreakable-automobile-car-toy-set-for-children-kids-toys-original-imagyvdhb2k62nmh.jpeg?q=90"
+    ]
+  },
+  {
+    "src": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8C029CranowusgWJ61z6rfuqS4dA4KTFd9oIbShAcbOxwy4_Pdulb9cV_YLVFDWYQeSE&usqp=CAU",
+    "color": "Синій",
+    "alt": "Toys",
+    "sale": false,
+    "material": "Поліестер 30%, бавовна 70%",
+    "brand": "Flamingo",
+    "description": "Утепленний комплекс (штанці і кофтинка) для хлопчика, комплекс (штанці і кофтинка) для хлопчика",
+    "price": 1800,
+    "id": "4",
+    "category": "Одяг та взуття",
+    "sizes": [
+      { "size": 118, "quantity": 3 },
+      { "size": 145, "quantity": 10 }
+    ],
+    "images": [
+      "https://cdn.firstcry.com/education/2022/11/06094158/Toy-Names-For-Kids.jpg",
+      "https://rukminim2.flixcart.com/image/850/1000/kltryq80/vehicle-pull-along/z/c/8/unbreakable-automobile-car-toy-set-for-children-kids-toys-original-imagyvdhb2k62nmh.jpeg?q=90"
+    ]
+  }
+]

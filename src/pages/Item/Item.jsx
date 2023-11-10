@@ -4,11 +4,12 @@ import Button from "../../components/Button/Button";
 import closeIcon from "../../images/close.svg";
 import { useEffect, useState } from "react";
 import Modal from "../../components/Modal/Modal";
-import { fetchAdverts } from "../../redux/operations";
+// import { fetchAdverts } from "../../redux/operations";
 import { useDispatch, useSelector } from "react-redux";
 import { getFavourites, getItems } from "../../redux/selectors";
 import { nanoid } from "nanoid";
 import { addToFavourites, removeFromFavourites } from "../../redux/usersSlice";
+import { fetchAdverts } from "../../redux/operations";
 
 const Item = () => {
   const [quantity, setQuantity] = useState(1);
@@ -25,6 +26,7 @@ const Item = () => {
   }, [dispatch]);
 
   const currentAdvert = adverts.filter((el) => el.id === location.state.key)[0];
+  // console.log(currentAdvert);
 
   const handleQuantityChange = (value) => {
     if (value === "increment") {
@@ -63,13 +65,14 @@ const Item = () => {
               />
             </div>
             <ul className={css.imageList}>
-              {currentAdvert.images.map((el) => {
-                return (
-                  <li key={nanoid(6)}>
-                    <img src={el} alt="" width={197} height={197} />
-                  </li>
-                );
-              })}
+              {currentAdvert &&
+                currentAdvert.images.map((el) => {
+                  return (
+                    <li key={nanoid(6)}>
+                      <img src={el} alt="" width={197} height={197} />
+                    </li>
+                  );
+                })}
             </ul>
           </div>
           <div className={css.infoWrapper}>
@@ -92,68 +95,94 @@ const Item = () => {
                 <span>{currentAdvert.price} грн</span>
               </p>
             </div>
-            <div className={css.sizesWrapper}>
-              <div>
-                <p>Розміри:</p>
-                <ul className={css.boxWrapper}>
-                  {currentAdvert.sizes.map((el) => {
-                    return (
-                      <li key={nanoid(6)} className={css.box}>
-                        {el}
-                      </li>
-                    );
-                  })}
-                </ul>
-              </div>
-              <div>
-                <p>Кількість:</p>
-                <div className={css.quantity}>
-                  <span onClick={() => handleQuantityChange("decrement")}>
-                    -
-                  </span>
-                  <div className={css.box}>{quantity}</div>
-                  <span onClick={() => handleQuantityChange("increment")}>
-                    +
-                  </span>
+            <form>
+              <div className={css.sizesWrapper}>
+                <div>
+                  <p>Розміри:</p>
+                  <ul className={css.boxWrapper}>
+                    {currentAdvert.sizes.map((el) => {
+                      return (
+                        <li key={nanoid(6)} className={css.box}>
+                          <label>
+                            <input type="radio" name="size" />
+                            {el.size}
+                          </label>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </div>
+                <div>
+                  <p>Кількість:</p>
+                  <div className={css.quantity}>
+                    <button
+                      type="button"
+                      onClick={() => handleQuantityChange("decrement")}
+                    >
+                      -
+                    </button>
+                    <label>
+                      <input
+                        onChange={(e) => setQuantity(Number(e.target.value))}
+                        className={css.box}
+                        value={quantity}
+                        min={1}
+                        max={5}
+                        type="number"
+                        step={1}
+                        name="quantity"
+                      />
+                    </label>
+                    <button
+                      type="button"
+                      onClick={() => handleQuantityChange("increment")}
+                    >
+                      +
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className={css.btnWrapper}>
-              <div
-                onClick={() => {
-                  {
-                    isAuth ? navigate("/order") : setUnregisterModal(true);
-                  }
-                }}
-              >
-                <Button title={"Купити"} fontSize={"28"} />
-              </div>
-              {favourites.includes(currentAdvert.id) ? (
+              <div className={css.btnWrapper}>
                 <div
-                  onClick={() =>
-                    dispatch(removeFromFavourites(currentAdvert.id))
-                  }
+                  onClick={() => {
+                    {
+                      isAuth ? navigate("/order") : setUnregisterModal(true);
+                    }
+                  }}
                 >
-                  <Button
-                    title={`Видалити з "Улюбленого"`}
-                    fontSize={"28"}
-                    backgroundColor={"#fff"}
-                    border={"#fac917"}
-                  />
+                  <Button title={"Купити"} fontSize={"28"} />
                 </div>
-              ) : (
-                <div
-                  onClick={() => dispatch(addToFavourites(currentAdvert.id))}
-                >
-                  <Button
-                    title={`Додати в "Улюблене"`}
-                    fontSize={"28"}
-                    backgroundColor={"#fff"}
-                    border={"#fac917"}
-                  />
-                </div>
-              )}
-            </div>
+                {favourites.includes(currentAdvert.id) ? (
+                  <div
+                    onClick={(e) => {
+                      e.preventDefault();
+                      dispatch(removeFromFavourites(currentAdvert.id));
+                    }}
+                  >
+                    <Button
+                      title={`Видалити з "Улюбленого"`}
+                      fontSize={"28"}
+                      backgroundColor={"#fff"}
+                      border={"#fac917"}
+                    />
+                  </div>
+                ) : (
+                  <div
+                    onClick={(e) => {
+                      e.preventDefault();
+                      dispatch(addToFavourites(currentAdvert.id));
+                    }}
+                  >
+                    <Button
+                      title={`Додати в "Улюблене"`}
+                      fontSize={"28"}
+                      backgroundColor={"#fff"}
+                      border={"#fac917"}
+                    />
+                  </div>
+                )}
+              </div>
+            </form>
           </div>
           {unregisterModal && (
             <Modal handleModalClose={handleUnregisterModalOpen}>
