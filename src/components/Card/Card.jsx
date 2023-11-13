@@ -23,7 +23,7 @@ const Card = (elem) => {
   ].join(". ");
 
   const handleMoreBtnClick = () => {
-    dispatch(setCategoryFilter(cardElement));
+    dispatch(setCategoryFilter(cardElement.category));
     navigate("/item", { state: { key: cardElement.id } });
   };
 
