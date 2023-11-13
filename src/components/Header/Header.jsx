@@ -8,11 +8,13 @@ import { useDispatch } from "react-redux";
 import { setCategoryFilter } from "../../redux/filtersSlice";
 
 const Header = () => {
+  const [zIndex, setZIndex] = useState(0);
   const [isModalOpen, setIsOpenModal] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const handleCategoryModalOpen = () => {
+    setZIndex(1000);
     setIsOpenModal(!isModalOpen);
   };
 
@@ -20,6 +22,7 @@ const Header = () => {
     dispatch(setCategoryFilter(e.target.textContent));
     navigate("/category");
     handleCategoryModalOpen(false);
+    setZIndex(0);
   };
 
   return (
@@ -28,7 +31,7 @@ const Header = () => {
         <NavLink className={css.logo} to="/">
           DitOk
         </NavLink>
-        <div className={css.searchWrap}>
+        <div style={{ zIndex: `${zIndex}` }} className={css.searchWrap}>
           <label>
             <input
               type="text"
