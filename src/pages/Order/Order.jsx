@@ -112,7 +112,11 @@ const Order = () => {
       <div
         className={css.btnWrapper}
         onClick={() => {
-          navigate("/payment");
+          navigate("/payment", {
+            state: {
+              key: currentAdvert.id,
+            },
+          });
         }}
       >
         <Button title={"Перейти до оплати"} fontSize={"28"} />

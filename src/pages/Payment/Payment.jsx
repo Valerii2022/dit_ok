@@ -1,16 +1,26 @@
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import css from "./Payment.module.css";
 import Button from "../../components/Button/Button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Modal from "../../components/Modal/Modal";
 import closeIcon from "../../images/close.svg";
-import masterCardIcon from "../../images/pay01.svg";
-import visaCardIcon from "../../images/pay02.svg";
-import payPalIcon from "../../images/pay03.svg";
+import masterCardIcon from "../../images/pay01.jpg";
+import visaCardIcon from "../../images/pay02.jpg";
+import payPalIcon from "../../images/pay03.jpg";
+import { getItems } from "../../redux/selectors";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchCurrentAdvert } from "../../redux/operations";
 
 const Payment = () => {
   const [successModalOpen, setSuccessModalOpen] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const location = useLocation();
+  const { currentAdvert } = useSelector(getItems);
+
+  useEffect(() => {
+    dispatch(fetchCurrentAdvert(location.state?.key));
+  }, [dispatch, location.state?.key]);
 
   const handleSuccessModalOpen = () => {
     // setSuccessModalOpen(false);
@@ -24,41 +34,82 @@ const Payment = () => {
           <span>Головна</span>
         </NavLink>
         <NavLink to="/category">
-          <span>Одяг і взуття</span>{" "}
+          {currentAdvert && (
+            <span>{currentAdvert.category ? currentAdvert.category : ""}</span>
+          )}
         </NavLink>
       </div>
-      <form>
-        <h2>Оплата</h2>
-        <label>
-          ПІБ
-          <input type="text" name="peymentName" />
-        </label>
-        <div>
-          <img src={masterCardIcon} alt="Master Card" />
-          <img src={visaCardIcon} alt="Visa Card" />
-          <img src={payPalIcon} alt="Pay Pal" />
+      <form className={css.form}>
+        <h2 className={css.title}>Оплата</h2>
+        <div className={css.formInner}>
+          <div className={css.inputWrapper}>
+            <label className={css.inputFieldWrapper}>
+              ПІБ
+              <input className={css.input} type="text" name="paymentName" />
+            </label>
+          </div>
+          <div className={css.inputWrapper}>
+            <div className={css.radioInput}>
+              <label htmlFor="master card">
+                <input type="radio" id="master card" name="payment" />
+                <img src={masterCardIcon} alt="Master Card" />
+              </label>
+            </div>
+            <div className={css.radioInput}>
+              <label htmlFor="visa">
+                <input type="radio" id="visa" name="payment" />
+                <img src={visaCardIcon} alt="Visa Card" />
+              </label>
+            </div>
+            <div className={css.radioInput}>
+              <label htmlFor="paypal">
+                <input type="radio" id="paypal" name="payment" />
+                <img src={payPalIcon} alt="Pay Pal" />
+              </label>
+            </div>
+          </div>
+          <div className={css.inputWrapper}>
+            <label className={css.inputFieldWrapper}>
+              Номер картки
+              <input className={css.input} type="text" name="paymentName" />
+            </label>
+          </div>
+          <div className={css.inputWrapper}>
+            <div>
+              <label className={css.inputFieldWrapper}>
+                Дата
+                <input className={css.input} type="date" name="cardDate" />
+              </label>
+            </div>
+            <div>
+              <label className={css.inputFieldWrapper}>
+                CVV
+                <input
+                  className={css.input}
+                  type="password"
+                  name="CVV"
+                  min={3}
+                  max={3}
+                />
+              </label>
+            </div>
+          </div>
         </div>
-        <label>
-          Номер картки
-          <input type="text" name="paymentName" />
+        <label htmlFor="checkbox" className={css.checkbox}>
+          <input type="checkbox" name="checkbox" id="checkbox" />
+          Запам’ятати мою картку
         </label>
-        <label>
-          Дата
-          <input type="date" name="cardDate" />
-        </label>
-        <label>
-          CVV
-          <input type="password" name="CVV" />
-        </label>
+        <div
+          className={css.btnWrapper}
+          onClick={(e) => {
+            e.preventDefault();
+            setSuccessModalOpen(true);
+          }}
+        >
+          <Button title={"Підтвердити"} fontSize={"28"} />
+        </div>
       </form>
-      <div
-        className={css.btnWrapper}
-        onClick={() => {
-          setSuccessModalOpen(true);
-        }}
-      >
-        <Button title={"Підтвердити"} fontSize={"28"} />
-      </div>
+
       {successModalOpen && (
         <Modal handleModalClose={handleSuccessModalOpen}>
           <div className={css.modalContainer}>
