@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import Modal from "../../components/Modal/Modal";
 import { fetchAdverts } from "../../redux/operations";
 import Card from "../../components/Card/Card";
-import Carousel from "better-react-carousel";
+// import Carousel from "better-react-carousel";
 
 const Category = () => {
   const [unregisterModal, setUnregisterModal] = useState(false);
@@ -78,7 +78,7 @@ const Category = () => {
       </section>
       <div className={css.container}>
         <section>
-          <Carousel cols={4} rows={1} gap={20} loop>
+          {/* <Carousel cols={4} rows={1} gap={20} loop>
             {filteredAdverts.map((element) => {
               return (
                 <Carousel.Item key={element.id} style={{ width: 200 }}>
@@ -93,7 +93,7 @@ const Category = () => {
                 </Carousel.Item>
               );
             })}
-          </Carousel>
+          </Carousel> */}
         </section>
       </div>
       {unregisterModal && (
