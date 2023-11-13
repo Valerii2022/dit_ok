@@ -23,12 +23,12 @@ const Card = (elem) => {
   ].join(". ");
 
   const handleMoreBtnClick = () => {
-    dispatch(setCategoryFilter(cardElement.category));
+    dispatch(setCategoryFilter(cardElement));
     navigate("/item", { state: { key: cardElement.id } });
   };
 
   return (
-    <li className={css.card}>
+    <div className={css.card}>
       <div className={css.imageWrap}>
         <img src={cardElement.src} alt={cardElement.alt} />
         {favourites.includes(cardElement.id) ? (
@@ -77,7 +77,7 @@ const Card = (elem) => {
           Докладніше
         </button>
       </div>
-    </li>
+    </div>
   );
 };
 

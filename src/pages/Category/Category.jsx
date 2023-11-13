@@ -8,7 +8,27 @@ import { useEffect, useState } from "react";
 import Modal from "../../components/Modal/Modal";
 import { fetchAdverts } from "../../redux/operations";
 import Card from "../../components/Card/Card";
-// import Carousel from "better-react-carousel";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
+
+const responsive = {
+  superLargeDesktop: {
+    breakpoint: { max: 4000, min: 3000 },
+    items: 4,
+  },
+  desktop: {
+    breakpoint: { max: 3000, min: 1280 },
+    items: 4,
+  },
+  tablet: {
+    breakpoint: { max: 1024, min: 464 },
+    items: 2,
+  },
+  mobile: {
+    breakpoint: { max: 464, min: 0 },
+    items: 1,
+  },
+};
 
 const Category = () => {
   const [unregisterModal, setUnregisterModal] = useState(false);
@@ -78,22 +98,22 @@ const Category = () => {
       </section>
       <div className={css.container}>
         <section>
-          {/* <Carousel cols={4} rows={1} gap={20} loop>
+          <Carousel
+            renderButtonGroupOutside={true}
+            className={css.categoryBottom}
+            responsive={responsive}
+          >
             {filteredAdverts.map((element) => {
               return (
-                <Carousel.Item key={element.id} style={{ width: 200 }}>
-                  <Card cardElement={element} openModal={setUnregisterModal} />
-                </Carousel.Item>
+                <Card
+                  className="legend"
+                  key={element.id}
+                  cardElement={element}
+                  openModal={setUnregisterModal}
+                />
               );
             })}
-            {filteredAdverts.map((element) => {
-              return (
-                <Carousel.Item key={element.id}>
-                  <Card cardElement={element} openModal={setUnregisterModal} />
-                </Carousel.Item>
-              );
-            })}
-          </Carousel> */}
+          </Carousel>
         </section>
       </div>
       {unregisterModal && (
