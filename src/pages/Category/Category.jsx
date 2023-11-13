@@ -1,7 +1,7 @@
 import css from "./Category.module.css";
 import Button from "../../components/Button/Button";
 import closeIcon from "../../images/close.svg";
-import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getCategoryFilter, getItems } from "../../redux/selectors";
 import { useEffect, useState } from "react";
@@ -35,7 +35,7 @@ const Category = () => {
   const [unregisterModal, setUnregisterModal] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const location = useLocation();
+  // const location = useLocation();
   const category = useSelector(getCategoryFilter);
   const { adverts } = useSelector(getItems);
   const discountAdverts = adverts.filter((el) => el.sale);
@@ -48,11 +48,11 @@ const Category = () => {
     setUnregisterModal(false);
   };
 
-  const filteredAdvertsByQuery = location.state.query
-    ? adverts.filter((el) => el.description.includes(location.state.query))
-    : [];
+  // const filteredAdvertsByQuery = location.state.query
+  //   ? adverts.filter((el) => el.description.includes(location.state.query))
+  //   : [];
 
-  console.log(filteredAdvertsByQuery);
+  // console.log(filteredAdvertsByQuery);
 
   const filteredAdverts = category
     ? adverts.filter((el) => el.category === category)
@@ -86,23 +86,25 @@ const Category = () => {
       <section className={css.discountSection}>
         <div className={css.container}>
           <h2 className={css.title}>Акційні товари</h2>
-          <Carousel
-            showDots={false}
-            infinite
-            className={css.discountCaruselWrap}
-            responsive={responsive}
-          >
-            {discountAdverts.map((element) => {
-              return (
-                <Card
-                  className="legend"
-                  key={element.id}
-                  cardElement={element}
-                  openModal={setUnregisterModal}
-                />
-              );
-            })}
-          </Carousel>
+          <div className="gd-carousel-wrapper">
+            <Carousel
+              showDots={false}
+              infinite
+              className="gd-carousel"
+              responsive={responsive}
+            >
+              {discountAdverts.map((element) => {
+                return (
+                  <Card
+                    className="legend"
+                    key={element.id}
+                    cardElement={element}
+                    openModal={setUnregisterModal}
+                  />
+                );
+              })}
+            </Carousel>
+          </div>
         </div>
       </section>
       {/* <div className={css.container}>

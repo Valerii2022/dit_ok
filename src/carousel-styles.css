@@ -1,0 +1,46 @@
+.gd-carousel-wrapper {
+  position: relative;
+}
+
+.gd-carousel {
+  position: unset;
+  display: flex;
+  justify-content: space-between;
+}
+.react-multiple-carousel__arrow {
+  position: absolute;
+}
+
+.react-multiple-carousel__arrow--left {
+  left: -40px;
+  background-color: transparent;
+}
+
+.react-multiple-carousel__arrow--right {
+  right: -50px;
+  background-color: transparent;
+}
+
+.react-multiple-carousel__arrow--left::before,
+.react-multiple-carousel__arrow--right::before {
+  content: "";
+  width: 16px;
+  height: 16px;
+  border-left: 3px solid var(--black);
+  border-bottom: 3px solid var(--black);
+  border-bottom-left-radius: 4px;
+  color: var(--black);
+}
+
+.react-multiple-carousel__arrow--left::before {
+  transform: rotate(45deg);
+}
+
+.react-multiple-carousel__arrow--right::before {
+  transform: rotate(-135deg);
+}
+
+.react-multiple-carousel__arrow--left:hover,
+.react-multiple-carousel__arrow--right:hover {
+  background-color: transparent;
+}

@@ -74,76 +74,82 @@ const Home = () => {
       <div className={css.container}>
         <section className={css.newArrivalsSection}>
           <h2 className={css.title}>Нові надходження</h2>
-          <Carousel
-            showDots={false}
-            infinite
-            className={css.caruselWrap}
-            responsive={responsive}
-          >
-            {newAdverts.map((element) => {
-              return (
-                <Card
-                  className="legend"
-                  key={element.id}
-                  cardElement={element}
-                  openModal={setUnregisterModal}
-                />
-              );
-            })}
-          </Carousel>
+          <div className="gd-carousel-wrapper">
+            <Carousel
+              showDots={false}
+              infinite
+              className="gd-carousel"
+              responsive={responsive}
+            >
+              {newAdverts.map((element) => {
+                return (
+                  <Card
+                    className="legend"
+                    key={element.id}
+                    cardElement={element}
+                    openModal={setUnregisterModal}
+                  />
+                );
+              })}
+            </Carousel>
+          </div>
         </section>
       </div>
       <div className={css.container}>
         <section className={css.discontSection} id="discount">
           <h2 className={css.title}>Акції</h2>
-          <Carousel
-            showDots={false}
-            infinite
-            className={css.caruselWrap}
-            responsive={responsive}
-          >
-            {discountAdverts.map((element) => {
-              return (
-                <Card
-                  className="legend"
-                  key={element.id}
-                  cardElement={element}
-                  openModal={setUnregisterModal}
-                />
-              );
-            })}
-          </Carousel>
+          <div className="gd-carousel-wrapper">
+            <Carousel
+              showDots={false}
+              infinite
+              className="gd-carousel"
+              responsive={responsive}
+            >
+              {discountAdverts.map((element) => {
+                return (
+                  <Card
+                    className="legend"
+                    key={element.id}
+                    cardElement={element}
+                    openModal={setUnregisterModal}
+                  />
+                );
+              })}
+            </Carousel>
+          </div>
         </section>
       </div>
       <section className={css.reviewsSection}>
         <div className={css.container}>
           <h2 className={css.title}>Відгуки</h2>
-          <Carousel
-            showDots={false}
-            infinite
-            className={css.caruselWrap}
-            responsive={responsiveFeedback}
-          >
-            {reviews.map((elem) => {
-              return (
-                <div key={elem.id} className="legend">
-                  <div className={css.reviewCard}>
-                    <img src={elem.src} alt="Reviewer" />
-                    <div>
-                      <p className={css.reviewTitle}>{elem.name}</p>
-                      {elem.text.length < 120 ? (
-                        <p>{elem.text}</p>
-                      ) : (
-                        <p className={css.reviewText}>
-                          {elem.text.slice(0, 110)}...
-                        </p>
-                      )}
+          <div className="gd-carousel-wrapper">
+            <Carousel
+              showDots={false}
+              infinite
+              className="gd-carousel"
+              responsive={responsiveFeedback}
+            >
+              {reviews.map((elem) => {
+                return (
+                  <div key={elem.id} className="legend">
+                    <div className={css.reviewCard}>
+                      <img src={elem.src} alt="Reviewer" />
+                      <div>
+                        <p className={css.reviewTitle}>{elem.name}</p>
+                        {elem.text.length < 120 ? (
+                          <p>{elem.text}</p>
+                        ) : (
+                          <p className={css.reviewText}>
+                            {elem.text.slice(0, 110)}...
+                          </p>
+                        )}
+                      </div>
                     </div>
                   </div>
-                </div>
-              );
-            })}
-          </Carousel>
+                );
+              })}
+            </Carousel>
+          </div>
         </div>
       </section>
       <div className={css.container}>
