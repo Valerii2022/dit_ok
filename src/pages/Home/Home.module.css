@@ -13,11 +13,6 @@
   margin-bottom: 50px;
 }
 
-.caruselWrap {
-  display: flex;
-  gap: 20px;
-}
-
 /* =========================================================newArrivalsSection==== */
 .newArrivalsSection {
   padding: 27px 0 80px 0;
@@ -40,7 +35,6 @@
 }
 
 .reviewCard {
-  /* width: calc((100% - 40px) / 3); */
   width: 413px;
   padding: 10px;
   border-radius: 30px;
