@@ -10,11 +10,16 @@ import { setCategoryFilter } from "../../redux/filtersSlice";
 const Header = () => {
   const [zIndex, setZIndex] = useState(0);
   const [isModalOpen, setIsOpenModal] = useState(false);
+  const [query, setQuery] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const handleCategoryModalOpen = () => {
-    setZIndex(1000);
+    if (zIndex === 1000) {
+      setZIndex(0);
+    } else {
+      setZIndex(1000);
+    }
     setIsOpenModal(!isModalOpen);
   };
 
@@ -23,6 +28,11 @@ const Header = () => {
     navigate("/category");
     handleCategoryModalOpen(false);
     setZIndex(0);
+  };
+
+  const handleSearchBtnClick = () => {
+    navigate("/category", { state: { query: query } });
+    setQuery("");
   };
 
   return (
@@ -34,6 +44,8 @@ const Header = () => {
         <div style={{ zIndex: `${zIndex}` }} className={css.searchWrap}>
           <label>
             <input
+              value={query}
+              onChange={(e) => setQuery(e.currentTarget.value)}
               type="text"
               name="filter"
               placeholder="Пошук за товарами"
@@ -43,7 +55,7 @@ const Header = () => {
           <button className={css.categoryBtn} onClick={handleCategoryModalOpen}>
             Категорія
           </button>
-          <div className={css.btnWrap}>
+          <div className={css.btnWrap} onClick={handleSearchBtnClick}>
             <Button title={"Знайти"} />
           </div>
         </div>
@@ -51,7 +63,7 @@ const Header = () => {
       <nav className={css.navigation}>
         <ul className={css.navigateList}>
           <li className={css.navigateItem}>
-            <NavLink to="/about">Про нас</NavLink>
+            <NavLink to="/">Про нас</NavLink>
           </li>
           <li className={css.navigateItem}>
             <NavLink to="/delivery">Доставка і повернення</NavLink>

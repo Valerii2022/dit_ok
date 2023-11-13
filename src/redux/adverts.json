@@ -4,6 +4,7 @@
     "color": "Синій",
     "alt": "Toys",
     "sale": 1250,
+    "new":true,
     "material": "Поліестер 30%, бавовна 70%",
     "brand": "Flamingo",
     "description": "Утепленний комплекс (штанці і кофтинка) для хлопчика, комплекс (штанці і кофтинка) для хлопчика",
@@ -28,6 +29,7 @@
     "color": "зелений",
     "alt": "Toys",
     "sale": false,
+    "new":false,
     "material": "Поліестер 30%, бавовна 70%",
     "brand": "Flamingo",
     "description": "description 2",
@@ -49,6 +51,7 @@
     "color": "Білий",
     "alt": "Toys",
     "sale": 850,
+    "new":false,
     "material": "Поліестер 30%, бавовна 70%",
     "brand": "Flamingo",
     "description": "Утепленний комплекс (штанці і кофтинка) для хлопчика, комплекс (штанці і кофтинка) для хлопчика",
@@ -73,6 +76,7 @@
     "color": "Синій",
     "alt": "Toys",
     "sale": false,
+    "new":true,
     "material": "Поліестер 30%, бавовна 70%",
     "brand": "Flamingo",
     "description": "Утепленний комплекс (штанці і кофтинка) для хлопчика, комплекс (штанці і кофтинка) для хлопчика",
@@ -86,6 +90,96 @@
     "images": [
       "https://cdn.firstcry.com/education/2022/11/06094158/Toy-Names-For-Kids.jpg",
       "https://rukminim2.flixcart.com/image/850/1000/kltryq80/vehicle-pull-along/z/c/8/unbreakable-automobile-car-toy-set-for-children-kids-toys-original-imagyvdhb2k62nmh.jpeg?q=90"
+    ]
+  },
+  {
+    "src": "https://cdn.firstcry.com/education/2022/11/06094158/Toy-Names-For-Kids.jpg",
+    "color": "Червоний",
+    "alt": "Toys",
+    "sale": 1000,
+    "new":true,
+    "material": "Поліестер 30%, бавовна 70%",
+    "brand": "Adidas",
+    "description": "Утепленний комплекс (штанці і кофтинка) для хлопчика, комплекс для хлопчика",
+    "price": 1300,
+    "id": "5",
+    "category": "Дитяча кімната",
+    "sizes": [
+      { "size": 122, "quantity": 5 },
+      { "size": 124, "quantity": 1 }
+    ],
+    "images": [
+      "https://m.media-amazon.com/images/I/713szPyljLL.jpg",
+      "https://cdn.firstcry.com/education/2022/11/06094158/Toy-Names-For-Kids.jpg"
+    ]
+  },
+  {
+    "src": "https://m.media-amazon.com/images/I/713szPyljLL.jpg",
+    "color": "Жовтий",
+    "alt": "Toys",
+    "sale": false,
+    "new":true,
+    "material": "Поліестер 30%, бавовна 70%",
+    "brand": "Nike",
+    "description": "Утепленний комплекс (штанці і кофтинка) для хлопчика, комплекс для хлопчикаю Утепленний комплекс (штанці і кофтинка) для хлопчика, комплекс для хлопчика",
+    "price": 1300,
+    "id": "6",
+    "category": "Все для годування",
+    "sizes": [
+      { "size": 122, "quantity": 5 },
+      { "size": 124, "quantity": 1 },
+      { "size": 126, "quantity": 3 }
+    ],
+    "images": [
+      "https://m.media-amazon.com/images/I/713szPyljLL.jpg",
+      "https://cdn.firstcry.com/education/2022/11/06094158/Toy-Names-For-Kids.jpg",
+      "https://rukminim2.flixcart.com/image/850/1000/kltryq80/vehicle-pull-along/z/c/8/unbreakable-automobile-car-toy-set-for-children-kids-toys-original-imagyvdhb2k62nmh.jpeg?q=90"
+    ]
+  },
+  {
+    "src": "https://rukminim2.flixcart.com/image/850/1000/kltryq80/vehicle-pull-along/z/c/8/unbreakable-automobile-car-toy-set-for-children-kids-toys-original-imagyvdhb2k62nmh.jpeg?q=90",
+    "color": "Жовтий",
+    "alt": "Toys",
+    "sale": false,
+    "new":false,
+    "material": "Поліестер 30%, бавовна 70%",
+    "brand": "Ford",
+    "description": "Утепленний комплекс (штанці і кофтинка) для хлопчика, комплекс для хлопчикаю Утепленний комплекс (штанці і кофтинка) для хлопчика, комплекс для хлопчика",
+    "price": 900,
+    "id": "7",
+    "category": "Дитячий транспорт",
+    "sizes": [
+      { "size": 120, "quantity": 5 },
+      { "size": 126, "quantity": 1 },
+      { "size": 130, "quantity": 3 }
+    ],
+    "images": [
+      "https://m.media-amazon.com/images/I/713szPyljLL.jpg",
+      "https://cdn.firstcry.com/education/2022/11/06094158/Toy-Names-For-Kids.jpg"
+    ]
+  },
+  
+  {
+    "src": "https://cdn.firstcry.com/education/2022/11/06094158/Toy-Names-For-Kids.jpg",
+    "color": "Жовтий",
+    "alt": "Toys",
+    "sale": 550,
+    "new":true,
+    "material": "Поліестер 30%, бавовна 70%",
+    "brand": "Ford",
+    "description": "Утепленний комплекс (штанці і кофтинка) для хлопчика, комплекс для хлопчикаю Утепленний комплекс (штанці і кофтинка) для хлопчика, комплекс для хлопчика",
+    "price": 900,
+    "id": "8",
+    "category": "Дитячий транспорт",
+    "sizes": [
+      { "size": 120, "quantity": 5 },
+      { "size": 126, "quantity": 1 },
+      { "size": 130, "quantity": 3 },
+      { "size": 132, "quantity": 3 }
+    ],
+    "images": [
+      "https://m.media-amazon.com/images/I/713szPyljLL.jpg",
+      "https://cdn.firstcry.com/education/2022/11/06094158/Toy-Names-For-Kids.jpg"
     ]
   }
 ]

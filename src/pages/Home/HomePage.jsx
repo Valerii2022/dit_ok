@@ -11,6 +11,46 @@ import { getItems } from "../../redux/selectors.js";
 import { fetchAdverts } from "../../redux/operations";
 import AboutUs from "../../components/AboutUs/AboutUs";
 import Card from "../../components/Card/Card.jsx";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
+
+const responsive = {
+  superLargeDesktop: {
+    breakpoint: { max: 4000, min: 3000 },
+    items: 4,
+  },
+  desktop: {
+    breakpoint: { max: 3000, min: 1280 },
+    items: 4,
+  },
+  tablet: {
+    breakpoint: { max: 1024, min: 464 },
+    items: 2,
+  },
+  mobile: {
+    breakpoint: { max: 464, min: 0 },
+    items: 1,
+  },
+};
+
+const responsiveFeedback = {
+  superLargeDesktop: {
+    breakpoint: { max: 4000, min: 3000 },
+    items: 3,
+  },
+  desktop: {
+    breakpoint: { max: 3000, min: 1280 },
+    items: 3,
+  },
+  tablet: {
+    breakpoint: { max: 1024, min: 464 },
+    items: 2,
+  },
+  mobile: {
+    breakpoint: { max: 464, min: 0 },
+    items: 1,
+  },
+};
 
 const Home = () => {
   const [unregisterModal, setUnregisterModal] = useState(false);
@@ -23,6 +63,7 @@ const Home = () => {
   }, [dispatch]);
 
   const discountAdverts = adverts.filter((el) => el.sale);
+  const newAdverts = adverts.filter((el) => el.new);
 
   const handleUnregisterModalOpen = () => {
     setUnregisterModal(false);
@@ -33,57 +74,76 @@ const Home = () => {
       <div className={css.container}>
         <section className={css.newArrivalsSection}>
           <h2 className={css.title}>Нові надходження</h2>
-          <ul className={css.caruselWrap}>
-            {adverts.map((element) => {
+          <Carousel
+            showDots={false}
+            infinite
+            className={css.caruselWrap}
+            responsive={responsive}
+          >
+            {newAdverts.map((element) => {
               return (
                 <Card
+                  className="legend"
                   key={element.id}
                   cardElement={element}
                   openModal={setUnregisterModal}
                 />
               );
             })}
-          </ul>
+          </Carousel>
         </section>
       </div>
       <div className={css.container}>
-        <section className={css.discontSection}>
+        <section className={css.discontSection} id="discount">
           <h2 className={css.title}>Акції</h2>
-          <ul className={css.caruselWrap}>
+          <Carousel
+            showDots={false}
+            infinite
+            className={css.caruselWrap}
+            responsive={responsive}
+          >
             {discountAdverts.map((element) => {
               return (
                 <Card
+                  className="legend"
                   key={element.id}
                   cardElement={element}
                   openModal={setUnregisterModal}
                 />
               );
             })}
-          </ul>
+          </Carousel>
         </section>
       </div>
       <section className={css.reviewsSection}>
         <div className={css.container}>
           <h2 className={css.title}>Відгуки</h2>
-          <ul className={css.reviewsList}>
+          <Carousel
+            showDots={false}
+            infinite
+            className={css.caruselWrap}
+            responsive={responsiveFeedback}
+          >
             {reviews.map((elem) => {
               return (
-                <li key={elem.id} className={css.reviewCard}>
-                  <img src={elem.src} alt="Reviewer" />
-                  <div>
-                    <p className={css.reviewTitle}>{elem.name}</p>
-                    {elem.text.length < 120 ? (
-                      <p>{elem.text}</p>
-                    ) : (
-                      <p className={css.reviewText}>
-                        {elem.text.slice(0, 110)}...
-                      </p>
-                    )}
+                <div key={elem.id} className="legend">
+                  <div className={css.reviewCard}>
+                    <img src={elem.src} alt="Reviewer" />
+                    <div>
+                      <p className={css.reviewTitle}>{elem.name}</p>
+                      {elem.text.length < 120 ? (
+                        <p>{elem.text}</p>
+                      ) : (
+                        <p className={css.reviewText}>
+                          {elem.text.slice(0, 110)}...
+                        </p>
+                      )}
+                    </div>
                   </div>
-                </li>
+                </div>
               );
             })}
-          </ul>
+          </Carousel>
         </div>
       </section>
       <div className={css.container}>

@@ -1,7 +1,7 @@
 import css from "./Category.module.css";
 import Button from "../../components/Button/Button";
 import closeIcon from "../../images/close.svg";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getCategoryFilter, getItems } from "../../redux/selectors";
 import { useEffect, useState } from "react";
@@ -10,6 +10,7 @@ import { fetchAdverts } from "../../redux/operations";
 import Card from "../../components/Card/Card";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import NotFound from "../../components/NotFound/NotFound";
 
 const responsive = {
   superLargeDesktop: {
@@ -34,6 +35,7 @@ const Category = () => {
   const [unregisterModal, setUnregisterModal] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
   const category = useSelector(getCategoryFilter);
   const { adverts } = useSelector(getItems);
   const discountAdverts = adverts.filter((el) => el.sale);
@@ -45,6 +47,12 @@ const Category = () => {
   const handleUnregisterModalOpen = () => {
     setUnregisterModal(false);
   };
+
+  const filteredAdvertsByQuery = location.state.query
+    ? adverts.filter((el) => el.description.includes(location.state.query))
+    : [];
+
+  console.log(filteredAdvertsByQuery);
 
   const filteredAdverts = category
     ? adverts.filter((el) => el.category === category)
@@ -59,51 +67,32 @@ const Category = () => {
         <section className={css.categoryTop}>
           <h2 className={css.title}>{category ? category : "Всі товари"}</h2>
           <ul className={css.caruselWrap}>
-            {filteredAdverts.map((element) => {
-              return (
-                <Card
-                  key={element.id}
-                  cardElement={element}
-                  openModal={setUnregisterModal}
-                />
-              );
-            })}
-            {filteredAdverts.map((element) => {
-              return (
-                <Card
-                  key={element.id}
-                  cardElement={element}
-                  openModal={setUnregisterModal}
-                />
-              );
-            })}
+            {filteredAdverts.length ? (
+              filteredAdverts.map((element) => {
+                return (
+                  <Card
+                    key={element.id}
+                    cardElement={element}
+                    openModal={setUnregisterModal}
+                  />
+                );
+              })
+            ) : (
+              <NotFound />
+            )}
           </ul>
         </section>
       </div>
       <section className={css.discountSection}>
         <div className={css.container}>
           <h2 className={css.title}>Акційні товари</h2>
-          <ul className={css.discontCaruselWrap}>
-            {discountAdverts.map((element) => {
-              return (
-                <Card
-                  key={element.id}
-                  cardElement={element}
-                  openModal={setUnregisterModal}
-                />
-              );
-            })}
-          </ul>
-        </div>
-      </section>
-      <div className={css.container}>
-        <section>
           <Carousel
-            renderButtonGroupOutside={true}
-            className={css.categoryBottom}
+            showDots={false}
+            infinite
+            className={css.discountCaruselWrap}
             responsive={responsive}
           >
-            {filteredAdverts.map((element) => {
+            {discountAdverts.map((element) => {
               return (
                 <Card
                   className="legend"
@@ -114,8 +103,11 @@ const Category = () => {
               );
             })}
           </Carousel>
-        </section>
-      </div>
+        </div>
+      </section>
+      {/* <div className={css.container}>
+        <section className={css.categoryBottom}></section>
+      </div> */}
       {unregisterModal && (
         <Modal handleModalClose={handleUnregisterModalOpen}>
           <div className={css.modalContainer}>

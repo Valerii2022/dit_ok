@@ -40,7 +40,8 @@
 }
 
 .reviewCard {
-  width: calc((100% - 40px) / 3);
+  /* width: calc((100% - 40px) / 3); */
+  width: 413px;
   padding: 10px;
   border-radius: 30px;
   background: var(--white);
