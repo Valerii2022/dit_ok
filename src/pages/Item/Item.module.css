@@ -76,6 +76,13 @@
   margin-bottom: 40px;
 }
 
+.salePrice {
+  color: var(--grey);
+  text-decoration: line-through;
+  margin-left: 20px;
+  display: inline-block;
+}
+
 .sizesWrapper {
   display: flex;
   gap: 126px;

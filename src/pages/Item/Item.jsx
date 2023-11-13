@@ -88,7 +88,16 @@ const Item = () => {
               </p>
               <p>
                 <span>Ціна:</span>
-                <span>{currentAdvert.price} грн</span>
+                {currentAdvert.sale ? (
+                  <>
+                    <span>{currentAdvert.sale} грн</span>
+                    <span className={css.salePrice}>
+                      {currentAdvert.price} грн
+                    </span>
+                  </>
+                ) : (
+                  <span>{currentAdvert.price} грн</span>
+                )}
               </p>
             </div>
             <div className={css.sizesWrapper}>

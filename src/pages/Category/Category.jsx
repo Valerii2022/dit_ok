@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import Modal from "../../components/Modal/Modal";
 import { fetchAdverts } from "../../redux/operations";
 import Card from "../../components/Card/Card";
+import Carousel from "better-react-carousel";
 
 const Category = () => {
   const [unregisterModal, setUnregisterModal] = useState(false);
@@ -75,7 +76,26 @@ const Category = () => {
           </ul>
         </div>
       </section>
-      <div className={css.container}></div>
+      <div className={css.container}>
+        <section>
+          <Carousel cols={4} rows={1} gap={20} loop>
+            {filteredAdverts.map((element) => {
+              return (
+                <Carousel.Item key={element.id} style={{ width: 200 }}>
+                  <Card cardElement={element} openModal={setUnregisterModal} />
+                </Carousel.Item>
+              );
+            })}
+            {filteredAdverts.map((element) => {
+              return (
+                <Carousel.Item key={element.id}>
+                  <Card cardElement={element} openModal={setUnregisterModal} />
+                </Carousel.Item>
+              );
+            })}
+          </Carousel>
+        </section>
+      </div>
       {unregisterModal && (
         <Modal handleModalClose={handleUnregisterModalOpen}>
           <div className={css.modalContainer}>
