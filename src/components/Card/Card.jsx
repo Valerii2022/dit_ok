@@ -6,6 +6,7 @@ import { getFavourites } from "../../redux/selectors";
 import heartSvg from "../../images/heart.svg";
 import favouriteSvg from "../../images/markedHeart.svg";
 import { addToFavourites, removeFromFavourites } from "../../redux/usersSlice";
+import { setCategoryFilter } from "../../redux/filtersSlice";
 
 const Card = (elem) => {
   const { cardElement, openModal } = elem;
@@ -22,6 +23,7 @@ const Card = (elem) => {
   ].join(". ");
 
   const handleMoreBtnClick = () => {
+    dispatch(setCategoryFilter(cardElement.category));
     navigate("/item", { state: { key: cardElement.id } });
   };
 

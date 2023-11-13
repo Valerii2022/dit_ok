@@ -4,12 +4,11 @@ import Button from "../../components/Button/Button";
 import closeIcon from "../../images/close.svg";
 import { useEffect, useState } from "react";
 import Modal from "../../components/Modal/Modal";
-// import { fetchAdverts } from "../../redux/operations";
 import { useDispatch, useSelector } from "react-redux";
 import { getFavourites, getItems } from "../../redux/selectors";
 import { nanoid } from "nanoid";
 import { addToFavourites, removeFromFavourites } from "../../redux/usersSlice";
-import { fetchAdverts } from "../../redux/operations";
+import { fetchCurrentAdvert } from "../../redux/operations";
 
 const Item = () => {
   const [quantity, setQuantity] = useState(1);
@@ -18,17 +17,12 @@ const Item = () => {
   const location = useLocation();
   const dispatch = useDispatch();
   const isAuth = true;
-  const { adverts } = useSelector(getItems);
+  const { currentAdvert } = useSelector(getItems);
   const favourites = useSelector(getFavourites);
 
   useEffect(() => {
-    dispatch(fetchAdverts());
-  }, [dispatch]);
-
-  const currentAdvert = adverts.filter(
-    (el) => el.id === location.state?.key
-  )[0];
-  // console.log(currentAdvert);
+    dispatch(fetchCurrentAdvert(location.state?.key));
+  }, [dispatch, location.state?.key]);
 
   const handleQuantityChange = (value) => {
     if (value === "increment") {
@@ -148,7 +142,14 @@ const Item = () => {
                 <div
                   onClick={() => {
                     {
-                      isAuth ? navigate("/order") : setUnregisterModal(true);
+                      isAuth
+                        ? navigate("/order", {
+                            state: {
+                              key: currentAdvert.id,
+                              quantity: quantity,
+                            },
+                          })
+                        : setUnregisterModal(true);
                     }
                   }}
                 >

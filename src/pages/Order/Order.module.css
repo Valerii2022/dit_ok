@@ -25,11 +25,35 @@
   margin-bottom: 45px;
 }
 
-.imagesWrapper {
+.mainImageWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 200px;
+  height: 200px;
+  margin-bottom: 10px;
+  overflow: hidden;
+  border-radius: 30px;
+  background-color: var(--light-grey);
+  border: 1px solid var(--light-grey);
+}
+
+.imageList {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+}
+
+.imageList li {
+  width: calc((100% - 10px) / 2);
+  height: 95px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  border-radius: 30px;
+  background-color: var(--light-grey);
+  border: 1px solid var(--light-grey);
 }
 
 .infoWrapper p {

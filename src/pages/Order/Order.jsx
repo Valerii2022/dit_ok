@@ -1,10 +1,21 @@
 import css from "./Order.module.css";
-import { NavLink, useNavigate } from "react-router-dom";
-import itemImg from "../../images/image.jpg";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import Button from "../../components/Button/Button";
+import { useDispatch, useSelector } from "react-redux";
+import { getItems } from "../../redux/selectors";
+import { nanoid } from "nanoid";
+import { useEffect } from "react";
+import { fetchCurrentAdvert } from "../../redux/operations";
 
 const Order = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const location = useLocation();
+  const { currentAdvert } = useSelector(getItems);
+
+  useEffect(() => {
+    dispatch(fetchCurrentAdvert(location.state?.key));
+  }, [dispatch, location.state?.key]);
 
   return (
     <div className={css.container}>
@@ -13,41 +24,59 @@ const Order = () => {
           <span>Головна</span>
         </NavLink>
         <NavLink to="/category">
-          <span>Одяг і взуття</span>{" "}
+          {currentAdvert && (
+            <span>{currentAdvert.category ? currentAdvert.category : ""}</span>
+          )}
         </NavLink>
       </div>
-      <div className={css.contentWrapper}>
-        <div className={css.imagesWrapper}>
-          <img src={itemImg} alt="Main" width={200} height={200} />
-          <img src={itemImg} alt="" width={95} height={95} />
-          <img src={itemImg} alt="" width={95} height={95} />
-        </div>
-        <div className={css.infoWrapper}>
-          <div className={css.generalInfo}>
-            <p>Утепленний комплекс (штанці і кофтинка) для хлопчика</p>
-            <p>
-              <span>Колір:</span>
-              <span>Сірий</span>
-            </p>
-            <p>
-              <span>Матеріал:</span>
-              <span>Поліестер 30%, бавовна 70%</span>
-            </p>
-            <p>
-              <span>Виробник:</span>
-              <span>Flamingo</span>
-            </p>
-            <p>
-              <span>Розмір:</span>
-              <span>128</span>
-            </p>
-            <p>
-              <span>Кількість:</span>
-              <span>1</span>
-            </p>
+      {currentAdvert && (
+        <div className={css.contentWrapper}>
+          <div>
+            <div className={css.mainImageWrap}>
+              <img
+                src={currentAdvert.src}
+                alt="Main"
+                width={200}
+                height={200}
+              />
+            </div>
+            <ul className={css.imageList}>
+              {currentAdvert.images.map((el) => {
+                return (
+                  <li key={nanoid(6)}>
+                    <img src={el} alt="" width={95} height={95} />
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+          <div className={css.infoWrapper}>
+            <div className={css.generalInfo}>
+              <p>{currentAdvert.description}</p>
+              <p>
+                <span>Колір:</span>
+                <span>{currentAdvert.color}</span>
+              </p>
+              <p>
+                <span>Матеріал:</span>
+                <span>{currentAdvert.material}</span>
+              </p>
+              <p>
+                <span>Виробник:</span>
+                <span>{currentAdvert.brand}</span>
+              </p>
+              <p>
+                <span>Розмір:</span>
+                <span>128</span>
+              </p>
+              <p>
+                <span>Кількість:</span>
+                <span>{location.state?.quantity}</span>
+              </p>
+            </div>
           </div>
         </div>
-      </div>
+      )}
       <form className={css.form}>
         <h2 className={css.formTitle}>Дані для доставки</h2>
         <div className={css.addressWrapper}>

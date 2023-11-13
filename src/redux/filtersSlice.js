@@ -8,7 +8,7 @@ const filtersSlice = createSlice({
       state.category = action.payload;
     },
     setAdvertFilter(state, action) {
-      state.category = action.payload;
+      state.advert = action.payload;
     },
   },
 });

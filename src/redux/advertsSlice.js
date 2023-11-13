@@ -2,7 +2,12 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const itemsSlice = createSlice({
   name: "items",
-  initialState: { adverts: [], isLoading: false, error: null },
+  initialState: {
+    adverts: [],
+    isLoading: false,
+    error: null,
+    currentAdvert: null,
+  },
   reducers: {
     fetchingInProgress(state) {
       state.isLoading = true;
@@ -12,6 +17,11 @@ const itemsSlice = createSlice({
       state.error = null;
       state.adverts = action.payload;
     },
+    fetchingCurrentSuccess(state, action) {
+      state.isLoading = false;
+      state.error = null;
+      state.currentAdvert = action.payload;
+    },
     fetchingError(state, action) {
       state.isLoading = false;
       state.error = action.payload;
@@ -19,7 +29,11 @@ const itemsSlice = createSlice({
   },
 });
 
-export const { fetchingInProgress, fetchingSuccess, fetchingError } =
-  itemsSlice.actions;
+export const {
+  fetchingInProgress,
+  fetchingSuccess,
+  fetchingError,
+  fetchingCurrentSuccess,
+} = itemsSlice.actions;
 
 export const itemsReducer = itemsSlice.reducer;
