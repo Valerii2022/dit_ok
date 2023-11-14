@@ -8,8 +8,12 @@ import LogIn from "../pages/LogIn/LogIn.jsx";
 import SignUp from "../pages/SignUp/SignUp.jsx";
 import Category from "../pages/Category/Category.jsx";
 import Item from "../pages/Item/Item.jsx";
-import Order from "../pages/Order/Order.jsx";
+import OrderPage from "../pages/Order/OrderPage.jsx";
 import Payment from "../pages/Payment/Payment.jsx";
+import Account from "../pages/Account/Account.jsx";
+import Orders from "./Orders/Orders.jsx";
+import General from "./General/General.jsx";
+import Favourites from "./Favourites/Favourites.jsx";
 
 const App = () => {
   return (
@@ -24,8 +28,13 @@ const App = () => {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/category" element={<Category />} />
           <Route path="/item" element={<Item />} />
-          <Route path="/order" element={<Order />} />
+          <Route path="/order" element={<OrderPage />} />
           <Route path="/payment" element={<Payment />} />
+          <Route path="/account" element={<Account />}>
+            <Route path="general" element={<General />} />
+            <Route path="favourites" element={<Favourites />} />
+            <Route path="orders" element={<Orders />} />
+          </Route>
         </Route>
 
         <Route path="*" element={<Navigate to="/" />} />

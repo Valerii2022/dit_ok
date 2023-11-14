@@ -56,7 +56,7 @@ const Header = () => {
             />
           </label>
           <button className={css.categoryBtn} onClick={handleCategoryModalOpen}>
-            Категорія
+            {isLoggedIn ? "Одяг і взуття" : "Категорія"}
           </button>
           <div className={css.btnWrap} onClick={handleSearchBtnClick}>
             <Button title={"Знайти"} />
@@ -76,8 +76,8 @@ const Header = () => {
           </li>
           <li className={css.navigateItem}>
             {isLoggedIn ? (
-              <NavLink to="/login">
-                <img href={profileImage} alt="Profile" />
+              <NavLink to="/account">
+                <img src={profileImage} alt="Profile" />
               </NavLink>
             ) : (
               <NavLink to="/login">Увійти</NavLink>
@@ -89,7 +89,7 @@ const Header = () => {
         <Modal handleModalClose={handleCategoryModalOpen}>
           <ul className={css.categoryList} onClick={handleCategoryClick}>
             <li className={css.category} id={"Одяг та взуття"}>
-              Одяг та взуття
+              Одяг і взуття
             </li>
             <li className={css.category}>Іграшки</li>
             <li className={css.category}>Дитяча кімната</li>

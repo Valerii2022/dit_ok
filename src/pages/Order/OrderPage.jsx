@@ -7,7 +7,7 @@ import { nanoid } from "nanoid";
 import { useEffect } from "react";
 import { fetchCurrentAdvert } from "../../redux/operations";
 
-const Order = () => {
+const OrderPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const location = useLocation();
@@ -125,4 +125,4 @@ const Order = () => {
   );
 };
 
-export default Order;
+export default OrderPage;
