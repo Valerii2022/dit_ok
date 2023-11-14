@@ -1,5 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import reviews from "./feedback";
+import storage from "redux-persist/lib/storage";
+import persistReducer from "redux-persist/es/persistReducer";
 
 const reviewsSlice = createSlice({
   name: "reviews",
@@ -11,6 +13,11 @@ const reviewsSlice = createSlice({
   },
 });
 
+const persistConfig = { key: "reviews", storage };
+
 export const { allReviews } = reviewsSlice.actions;
 
-export const reviewsReducer = reviewsSlice.reducer;
+export const reviewsReducer = persistReducer(
+  persistConfig,
+  reviewsSlice.reducer
+);

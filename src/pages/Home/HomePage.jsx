@@ -7,7 +7,7 @@ import Modal from "../../components/Modal/Modal";
 import reviews from "../../redux/feedback.js";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { getItems } from "../../redux/selectors.js";
+import { getAdverts } from "../../redux/selectors.js";
 import { fetchAdverts } from "../../redux/operations";
 import AboutUs from "../../components/AboutUs/AboutUs";
 import Card from "../../components/Card/Card.jsx";
@@ -56,7 +56,7 @@ const Home = () => {
   const [unregisterModal, setUnregisterModal] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { adverts } = useSelector(getItems);
+  const { adverts } = useSelector(getAdverts);
 
   useEffect(() => {
     dispatch(fetchAdverts());

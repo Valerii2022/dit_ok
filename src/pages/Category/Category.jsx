@@ -3,7 +3,7 @@ import Button from "../../components/Button/Button";
 import closeIcon from "../../images/close.svg";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getCategoryFilter, getItems } from "../../redux/selectors";
+import { getCategoryFilter, getAdverts } from "../../redux/selectors";
 import { useEffect, useState } from "react";
 import Modal from "../../components/Modal/Modal";
 import { fetchAdverts } from "../../redux/operations";
@@ -37,7 +37,7 @@ const Category = () => {
   const navigate = useNavigate();
   // const location = useLocation();
   const category = useSelector(getCategoryFilter);
-  const { adverts } = useSelector(getItems);
+  const { adverts } = useSelector(getAdverts);
   const discountAdverts = adverts.filter((el) => el.sale);
 
   useEffect(() => {

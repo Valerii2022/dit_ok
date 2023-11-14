@@ -1,15 +1,19 @@
 import { nanoid } from "nanoid";
 import { createSlice } from "@reduxjs/toolkit";
+import persistReducer from "redux-persist/es/persistReducer";
+import storage from "redux-persist/lib/storage";
 
 const initialState = {
   id: nanoid(6),
   favourites: [],
-  isAdmin: true,
+  isAdmin: false,
+  isLoggedIn: false,
   user: {
     name: "Valerii",
     surname: "Author",
     phone: "06000000000",
     email: "author@gmail.com",
+    password: "12345",
   },
 };
 
@@ -19,6 +23,19 @@ const usersSlice = createSlice({
   reducers: {
     getUser(state, action) {
       console.log(state, action);
+    },
+    setUserStatus(state, { payload }) {
+      if (
+        payload.emailLogIn === state.user.email &&
+        payload.passLogIn === state.user.password
+      ) {
+        state.isLoggedIn = true;
+      } else {
+        state.isLoggedIn = false;
+        alert("Невірний логін чи пароль");
+      }
+
+      return state;
     },
     addToFavourites(state, action) {
       state.favourites = [...state.favourites, action.payload];
@@ -31,7 +48,12 @@ const usersSlice = createSlice({
   },
 });
 
-export const { getUser, addToFavourites, removeFromFavourites } =
-  usersSlice.actions;
+const persistConfig = {
+  key: "users",
+  storage,
+};
 
-export const usersReducer = usersSlice.reducer;
+export const usersReducer = persistReducer(persistConfig, usersSlice.reducer);
+
+export const { getUser, setUserStatus, addToFavourites, removeFromFavourites } =
+  usersSlice.actions;

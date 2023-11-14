@@ -1,14 +1,32 @@
-import { itemsReducer } from "./advertsSlice";
+import { advertsReducer } from "./advertsSlice";
 import { usersReducer } from "./usersSlice";
 import { reviewsReducer } from "./reviewsSlice";
 import { configureStore } from "@reduxjs/toolkit";
 import { filtersReducer } from "./filtersSlice";
+import {
+  persistStore,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from "redux-persist";
 
 export const store = configureStore({
   reducer: {
-    items: itemsReducer,
+    adverts: advertsReducer,
     users: usersReducer,
     reviews: reviewsReducer,
     filters: filtersReducer,
   },
+  middleware(getDefaultMiddleware) {
+    return getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    });
+  },
 });
+
+export const persistor = persistStore(store);

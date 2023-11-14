@@ -1,4 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
+import persistReducer from "redux-persist/es/persistReducer";
+import storage from "redux-persist/lib/storage";
 
 const filtersSlice = createSlice({
   name: "filters",
@@ -13,6 +15,11 @@ const filtersSlice = createSlice({
   },
 });
 
+const persistConfig = { key: "filters", storage };
+
 export const { setCategoryFilter, setAdvertFilter } = filtersSlice.actions;
 
-export const filtersReducer = filtersSlice.reducer;
+export const filtersReducer = persistReducer(
+  persistConfig,
+  filtersSlice.reducer
+);

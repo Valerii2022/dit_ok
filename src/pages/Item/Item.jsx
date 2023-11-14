@@ -5,7 +5,7 @@ import closeIcon from "../../images/close.svg";
 import { useEffect, useState } from "react";
 import Modal from "../../components/Modal/Modal";
 import { useDispatch, useSelector } from "react-redux";
-import { getFavourites, getItems } from "../../redux/selectors";
+import { getFavourites, getAdverts } from "../../redux/selectors";
 import { nanoid } from "nanoid";
 import { addToFavourites, removeFromFavourites } from "../../redux/usersSlice";
 import { fetchCurrentAdvert } from "../../redux/operations";
@@ -17,7 +17,7 @@ const Item = () => {
   const location = useLocation();
   const dispatch = useDispatch();
   const isAuth = true;
-  const { currentAdvert } = useSelector(getItems);
+  const { currentAdvert } = useSelector(getAdverts);
   const favourites = useSelector(getFavourites);
 
   useEffect(() => {

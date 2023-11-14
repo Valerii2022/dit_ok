@@ -2,7 +2,7 @@ import css from "./Order.module.css";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import Button from "../../components/Button/Button";
 import { useDispatch, useSelector } from "react-redux";
-import { getItems } from "../../redux/selectors";
+import { getAdverts } from "../../redux/selectors";
 import { nanoid } from "nanoid";
 import { useEffect } from "react";
 import { fetchCurrentAdvert } from "../../redux/operations";
@@ -11,7 +11,7 @@ const Order = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const location = useLocation();
-  const { currentAdvert } = useSelector(getItems);
+  const { currentAdvert } = useSelector(getAdverts);
 
   useEffect(() => {
     dispatch(fetchCurrentAdvert(location.state?.key));

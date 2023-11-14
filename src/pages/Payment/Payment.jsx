@@ -7,7 +7,7 @@ import closeIcon from "../../images/close.svg";
 import masterCardIcon from "../../images/pay01.jpg";
 import visaCardIcon from "../../images/pay02.jpg";
 import payPalIcon from "../../images/pay03.jpg";
-import { getItems } from "../../redux/selectors";
+import { getAdverts } from "../../redux/selectors";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCurrentAdvert } from "../../redux/operations";
 
@@ -16,7 +16,7 @@ const Payment = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const location = useLocation();
-  const { currentAdvert } = useSelector(getItems);
+  const { currentAdvert } = useSelector(getAdverts);
 
   useEffect(() => {
     dispatch(fetchCurrentAdvert(location.state?.key));

@@ -4,8 +4,10 @@ import Button from "../Button/Button";
 import Modal from "../Modal/Modal";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setCategoryFilter } from "../../redux/filtersSlice";
+import profileImage from "../../images/profile.svg";
+import { getUserStatus } from "../../redux/selectors";
 
 const Header = () => {
   const [zIndex, setZIndex] = useState(0);
@@ -13,6 +15,7 @@ const Header = () => {
   const [query, setQuery] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const isLoggedIn = useSelector(getUserStatus);
 
   const handleCategoryModalOpen = () => {
     if (zIndex === 1000) {
@@ -72,7 +75,13 @@ const Header = () => {
             <NavLink to="/guarantee">Гарантія і повернення</NavLink>
           </li>
           <li className={css.navigateItem}>
-            <NavLink to="/login">Увійти</NavLink>
+            {isLoggedIn ? (
+              <NavLink to="/login">
+                <img href={profileImage} alt="Profile" />
+              </NavLink>
+            ) : (
+              <NavLink to="/login">Увійти</NavLink>
+            )}
           </li>
         </ul>
       </nav>

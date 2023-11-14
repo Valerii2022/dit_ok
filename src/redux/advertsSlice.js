@@ -1,7 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
+import persistReducer from "redux-persist/es/persistReducer";
+import storage from "redux-persist/lib/storage";
 
-const itemsSlice = createSlice({
-  name: "items",
+const advertsSlice = createSlice({
+  name: "adverts",
   initialState: {
     adverts: [],
     isLoading: false,
@@ -29,11 +31,16 @@ const itemsSlice = createSlice({
   },
 });
 
+const persistConfig = { key: "adverts", storage };
+
 export const {
   fetchingInProgress,
   fetchingSuccess,
   fetchingError,
   fetchingCurrentSuccess,
-} = itemsSlice.actions;
+} = advertsSlice.actions;
 
-export const itemsReducer = itemsSlice.reducer;
+export const advertsReducer = persistReducer(
+  persistConfig,
+  advertsSlice.reducer
+);
