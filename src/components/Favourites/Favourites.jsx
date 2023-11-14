@@ -1,77 +1,71 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import NotFound from "../NotFound/NotFound.jsx";
+import SearchForm from "../SearchhForm/SearchForm.jsx";
 import css from "./Favourites.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { getUserStatus } from "../../redux/selectors.js";
-import { useNavigate } from "react-router-dom";
-import Button from "../Button/Button.jsx";
+import { getAdverts, getFavourites } from "../../redux/selectors.js";
+import { fetchAdverts } from "../../redux/operations.js";
+import Card from "../Card/Card.jsx";
 import Modal from "../Modal/Modal.jsx";
-import { setCategoryFilter } from "../../redux/filtersSlice.js";
+import Button from "../Button/Button.jsx";
+import closeIcon from "../../images/close.svg";
+import { useNavigate } from "react-router-dom";
 
 const Favourites = () => {
-  const [zIndex, setZIndex] = useState(0);
-  const [isModalOpen, setIsOpenModal] = useState(false);
-  const [query, setQuery] = useState("");
+  const [unregisterModal, setUnregisterModal] = useState(false);
+  const favouritesId = useSelector(getFavourites);
   const navigate = useNavigate();
+
   const dispatch = useDispatch();
-  const isLoggedIn = useSelector(getUserStatus);
+  const { adverts } = useSelector(getAdverts);
 
-  const handleCategoryModalOpen = () => {
-    if (zIndex === 1000) {
-      setZIndex(0);
-    } else {
-      setZIndex(1000);
-    }
-    setIsOpenModal(!isModalOpen);
+  useEffect(() => {
+    dispatch(fetchAdverts());
+  }, [dispatch]);
+
+  const handleUnregisterModalOpen = () => {
+    setUnregisterModal(false);
   };
 
-  const handleCategoryClick = (e) => {
-    dispatch(setCategoryFilter(e.target.textContent));
-    navigate("/category");
-    handleCategoryModalOpen(false);
-    setZIndex(0);
-  };
-
-  const handleSearchBtnClick = () => {
-    navigate("/category", { state: { query: query } });
-    setQuery("");
-  };
+  const favourites = adverts.filter((el) => favouritesId.includes(el.id));
 
   return (
     <>
-      <form style={{ zIndex: `${zIndex}` }} className={css.searchWrap}>
-        <label>
-          <input
-            value={query}
-            onChange={(e) => setQuery(e.currentTarget.value)}
-            type="text"
-            name="filter"
-            placeholder="Пошук за товарами"
-            className={css.input}
-          />
-        </label>
-        <button className={css.categoryBtn} onClick={handleCategoryModalOpen}>
-          {isLoggedIn ? "Одяг і взуття" : "Категорія"}
-        </button>
-        <div className={css.btnWrap} onClick={handleSearchBtnClick}>
-          <Button title={"Знайти"} />
-        </div>
-      </form>
-      <NotFound />
-      {isModalOpen && (
-        <Modal handleModalClose={handleCategoryModalOpen}>
-          <ul className={css.categoryList} onClick={handleCategoryClick}>
-            <li className={css.category} id={"Одяг та взуття"}>
-              Одяг і взуття
-            </li>
-            <li className={css.category}>Іграшки</li>
-            <li className={css.category}>Дитяча кімната</li>
-            <li className={css.category}>Коляски</li>
-            <li className={css.category}>Автокрісла</li>
-            <li className={css.category}>Все для годування</li>
-            <li className={css.category}>Догляд, гігієна та купання</li>
-            <li className={css.category}>Дитячий транспорт</li>
-          </ul>
+      <div className={css.searchWrapper}>
+        <SearchForm />
+      </div>
+      <ul className={css.carouselWrap}>
+        {favourites.length ? (
+          favourites.map((element) => {
+            return (
+              <Card
+                key={element.id}
+                cardElement={element}
+                openModal={setUnregisterModal}
+              />
+            );
+          })
+        ) : (
+          <NotFound />
+        )}
+      </ul>
+      {unregisterModal && (
+        <Modal handleModalClose={handleUnregisterModalOpen}>
+          <div className={css.modalContainer}>
+            <img
+              className={css.closeIcon}
+              src={closeIcon}
+              alt="Close icon"
+              onClick={handleUnregisterModalOpen}
+            />
+            <p>Для замовлення увійдіть в аккаунт!</p>
+            <div
+              className={css.modalBtnWrap}
+              onClick={() => navigate("/login")}
+            >
+              <Button title={"Увійти"} fontSize={"28"} />
+            </div>
+          </div>
         </Modal>
       )}
     </>
