@@ -44,7 +44,7 @@ const Header = () => {
         <NavLink className={css.logo} to="/">
           DitOk
         </NavLink>
-        <div style={{ zIndex: `${zIndex}` }} className={css.searchWrap}>
+        <form style={{ zIndex: `${zIndex}` }} className={css.searchWrap}>
           <label>
             <input
               value={query}
@@ -61,7 +61,7 @@ const Header = () => {
           <div className={css.btnWrap} onClick={handleSearchBtnClick}>
             <Button title={"Знайти"} />
           </div>
-        </div>
+        </form>
       </div>
       <nav className={css.navigation}>
         <ul className={css.navigateList}>

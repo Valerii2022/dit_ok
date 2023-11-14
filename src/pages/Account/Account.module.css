@@ -1,4 +1,55 @@
 .container {
+  width: 1440px;
+  margin: 0 auto;
+  padding: 27px 80px 41px 0;
+}
+
+.breadcrumbs {
+  margin-bottom: 44px;
+  padding-left: 80px;
+}
+
+.breadcrumbs span::after {
+  content: "/";
+  padding-left: 6px;
+}
+
+.inner {
   display: flex;
-  gap: 100px;
+  gap: 72px;
+}
+
+.btnWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.hidden {
+  position: absolute;
+  clip: rect(0 0 0 0);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+}
+
+.btnWrapper label {
+  border: 2px solid var(--yellow);
+  display: flex;
+  padding-left: 80px;
+  align-items: center;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  height: 84px;
+  width: 385px;
+
+  font-family: Montserrat;
+  font-size: 28px;
+  line-height: 1.22;
+  cursor: pointer;
+}
+
+.btnWrapper input:checked + label,
+.btnWrapper input:focus + label {
+  background-color: #fac917;
 }
