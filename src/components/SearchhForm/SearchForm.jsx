@@ -7,7 +7,7 @@ import Button from "../Button/Button.jsx";
 import Modal from "../Modal/Modal.jsx";
 import { setCategoryFilter } from "../../redux/filtersSlice.js";
 
-const SearchForm = () => {
+const SearchForm = (headerModal) => {
   const [zIndex, setZIndex] = useState(0);
   const [isModalOpen, setIsOpenModal] = useState(false);
   const [query, setQuery] = useState("");
@@ -63,7 +63,10 @@ const SearchForm = () => {
         </div>
       </form>
       {isModalOpen && (
-        <Modal handleModalClose={handleCategoryModalOpen}>
+        <Modal
+          handleModalClose={handleCategoryModalOpen}
+          headerModal={headerModal}
+        >
           <ul className={css.categoryList} onClick={handleCategoryClick}>
             <li className={css.category} id={"Одяг та взуття"}>
               Одяг і взуття

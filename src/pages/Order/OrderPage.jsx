@@ -89,7 +89,11 @@ const OrderPage = () => {
                 >
                   Розмір:
                 </span>
-                <span>128</span>
+                <span>
+                  {location.state.size
+                    ? location.state.size
+                    : currentAdvert.sizes[0].size}
+                </span>
               </p>
               <p>
                 <span

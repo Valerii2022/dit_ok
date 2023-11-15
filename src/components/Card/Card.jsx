@@ -79,7 +79,13 @@ const Card = (elem) => {
         >
           <Button title={"Купити"} />
         </div>
-        <button className={css.moreBtn} onClick={handleMoreBtnClick}>
+        <button
+          className={css.moreBtn}
+          // onClick={() => {
+          //   isAuth ? handleMoreBtnClick : openModal(true);
+          // }}
+          onClick={handleMoreBtnClick}
+        >
           Докладніше
         </button>
       </div>

@@ -23,6 +23,7 @@ const Item = () => {
   const isAuth = useSelector(getUserStatus);
   const { currentAdvert } = useSelector(getAdverts);
   const favourites = useSelector(getFavourites);
+  const [size, setSize] = useState(currentAdvert?.sizes[0].size);
 
   useEffect(() => {
     dispatch(fetchCurrentAdvert(location.state?.key));
@@ -37,7 +38,14 @@ const Item = () => {
     }
   };
 
-  const handleUnregisterModalOpen = () => {
+  const handleBuyBtnClick = () => {
+    navigate("/order", {
+      state: { key: currentAdvert.id, quantity: quantity, size: size },
+    });
+  };
+
+  const handleUnregisterModalOpen = (e) => {
+    e.preventDefault();
     setUnregisterModal(false);
   };
 
@@ -100,11 +108,11 @@ const Item = () => {
                     </span>
                   </>
                 ) : (
-                  <span>{currentAdvert.price} грн</span>
+                  <span>{currentAdvert.price * quantity} грн</span>
                 )}
               </p>
             </div>
-            <form>
+            <form onChange={(e) => setSize(e.target.value)}>
               <div className={css.sizesWrapper}>
                 <div>
                   <p>Розміри:</p>
@@ -150,14 +158,7 @@ const Item = () => {
                 <div
                   onClick={() => {
                     {
-                      isAuth
-                        ? navigate("/order", {
-                            state: {
-                              key: currentAdvert.id,
-                              quantity: quantity,
-                            },
-                          })
-                        : setUnregisterModal(true);
+                      isAuth ? handleBuyBtnClick() : setUnregisterModal(true);
                     }
                   }}
                 >
