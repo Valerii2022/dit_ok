@@ -1,0 +1,13 @@
+.searchWrapper {
+  width: 522px;
+  margin: 0 auto;
+  margin-bottom: 50px;
+}
+
+.carouselWrap {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 20px;
+  row-gap: 50px;
+  margin-bottom: 80px;
+}

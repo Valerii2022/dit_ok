@@ -53,3 +53,7 @@
 .btnWrapper input:focus + label {
   background-color: #fac917;
 }
+
+.contentWrapper {
+  width: 100%;
+}

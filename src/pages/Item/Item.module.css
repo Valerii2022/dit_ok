@@ -100,9 +100,41 @@
   gap: 20px;
 }
 
+.hidden {
+  position: absolute;
+  clip: rect(0 0 0 0);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+}
+
 .boxWrapper .box {
-  cursor: pointer;
   width: calc((100% - 60px) / 4);
+  cursor: pointer;
+}
+
+.boxWrapper li {
+  height: 79px;
+  width: 89px;
+}
+
+.boxWrapper label {
+  cursor: pointer;
+  border: 1px solid var(--black, #000);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  font-size: 28px;
+  line-height: 1.12;
+  transition: border-color var(--transition);
+}
+
+.boxWrapper input:checked + label,
+.boxWrapper input:focus + label {
+  border-color: #fac917;
 }
 
 .box {

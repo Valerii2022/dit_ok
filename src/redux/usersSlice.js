@@ -6,6 +6,7 @@ import storage from "redux-persist/lib/storage";
 const initialState = {
   id: nanoid(6),
   favourites: [],
+  orders: [],
   isAdmin: false,
   isLoggedIn: false,
   user: {
@@ -37,8 +38,12 @@ const usersSlice = createSlice({
 
       return state;
     },
-    addToFavourites(state, action) {
-      state.favourites = [...state.favourites, action.payload];
+    addToOrders(state, { payload }) {
+      state.orders = [...state.orders, payload];
+      return state;
+    },
+    addToFavourites(state, { payload }) {
+      state.favourites = [...state.favourites, payload];
       return state;
     },
     removeFromFavourites(state, action) {
@@ -55,5 +60,10 @@ const persistConfig = {
 
 export const usersReducer = persistReducer(persistConfig, usersSlice.reducer);
 
-export const { getUser, setUserStatus, addToFavourites, removeFromFavourites } =
-  usersSlice.actions;
+export const {
+  getUser,
+  setUserStatus,
+  addToFavourites,
+  removeFromFavourites,
+  addToOrders,
+} = usersSlice.actions;

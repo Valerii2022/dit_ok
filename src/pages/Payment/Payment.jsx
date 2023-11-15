@@ -10,6 +10,7 @@ import payPalIcon from "../../images/pay03.jpg";
 import { getAdverts } from "../../redux/selectors";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCurrentAdvert } from "../../redux/operations";
+import { addToOrders } from "../../redux/usersSlice";
 
 const Payment = () => {
   const [successModalOpen, setSuccessModalOpen] = useState(false);
@@ -23,7 +24,6 @@ const Payment = () => {
   }, [dispatch, location.state?.key]);
 
   const handleSuccessModalOpen = () => {
-    // setSuccessModalOpen(false);
     navigate("/home");
   };
 
@@ -103,6 +103,7 @@ const Payment = () => {
           className={css.btnWrapper}
           onClick={(e) => {
             e.preventDefault();
+            dispatch(addToOrders(location.state?.key));
             setSuccessModalOpen(true);
           }}
         >

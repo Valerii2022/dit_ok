@@ -94,9 +94,9 @@ const Item = () => {
                 <span>Ціна:</span>
                 {currentAdvert.sale ? (
                   <>
-                    <span>{currentAdvert.sale} грн</span>
+                    <span>{currentAdvert.sale * quantity} грн</span>
                     <span className={css.salePrice}>
-                      {currentAdvert.price} грн
+                      {currentAdvert.price * quantity} грн
                     </span>
                   </>
                 ) : (
@@ -104,95 +104,96 @@ const Item = () => {
                 )}
               </p>
             </div>
-            <div className={css.sizesWrapper}>
-              <div>
-                <p>Розміри:</p>
-                <ul className={css.boxWrapper}>
-                  {currentAdvert.sizes.map((el) => {
-                    return (
-                      <li key={nanoid(6)} className={css.box}>
-                        <label htmlFor={el.size}>
+            <form>
+              <div className={css.sizesWrapper}>
+                <div>
+                  <p>Розміри:</p>
+                  <ul className={css.boxWrapper}>
+                    {currentAdvert.sizes.map((el) => {
+                      return (
+                        <li key={nanoid(6)}>
                           <input
+                            className={css.hidden}
                             value={el.size}
                             id={el.size}
                             type="radio"
                             name="size"
                           />
-                          {el.size}
-                        </label>
-                      </li>
-                    );
-                  })}
-                </ul>
-              </div>
-              <div>
-                <p>Кількість:</p>
-                <div className={css.quantity}>
-                  <button
-                    type="button"
-                    onClick={() => handleQuantityChange("decrement")}
-                  >
-                    -
-                  </button>
-                  <label>
-                    <span className={css.box}>{quantity}</span>
-                  </label>
-                  <button
-                    type="button"
-                    onClick={() => handleQuantityChange("increment")}
-                  >
-                    +
-                  </button>
+                          <label htmlFor={el.size}>{el.size}</label>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </div>
+                <div>
+                  <p>Кількість:</p>
+                  <div className={css.quantity}>
+                    <button
+                      type="button"
+                      onClick={() => handleQuantityChange("decrement")}
+                    >
+                      -
+                    </button>
+                    <label>
+                      <span className={css.box}>{quantity}</span>
+                    </label>
+                    <button
+                      type="button"
+                      onClick={() => handleQuantityChange("increment")}
+                    >
+                      +
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className={css.btnWrapper}>
-              <div
-                onClick={() => {
-                  {
-                    isAuth
-                      ? navigate("/order", {
-                          state: {
-                            key: currentAdvert.id,
-                            quantity: quantity,
-                          },
-                        })
-                      : setUnregisterModal(true);
-                  }
-                }}
-              >
-                <Button title={"Купити"} fontSize={"28"} />
-              </div>
-              {favourites.includes(currentAdvert.id) ? (
+              <div className={css.btnWrapper}>
                 <div
-                  onClick={(e) => {
-                    e.preventDefault();
-                    dispatch(removeFromFavourites(currentAdvert.id));
+                  onClick={() => {
+                    {
+                      isAuth
+                        ? navigate("/order", {
+                            state: {
+                              key: currentAdvert.id,
+                              quantity: quantity,
+                            },
+                          })
+                        : setUnregisterModal(true);
+                    }
                   }}
                 >
-                  <Button
-                    title={`Видалити з "Улюбленого"`}
-                    fontSize={"28"}
-                    backgroundColor={"#fff"}
-                    border={"#fac917"}
-                  />
+                  <Button title={"Купити"} fontSize={"28"} />
                 </div>
-              ) : (
-                <div
-                  onClick={(e) => {
-                    e.preventDefault();
-                    dispatch(addToFavourites(currentAdvert.id));
-                  }}
-                >
-                  <Button
-                    title={`Додати в "Улюблене"`}
-                    fontSize={"28"}
-                    backgroundColor={"#fff"}
-                    border={"#fac917"}
-                  />
-                </div>
-              )}
-            </div>
+                {favourites.includes(currentAdvert.id) ? (
+                  <div
+                    onClick={(e) => {
+                      e.preventDefault();
+                      dispatch(removeFromFavourites(currentAdvert.id));
+                    }}
+                  >
+                    <Button
+                      title={`Видалити з "Улюбленого"`}
+                      fontSize={"28"}
+                      backgroundColor={"#fff"}
+                      border={"#fac917"}
+                    />
+                  </div>
+                ) : (
+                  <div
+                    onClick={(e) => {
+                      e.preventDefault();
+                      dispatch(addToFavourites(currentAdvert.id));
+                    }}
+                  >
+                    <Button
+                      title={`Додати в "Улюблене"`}
+                      fontSize={"28"}
+                      backgroundColor={"#fff"}
+                      border={"#fac917"}
+                    />
+                  </div>
+                )}
+              </div>
+            </form>
           </div>
           {unregisterModal && (
             <Modal handleModalClose={handleUnregisterModalOpen}>
