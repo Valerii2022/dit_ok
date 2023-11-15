@@ -36,4 +36,10 @@
 
 .navigateItem {
   line-height: 1.22;
+  transition: color var(--transition);
+}
+
+.navigateItem:hover,
+.navigateItem:focus {
+  color: var(--yellow);
 }

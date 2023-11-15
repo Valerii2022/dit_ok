@@ -5,7 +5,11 @@ import closeIcon from "../../images/close.svg";
 import { useEffect, useState } from "react";
 import Modal from "../../components/Modal/Modal";
 import { useDispatch, useSelector } from "react-redux";
-import { getFavourites, getAdverts } from "../../redux/selectors";
+import {
+  getFavourites,
+  getAdverts,
+  getUserStatus,
+} from "../../redux/selectors";
 import { nanoid } from "nanoid";
 import { addToFavourites, removeFromFavourites } from "../../redux/usersSlice";
 import { fetchCurrentAdvert } from "../../redux/operations";
@@ -16,7 +20,7 @@ const Item = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const dispatch = useDispatch();
-  const isAuth = true;
+  const isAuth = useSelector(getUserStatus);
   const { currentAdvert } = useSelector(getAdverts);
   const favourites = useSelector(getFavourites);
 
@@ -132,16 +136,6 @@ const Item = () => {
                   </button>
                   <label>
                     <span className={css.box}>{quantity}</span>
-                    {/* <input
-                        onChange={(e) => setQuantity(Number(e.target.value))}
-                        className={css.box}
-                        value={quantity}
-                        min={1}
-                        max={5}
-                        type="number"
-                        step={1}
-                        name="quantity"
-                      /> */}
                   </label>
                   <button
                     type="button"

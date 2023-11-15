@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import css from "./Card.module.css";
 import { useNavigate } from "react-router-dom";
 import Button from "../Button/Button";
-import { getFavourites } from "../../redux/selectors";
+import { getFavourites, getUserStatus } from "../../redux/selectors";
 import heartSvg from "../../images/heart.svg";
 import favouriteSvg from "../../images/markedHeart.svg";
 import { addToFavourites, removeFromFavourites } from "../../redux/usersSlice";
@@ -12,7 +12,7 @@ const Card = (elem) => {
   const { cardElement, openModal } = elem;
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const isAuth = false;
+  const isAuth = useSelector(getUserStatus);
   const favourites = useSelector(getFavourites);
 
   const description = [
@@ -67,7 +67,13 @@ const Card = (elem) => {
           className={css.btnWrap}
           onClick={() => {
             {
-              isAuth ? navigate("/order") : openModal(true);
+              isAuth
+                ? navigate("/order", {
+                    state: {
+                      key: cardElement.id,
+                    },
+                  })
+                : openModal(true);
             }
           }}
         >

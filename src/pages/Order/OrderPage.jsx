@@ -31,7 +31,7 @@ const OrderPage = () => {
       </div>
       {currentAdvert && (
         <div className={css.contentWrapper}>
-          <div>
+          <div className={css.imageWrapper}>
             <div className={css.mainImageWrap}>
               <img
                 src={currentAdvert.src}
@@ -52,7 +52,18 @@ const OrderPage = () => {
           </div>
           <div className={css.infoWrapper}>
             <div className={css.generalInfo}>
-              <p>{currentAdvert.description}</p>
+              <p
+                onClick={() =>
+                  navigate("/item", {
+                    state: {
+                      key: currentAdvert.id,
+                    },
+                  })
+                }
+                className={css.detailsLink}
+              >
+                {currentAdvert.description}
+              </p>
               <p>
                 <span>Колір:</span>
                 <span>{currentAdvert.color}</span>
@@ -66,12 +77,36 @@ const OrderPage = () => {
                 <span>{currentAdvert.brand}</span>
               </p>
               <p>
-                <span>Розмір:</span>
+                <span
+                  onClick={() =>
+                    navigate("/item", {
+                      state: {
+                        key: currentAdvert.id,
+                      },
+                    })
+                  }
+                  className={css.detailsLink}
+                >
+                  Розмір:
+                </span>
                 <span>128</span>
               </p>
               <p>
-                <span>Кількість:</span>
-                <span>{location.state?.quantity}</span>
+                <span
+                  onClick={() =>
+                    navigate("/item", {
+                      state: {
+                        key: currentAdvert.id,
+                      },
+                    })
+                  }
+                  className={css.detailsLink}
+                >
+                  Кількість:
+                </span>
+                <span>
+                  {location.state.quantity ? location.state.quantity : "1"}
+                </span>
               </p>
             </div>
           </div>
