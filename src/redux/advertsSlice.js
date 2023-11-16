@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import persistReducer from "redux-persist/es/persistReducer";
 import storage from "redux-persist/lib/storage";
+import { fetchAdverts, fetchCurrentAdvert } from "./operations";
 
 const advertsSlice = createSlice({
   name: "adverts",
@@ -10,35 +11,36 @@ const advertsSlice = createSlice({
     error: null,
     currentAdvert: null,
   },
-  reducers: {
-    fetchingInProgress(state) {
-      state.isLoading = true;
-    },
-    fetchingSuccess(state, action) {
-      state.isLoading = false;
-      state.error = null;
-      state.adverts = action.payload;
-    },
-    fetchingCurrentSuccess(state, action) {
-      state.isLoading = false;
-      state.error = null;
-      state.currentAdvert = action.payload;
-    },
-    fetchingError(state, action) {
-      state.isLoading = false;
-      state.error = action.payload;
-    },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchAdverts.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(fetchAdverts.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        state.adverts = action.payload;
+      })
+      .addCase(fetchAdverts.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      })
+      .addCase(fetchCurrentAdvert.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(fetchCurrentAdvert.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        state.currentAdvert = action.payload;
+      })
+      .addCase(fetchCurrentAdvert.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      });
   },
 });
 
 const persistConfig = { key: "adverts", storage };
-
-export const {
-  fetchingInProgress,
-  fetchingSuccess,
-  fetchingError,
-  fetchingCurrentSuccess,
-} = advertsSlice.actions;
 
 export const advertsReducer = persistReducer(
   persistConfig,

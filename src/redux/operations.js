@@ -1,29 +1,14 @@
 import axios from "axios";
-import {
-  fetchingInProgress,
-  fetchingSuccess,
-  fetchingError,
-  fetchingCurrentSuccess,
-} from "./advertsSlice";
+import { createAsyncThunk } from "@reduxjs/toolkit";
 
 axios.defaults.baseURL = "https://653a0e10e3b530c8d9e91220.mockapi.io";
 
-export const fetchAdverts = () => async (dispatch) => {
-  try {
-    dispatch(fetchingInProgress());
-    const response = await axios.get("/images");
-    dispatch(fetchingSuccess(response.data));
-  } catch (e) {
-    dispatch(fetchingError(e.message));
-  }
-};
+export const fetchAdverts = createAsyncThunk("images/fetchAll", async () => {
+  const response = await axios.get("/images");
+  return response.data;
+});
 
-export const fetchCurrentAdvert = (id) => async (dispatch) => {
-  try {
-    dispatch(fetchingInProgress());
-    const response = await axios.get(`/images/${id}`);
-    dispatch(fetchingCurrentSuccess(response.data));
-  } catch (e) {
-    dispatch(fetchingError(e.message));
-  }
-};
+export const fetchCurrentAdvert = createAsyncThunk("images", async (id) => {
+  const response = await axios.get(`/images/${id}`);
+  return response.data;
+});
