@@ -5,7 +5,10 @@ import Button from "../Button/Button";
 import { getFavourites, getUserStatus } from "../../redux/selectors";
 import heartSvg from "../../images/heart.svg";
 import favouriteSvg from "../../images/markedHeart.svg";
-import { addToFavourites, removeFromFavourites } from "../../redux/usersSlice";
+import {
+  addToFavourites,
+  removeFromFavourites,
+} from "../../redux/currentUserSlice";
 import { setCategoryFilter } from "../../redux/filtersSlice";
 
 const Card = (elem) => {

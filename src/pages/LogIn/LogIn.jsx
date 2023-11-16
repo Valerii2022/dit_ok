@@ -2,12 +2,15 @@ import { NavLink, useNavigate } from "react-router-dom";
 import css from "./LogIn.module.css";
 import Button from "../../components/Button/Button";
 import logImg from "../../images/login.png";
-import { useDispatch } from "react-redux";
-import { setUserStatus } from "../../redux/usersSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { addCurrentUser } from "../../redux/currentUserSlice";
+import { getUsers } from "../../redux/selectors";
+import { setUserStatus } from "../../redux/statusSlice";
 
 const LogIn = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const users = useSelector(getUsers);
 
   const handleLogInBtnClick = (e) => {
     e.preventDefault();
@@ -16,7 +19,14 @@ const LogIn = () => {
     formData.forEach((value, key) => {
       data[key] = value;
     });
-    dispatch(setUserStatus(data));
+    const currentUser = users.filter(
+      (el) =>
+        (el.user.email === data.emailLogIn) &
+        (el.user.password === data.passLogIn)
+    );
+    console.log(currentUser);
+    dispatch(addCurrentUser(currentUser));
+    dispatch(setUserStatus(true));
     navigate("/");
   };
 

@@ -1,9 +1,10 @@
 import { advertsReducer } from "./advertsSlice";
-import { usersReducer } from "./usersSlice";
+import { currentUserReducer } from "./currentUserSlice";
 import { reviewsReducer } from "./reviewsSlice";
 import { configureStore } from "@reduxjs/toolkit";
 import { filtersReducer } from "./filtersSlice";
 import { subscriptionReducer } from "./subscriptionsSlice";
+import { usersReducer } from "./usersSlice";
 import {
   persistStore,
   FLUSH,
@@ -13,9 +14,12 @@ import {
   PURGE,
   REGISTER,
 } from "redux-persist";
+import { statusReducer } from "./statusSlice";
 
 export const store = configureStore({
   reducer: {
+    status: statusReducer,
+    currentUser: currentUserReducer,
     adverts: advertsReducer,
     users: usersReducer,
     reviews: reviewsReducer,

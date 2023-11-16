@@ -11,7 +11,10 @@ import {
   getUserStatus,
 } from "../../redux/selectors";
 import { nanoid } from "nanoid";
-import { addToFavourites, removeFromFavourites } from "../../redux/usersSlice";
+import {
+  addToFavourites,
+  removeFromFavourites,
+} from "../../redux/currentUserSlice";
 import { fetchCurrentAdvert } from "../../redux/operations";
 
 const Item = () => {
@@ -26,8 +29,10 @@ const Item = () => {
   const [size, setSize] = useState(currentAdvert?.sizes[0].size);
 
   useEffect(() => {
-    dispatch(fetchCurrentAdvert(location.state?.key));
-  }, [dispatch, location.state?.key]);
+    if (location.state) {
+      dispatch(fetchCurrentAdvert(location.state.key));
+    }
+  }, [dispatch, location]);
 
   const handleQuantityChange = (value) => {
     if (value === "increment") {
@@ -156,7 +161,8 @@ const Item = () => {
               </div>
               <div className={css.btnWrapper}>
                 <div
-                  onClick={() => {
+                  onClick={(e) => {
+                    e.preventDefault();
                     {
                       isAuth ? handleBuyBtnClick() : setUnregisterModal(true);
                     }

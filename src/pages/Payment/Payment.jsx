@@ -10,7 +10,7 @@ import payPalIcon from "../../images/pay03.jpg";
 import { getAdverts } from "../../redux/selectors";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCurrentAdvert } from "../../redux/operations";
-import { addToOrders } from "../../redux/usersSlice";
+import { addToOrders } from "../../redux/currentUserSlice";
 
 const Payment = () => {
   const [successModalOpen, setSuccessModalOpen] = useState(false);
