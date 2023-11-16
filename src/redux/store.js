@@ -3,6 +3,7 @@ import { usersReducer } from "./usersSlice";
 import { reviewsReducer } from "./reviewsSlice";
 import { configureStore } from "@reduxjs/toolkit";
 import { filtersReducer } from "./filtersSlice";
+import { subscriptionReducer } from "./subscriptionsSlice";
 import {
   persistStore,
   FLUSH,
@@ -19,6 +20,7 @@ export const store = configureStore({
     users: usersReducer,
     reviews: reviewsReducer,
     filters: filtersReducer,
+    subscriptions: subscriptionReducer,
   },
   middleware(getDefaultMiddleware) {
     return getDefaultMiddleware({

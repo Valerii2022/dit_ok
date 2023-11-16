@@ -49,3 +49,33 @@
 .btnWrap {
   width: 172px;
 }
+
+/* ======================================Modal======== */
+
+.modalContainer {
+  padding: 70px 60px 40px;
+  text-align: center;
+  position: relative;
+}
+
+.closeIcon {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  cursor: pointer;
+}
+
+.modalContainer p {
+  margin-bottom: 67px;
+
+  color: var(--black);
+  font-family: "Sansation", sans-serif;
+  font-size: 28px;
+  line-height: 1.12;
+}
+
+.modalBtnWrap {
+  width: 414px;
+  height: 79px;
+  margin: 0 auto;
+}

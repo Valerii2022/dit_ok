@@ -2,6 +2,15 @@
   padding: 116px 0 86px 0;
 }
 
+.title {
+  font-family: Sansation;
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 1.12;
+
+  margin-bottom: 50px;
+}
+
 .aboutContentWrap {
   display: flex;
   align-items: start;

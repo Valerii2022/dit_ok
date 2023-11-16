@@ -42,6 +42,7 @@ const usersSlice = createSlice({
       state.orders = [...state.orders, payload];
       return state;
     },
+
     addToFavourites(state, { payload }) {
       state.favourites = [...state.favourites, payload];
       return state;

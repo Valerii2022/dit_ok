@@ -7,8 +7,8 @@ const reviewsSlice = createSlice({
   name: "reviews",
   initialState: reviews,
   reducers: {
-    allReviews(state, action) {
-      console.log(state, action);
+    allReviews(state) {
+      return state;
     },
   },
 });
