@@ -3,7 +3,11 @@ import Button from "../../components/Button/Button";
 import closeIcon from "../../images/close.svg";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getCategoryFilter, getAdverts } from "../../redux/selectors";
+import {
+  getCategoryFilter,
+  getAdverts,
+  getAdvertFilter,
+} from "../../redux/selectors";
 import { useEffect, useState } from "react";
 import Modal from "../../components/Modal/Modal";
 import { fetchAdverts } from "../../redux/operations";
@@ -35,8 +39,8 @@ const Category = () => {
   const [unregisterModal, setUnregisterModal] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  // const location = useLocation();
   const category = useSelector(getCategoryFilter);
+  const advertFilter = useSelector(getAdvertFilter);
   const { adverts } = useSelector(getAdverts);
   const discountAdverts = adverts.filter((el) => el.sale);
 
@@ -48,15 +52,17 @@ const Category = () => {
     setUnregisterModal(false);
   };
 
-  // const filteredAdvertsByQuery = location.state.query
-  //   ? adverts.filter((el) => el.description.includes(location.state.query))
-  //   : [];
-
-  // console.log(filteredAdvertsByQuery);
-
-  const filteredAdverts = category
-    ? adverts.filter((el) => el.category === category)
+  const filteredAdvertsByQuery = advertFilter
+    ? adverts.filter((el) => el.description.includes(advertFilter))
     : adverts;
+
+  const filteredAdverts =
+    category === "Категорія"
+      ? filteredAdvertsByQuery
+      : filteredAdvertsByQuery.filter((el) => el.category === category);
+
+  const sliceAdvertsTop = filteredAdverts.slice(0, 8);
+  const sliceAdvertsBottom = filteredAdverts.slice(8);
 
   return (
     <>
@@ -65,10 +71,12 @@ const Category = () => {
           <NavLink to="/home">Головна /</NavLink>
         </div>
         <section className={css.categoryTop}>
-          <h2 className={css.title}>{category ? category : "Всі товари"}</h2>
+          <h2 className={css.title}>
+            {category === "Категорія" ? "Всі товари" : category}
+          </h2>
           <ul className={css.carouselWrap}>
-            {filteredAdverts.length ? (
-              filteredAdverts.map((element) => {
+            {sliceAdvertsTop.length ? (
+              sliceAdvertsTop.map((element) => {
                 return (
                   <Card
                     key={element.id}
@@ -107,9 +115,25 @@ const Category = () => {
           </div>
         </div>
       </section>
-      {/* <div className={css.container}>
-        <section className={css.categoryBottom}></section>
-      </div> */}
+      {sliceAdvertsBottom.length ? (
+        <div className={css.container}>
+          <section className={css.categoryBottom}>
+            <ul className={css.carouselWrap}>
+              {sliceAdvertsBottom.map((element) => {
+                return (
+                  <Card
+                    key={element.id}
+                    cardElement={element}
+                    openModal={setUnregisterModal}
+                  />
+                );
+              })}
+            </ul>
+          </section>
+        </div>
+      ) : (
+        <div></div>
+      )}
       {unregisterModal && (
         <Modal handleModalClose={handleUnregisterModalOpen}>
           <div className={css.modalContainer}>

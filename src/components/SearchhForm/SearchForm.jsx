@@ -1,11 +1,14 @@
 import { useState } from "react";
 import css from "./SearchForm.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { getUserStatus } from "../../redux/selectors.js";
+import { getCategoryFilter } from "../../redux/selectors.js";
 import { useNavigate } from "react-router-dom";
 import Button from "../Button/Button.jsx";
 import Modal from "../Modal/Modal.jsx";
-import { setCategoryFilter } from "../../redux/filtersSlice.js";
+import {
+  setAdvertFilter,
+  setCategoryFilter,
+} from "../../redux/filtersSlice.js";
 
 const SearchForm = (headerModal) => {
   const [zIndex, setZIndex] = useState(0);
@@ -13,7 +16,8 @@ const SearchForm = (headerModal) => {
   const [query, setQuery] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const isLoggedIn = useSelector(getUserStatus);
+  // const isLoggedIn = useSelector(getUserStatus);
+  const category = useSelector(getCategoryFilter);
 
   const handleCategoryModalOpen = () => {
     if (zIndex === 1000) {
@@ -34,8 +38,9 @@ const SearchForm = (headerModal) => {
 
   const handleSearchBtnClick = (e) => {
     e.preventDefault();
-    navigate("/category", { state: { query: query } });
-    setQuery("");
+    dispatch(setAdvertFilter(query.trim()));
+    navigate("/category");
+    // setQuery("");
   };
 
   return (
@@ -45,19 +50,25 @@ const SearchForm = (headerModal) => {
         className={css.searchWrap}
         onSubmit={handleSearchBtnClick}
       >
-        <label>
-          <input
-            value={query}
-            onChange={(e) => setQuery(e.currentTarget.value)}
-            type="text"
-            name="filter"
-            placeholder="Пошук за товарами"
-            className={css.input}
-          />
-        </label>
-        <button className={css.categoryBtn} onClick={handleCategoryModalOpen}>
-          {isLoggedIn ? "Одяг і взуття" : "Категорія"}
-        </button>
+        <div className={css.inputWrapper}>
+          <label>
+            <input
+              value={query}
+              onChange={(e) => setQuery(e.currentTarget.value)}
+              type="text"
+              name="filter"
+              placeholder="Пошук за товарами"
+              className={css.input}
+            />
+          </label>
+          <button className={css.categoryBtn} onClick={handleCategoryModalOpen}>
+            {category.length > 12
+              ? `${category.slice(0, 12)}...`
+              : `${category}`}
+
+            {/* {isLoggedIn ? `${category}` : "Категорія"} */}
+          </button>
+        </div>
         <div className={css.btnWrap}>
           <Button title={"Знайти"} />
         </div>
@@ -68,6 +79,7 @@ const SearchForm = (headerModal) => {
           headerModal={headerModal}
         >
           <ul className={css.categoryList} onClick={handleCategoryClick}>
+            <li className={css.category}>Категорія</li>
             <li className={css.category} id={"Одяг та взуття"}>
               Одяг і взуття
             </li>

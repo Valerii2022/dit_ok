@@ -158,7 +158,6 @@
       "https://cdn.firstcry.com/education/2022/11/06094158/Toy-Names-For-Kids.jpg"
     ]
   },
-  
   {
     "src": "https://cdn.firstcry.com/education/2022/11/06094158/Toy-Names-For-Kids.jpg",
     "color": "Жовтий",
@@ -180,6 +179,96 @@
     "images": [
       "https://m.media-amazon.com/images/I/713szPyljLL.jpg",
       "https://cdn.firstcry.com/education/2022/11/06094158/Toy-Names-For-Kids.jpg"
+    ]
+  },
+  {
+    "src": "https://turval.com.ua/components/com_jshopping/files/img_products/000006110_aleana_122074jpg.jpg",
+    "color": "Червоний",
+    "alt": "Toys",
+    "sale": 1000,
+    "new":true,
+    "material": "Поліестер 30%, бавовна 70%",
+    "brand": "Adidas",
+    "description": "Утепленний комплекс (штанці і кофтинка) для хлопчика, комплекс для хлопчика",
+    "price": 1300,
+    "id": "9",
+    "category": "Іграшки",
+    "sizes": [
+      { "size": 122, "quantity": 5 },
+      { "size": 124, "quantity": 1 }
+    ],
+    "images": [
+      "https://m.media-amazon.com/images/I/713szPyljLL.jpg",
+      "https://www.ttt.ua/uploads/images/New_Folder5/12579.jpg"
+    ]
+  },
+  {
+    "src": "https://www.ttt.ua/uploads/images/New_Folder5/12579.jpg",
+    "color": "Жовтий",
+    "alt": "Toys",
+    "sale": false,
+    "new":true,
+    "material": "Поліестер 30%, бавовна 70%",
+    "brand": "Nike",
+    "description": "Утепленний комплекс (штанці і кофтинка) для хлопчика, комплекс для хлопчикаю Утепленний комплекс (штанці і кофтинка) для хлопчика, комплекс для хлопчика",
+    "price": 1600,
+    "id": "10",
+    "category": "Іграшки",
+    "sizes": [
+      { "size": 122, "quantity": 5 },
+      { "size": 160, "quantity": 1 },
+      { "size": 172, "quantity": 3 }
+    ],
+    "images": [
+      "https://m.media-amazon.com/images/I/713szPyljLL.jpg",
+      "https://cdn.firstcry.com/education/2022/11/06094158/Toy-Names-For-Kids.jpg",
+      "https://rukminim2.flixcart.com/image/850/1000/kltryq80/vehicle-pull-along/z/c/8/unbreakable-automobile-car-toy-set-for-children-kids-toys-original-imagyvdhb2k62nmh.jpeg?q=90"
+    ]
+  },
+  {
+    "src": "https://monakoland.com.ua/monako-laravel/images/site-content/optimized/large/igrashky-dlya-malyukiv-large.jpg",
+    "color": "Жовтий",
+    "alt": "Toys",
+    "sale": false,
+    "new":false,
+    "material": "Поліестер 30%, бавовна 70%",
+    "brand": "NIP",
+    "description": "Дитячі товари NIP",
+    "price": 900,
+    "id": "11",
+    "category": "Дитячий транспорт",
+    "sizes": [
+      { "size": 120, "quantity": 5 },
+      { "size": 126, "quantity": 1 },
+      { "size": 130, "quantity": 3 }
+    ],
+    "images": [
+      "https://m.media-amazon.com/images/I/713szPyljLL.jpg",
+      "https://cdn.firstcry.com/education/2022/11/06094158/Toy-Names-For-Kids.jpg"
+    ]
+  },
+  {
+    "src": "https://ua.all.biz/img/ua/catalog/1251201.jpeg",
+    "color": "Жовтий",
+    "alt": "Toys",
+    "sale": 800,
+    "new":true,
+    "material": "Поліестер 30%, бавовна 70%",
+    "brand": "Ford",
+    "description": "Товари для дітей: купити дитячі товари, іграшки та подарунки, інтернет-магазин",
+    "price": 950,
+    "id": "12",
+    "category": "Дитячий транспорт",
+    "sizes": [
+      { "size": 120, "quantity": 5 },
+      { "size": 128, "quantity": 1 },
+      { "size": 160, "quantity": 3 },
+      { "size": 172 , "quantity": 3 }
+    ],
+    "images": [
+      "https://m.media-amazon.com/images/I/713szPyljLL.jpg",
+      "https://cdn.firstcry.com/education/2022/11/06094158/Toy-Names-For-Kids.jpg",
+      "https://www.ttt.ua/uploads/images/New_Folder5/12579.jpg"
     ]
   }
 ]

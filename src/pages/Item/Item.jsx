@@ -49,8 +49,8 @@ const Item = () => {
     });
   };
 
-  const handleUnregisterModalOpen = (e) => {
-    e.preventDefault();
+  const handleUnregisterModalOpen = () => {
+    // e.preventDefault();
     setUnregisterModal(false);
   };
 

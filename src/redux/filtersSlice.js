@@ -4,7 +4,7 @@ import storage from "redux-persist/lib/storage";
 
 const filtersSlice = createSlice({
   name: "filters",
-  initialState: { category: "", advert: "" },
+  initialState: { category: "Категорія", advert: "" },
   reducers: {
     setCategoryFilter(state, action) {
       state.category = action.payload;
