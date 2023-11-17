@@ -1,6 +1,5 @@
 .card {
   position: relative;
-  /* width: calc((100% - 60px) / 4); */
   width: 305px;
   padding: 12px;
   border-radius: 30px;
