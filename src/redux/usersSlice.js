@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import persistReducer from "redux-persist/es/persistReducer";
 import storage from "redux-persist/lib/storage";
-import { fetchCurrentUser, fetchUsers } from "./operations";
+import { addUser, fetchCurrentUser, fetchUsers } from "./operations";
 
 const usersSlice = createSlice({
   name: "users",
@@ -34,6 +34,18 @@ const usersSlice = createSlice({
         state.currentUser = payload;
       })
       .addCase(fetchCurrentUser.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload;
+      })
+      .addCase(addUser.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(addUser.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = null;
+        state.users.push(payload);
+      })
+      .addCase(addUser.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.error = payload;
       });

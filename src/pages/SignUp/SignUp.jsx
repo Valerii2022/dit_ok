@@ -3,22 +3,38 @@ import css from ".//SignUp.module.css";
 import Button from "../../components/Button/Button";
 import signupImg from "../../images/signup.png";
 import { useDispatch } from "react-redux";
-import { addToUsers } from "../../redux/usersSlice";
+import { addUser } from "../../redux/operations";
+import { nanoid } from "nanoid";
 
 const SignUp = () => {
   const dispatch = useDispatch();
 
   const handleSignUpFormSubmit = (e) => {
     e.preventDefault();
-    dispatch(
-      addToUsers({
-        name: "Alex",
-        surname: "User",
-        phone: "06000000000",
-        email: "user1@gmail.com",
-        password: "12345",
-      })
-    );
+    const formData = new FormData(e.currentTarget);
+    const data = {};
+    formData.forEach((value, key) => {
+      data[key] = value;
+    });
+    if (data.pass === data.confirm) {
+      dispatch(
+        addUser({
+          id: nanoid(6),
+          favourites: [],
+          orders: [],
+          isAdmin: false,
+          user: {
+            name: data.name,
+            surname: data.surname,
+            phone: data.phone,
+            email: data.email,
+            password: data.pass,
+          },
+        })
+      );
+      e.target.reset();
+      alert("Ви успішно зареєструвалися");
+    } else alert("Підтвердіть пароль");
   };
 
   return (
@@ -30,29 +46,40 @@ const SignUp = () => {
           <div className={css.inputWrapper}>
             <label className={css.label}>
               Ім&#96;я
-              <input type="text" name="signUpName" className={css.input} />
+              <input required type="text" name="name" className={css.input} />
             </label>
             <label className={css.label}>
               Прізвище
-              <input type="text" name="signUpSurname" className={css.input} />
+              <input
+                required
+                type="text"
+                name="surname"
+                className={css.input}
+              />
             </label>
             <label className={css.label}>
               Номер телефону
-              <input type="tel" name="signUpPhone" className={css.input} />
+              <input required type="tel" name="phone" className={css.input} />
             </label>
             <label className={css.label}>
               Email
-              <input type="email" name="signUpEmail" className={css.input} />
+              <input required type="email" name="email" className={css.input} />
             </label>
             <label className={css.label}>
               Пароль
-              <input type="password" name="signUpPass" className={css.input} />
+              <input
+                required
+                type="password"
+                name="pass"
+                className={css.input}
+              />
             </label>
             <label className={css.label}>
               Підтвердіть пароль
               <input
+                required
                 type="password"
-                name="signUpPassConfirm"
+                name="confirm"
                 className={css.input}
               />
             </label>

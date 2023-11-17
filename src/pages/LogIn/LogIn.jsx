@@ -11,11 +11,10 @@ import { fetchCurrentUser, fetchUsers } from "../../redux/operations";
 const LogIn = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { users, currentUser } = useSelector(getUsers);
+  const { users } = useSelector(getUsers);
 
   useEffect(() => {
     dispatch(fetchUsers());
-    dispatch(fetchCurrentUser("1"));
   }, [dispatch]);
 
   const handleLogInBtnClick = (e) => {
@@ -36,12 +35,8 @@ const LogIn = () => {
     } else {
       return alert("Неправильний логін чи пароль");
     }
-    if (currentUser) {
-      dispatch(setUserStatus(true));
-      navigate("/");
-    } else {
-      alert("Помилка аутентифікації");
-    }
+    dispatch(setUserStatus(true));
+    navigate("/");
   };
 
   return (
