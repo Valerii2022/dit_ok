@@ -1,5 +1,5 @@
 export const getAdverts = (state) => state.adverts;
-export const getUsers = (state) => state.users.users;
+export const getUsers = (state) => state.users;
 export const getFavourites = (state) => state.currentUser.favourites;
 export const getOrders = (state) => state.currentUser.orders;
 export const getCurrentUser = (state) => state.currentUser;

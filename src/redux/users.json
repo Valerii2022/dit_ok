@@ -1,0 +1,28 @@
+[
+  {
+    "id": "1",
+    "favourites": [],
+    "orders": [],
+    "isAdmin": false,
+    "user": {
+      "name": "Alex",
+      "surname": "User",
+      "phone": "06000000000",
+      "email": "second@ukr.net",
+      "password": "12345"
+    }
+  },
+  {
+    "id": "2",
+    "favourites": [],
+    "orders": [],
+    "isAdmin": false,
+    "user": {
+      "name": "Valerii",
+      "surname": "User",
+      "phone": "06000000000",
+      "email": "author@gmail.com",
+      "password": "12345"
+    }
+  }
+]

@@ -3,14 +3,20 @@ import css from "./LogIn.module.css";
 import Button from "../../components/Button/Button";
 import logImg from "../../images/login.png";
 import { useDispatch, useSelector } from "react-redux";
-import { addCurrentUser } from "../../redux/currentUserSlice";
 import { getUsers } from "../../redux/selectors";
 import { setUserStatus } from "../../redux/statusSlice";
+import { useEffect } from "react";
+import { fetchCurrentUser, fetchUsers } from "../../redux/operations";
 
 const LogIn = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const users = useSelector(getUsers);
+  const { users, currentUser } = useSelector(getUsers);
+
+  useEffect(() => {
+    dispatch(fetchUsers());
+    dispatch(fetchCurrentUser("1"));
+  }, [dispatch]);
 
   const handleLogInBtnClick = (e) => {
     e.preventDefault();
@@ -19,15 +25,23 @@ const LogIn = () => {
     formData.forEach((value, key) => {
       data[key] = value;
     });
-    const currentUser = users.filter(
+
+    const current = users.find(
       (el) =>
         (el.user.email === data.emailLogIn) &
         (el.user.password === data.passLogIn)
     );
-    console.log(currentUser);
-    dispatch(addCurrentUser(currentUser));
-    dispatch(setUserStatus(true));
-    navigate("/");
+    if (current) {
+      dispatch(fetchCurrentUser(current.id));
+    } else {
+      return alert("Неправильний логін чи пароль");
+    }
+    if (currentUser) {
+      dispatch(setUserStatus(true));
+      navigate("/");
+    } else {
+      alert("Помилка аутентифікації");
+    }
   };
 
   return (

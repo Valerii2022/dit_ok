@@ -50,7 +50,6 @@ const Item = () => {
   };
 
   const handleUnregisterModalOpen = () => {
-    // e.preventDefault();
     setUnregisterModal(false);
   };
 

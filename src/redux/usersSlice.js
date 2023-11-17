@@ -1,54 +1,42 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { nanoid } from "nanoid";
 import persistReducer from "redux-persist/es/persistReducer";
 import storage from "redux-persist/lib/storage";
-
-const initialState = {
-  users: [
-    {
-      id: nanoid(6),
-      favourites: [],
-      orders: [],
-      isAdmin: false,
-      user: {
-        name: "Alex",
-        surname: "User",
-        phone: "06000000000",
-        email: "uauthor@gmail.com",
-        password: "12345",
-      },
-    },
-    {
-      id: nanoid(6),
-      favourites: [],
-      orders: [],
-      isAdmin: false,
-      user: {
-        name: "Valerii",
-        surname: "User",
-        phone: "06000000000",
-        email: "author@gmail.com",
-        password: "12345",
-      },
-    },
-  ],
-};
+import { fetchCurrentUser, fetchUsers } from "./operations";
 
 const usersSlice = createSlice({
   name: "users",
-  initialState: initialState,
-  reducers: {
-    addToUsers(state, { payload }) {
-      const user = {
-        id: nanoid(6),
-        favourites: [],
-        orders: [],
-        isAdmin: false,
-        user: payload,
-      };
-      state.users = [...state.users, user];
-      return state;
-    },
+  initialState: {
+    users: [],
+    isLoading: false,
+    error: null,
+    currentUser: null,
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchUsers.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(fetchUsers.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = null;
+        state.users = payload;
+      })
+      .addCase(fetchUsers.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload;
+      })
+      .addCase(fetchCurrentUser.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(fetchCurrentUser.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = null;
+        state.currentUser = payload;
+      })
+      .addCase(fetchCurrentUser.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload;
+      });
   },
 });
 

@@ -12,3 +12,13 @@ export const fetchCurrentAdvert = createAsyncThunk("images", async (id) => {
   const response = await axios.get(`/images/${id}`);
   return response.data;
 });
+
+export const fetchUsers = createAsyncThunk("products/fetchAll", async () => {
+  const response = await axios.get("/products");
+  return response.data;
+});
+
+export const fetchCurrentUser = createAsyncThunk("products", async (id) => {
+  const response = await axios.get(`/products/${id}`);
+  return response.data;
+});
