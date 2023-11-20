@@ -1,7 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 import persistReducer from "redux-persist/es/persistReducer";
 import storage from "redux-persist/lib/storage";
-import { addUser, fetchCurrentUser, fetchUsers } from "./operations";
+import {
+  addUser,
+  fetchCurrentUser,
+  fetchUsers,
+  // updateUser,
+} from "./operations";
 
 const usersSlice = createSlice({
   name: "users",
@@ -49,11 +54,21 @@ const usersSlice = createSlice({
         state.isLoading = false;
         state.error = payload;
       });
+    // .addCase(updateUser.pending, (state) => {
+    //   state.isLoading = true;
+    // })
+    // .addCase(updateUser.fulfilled, (state, { payload }) => {
+    //   state.isLoading = false;
+    //   state.error = null;
+    //   console.log(payload);
+    // })
+    // .addCase(updateUser.rejected, (state, { payload }) => {
+    //   state.isLoading = false;
+    //   state.error = payload;
+    // });
   },
 });
 
 const persistConfig = { key: "users", storage };
-
-export const { addToUsers } = usersSlice.actions;
 
 export const usersReducer = persistReducer(persistConfig, usersSlice.reducer);

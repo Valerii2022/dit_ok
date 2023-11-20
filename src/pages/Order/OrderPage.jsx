@@ -122,6 +122,7 @@ const OrderPage = () => {
           <label className={css.inputLabel}>
             Адреса
             <input
+              required
               type="text"
               name="deliveryAddress"
               placeholder="вул. Маршала Вусика 23"
@@ -130,7 +131,7 @@ const OrderPage = () => {
           </label>
           <div className={css.radioBtnWrapper}>
             <label>
-              <input type="radio" name="delivery" />
+              <input type="radio" name="delivery" checked />
               Нова пошта
             </label>
             <label>
