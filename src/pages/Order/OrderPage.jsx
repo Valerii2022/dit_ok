@@ -17,6 +17,19 @@ const OrderPage = () => {
     dispatch(fetchCurrentAdvert(location.state?.key));
   }, [dispatch, location.state?.key]);
 
+  const handleSubmitForm = (e) => {
+    e.preventDefault();
+    let data = {};
+    const formData = new FormData(e.currentTarget);
+    formData.forEach((value, name) => (data[name] = value));
+    navigate("/payment", {
+      state: {
+        key: currentAdvert.id,
+        data,
+      },
+    });
+  };
+
   return (
     <div className={css.container}>
       <div className={css.breadcrumbs}>
@@ -122,7 +135,7 @@ const OrderPage = () => {
           </div>
         </div>
       )}
-      <form className={css.form}>
+      <form className={css.form} onSubmit={handleSubmitForm}>
         <h2 className={css.formTitle}>Дані для доставки</h2>
         <div className={css.addressWrapper}>
           <label className={css.inputLabel}>
@@ -137,11 +150,11 @@ const OrderPage = () => {
           </label>
           <div className={css.radioBtnWrapper}>
             <label>
-              <input type="radio" name="delivery" />
+              <input type="radio" name="delivery" value={"Нова пошта"} />
               Нова пошта
             </label>
             <label>
-              <input type="radio" name="delivery" />
+              <input type="radio" name="delivery" value={"Укрпошта"} />
               Укрпошта
             </label>
           </div>
@@ -154,19 +167,10 @@ const OrderPage = () => {
             className={css.textareaField}
           />
         </label>
+        <div className={css.btnWrapper}>
+          <Button title={"Перейти до оплати"} fontSize={"28"} />
+        </div>
       </form>
-      <div
-        className={css.btnWrapper}
-        onClick={() => {
-          navigate("/payment", {
-            state: {
-              key: currentAdvert.id,
-            },
-          });
-        }}
-      >
-        <Button title={"Перейти до оплати"} fontSize={"28"} />
-      </div>
     </div>
   );
 };

@@ -8,7 +8,8 @@ import { fetchAdverts } from "../../redux/operations.js";
 import Card from "../Card/Card.jsx";
 
 const Orders = () => {
-  const ordersId = useSelector(getOrders);
+  const currentOrders = useSelector(getOrders);
+  const ordersId = currentOrders.map((el) => el.key);
 
   const dispatch = useDispatch();
   const { adverts } = useSelector(getAdverts);
@@ -27,7 +28,9 @@ const Orders = () => {
       <ul className={css.carouselWrap}>
         {orders.length ? (
           orders.map((element) => {
-            return <Card key={element.id} cardElement={element} />;
+            return (
+              <Card key={element.id} cardElement={element} orders={true} />
+            );
           })
         ) : (
           <NotFound />

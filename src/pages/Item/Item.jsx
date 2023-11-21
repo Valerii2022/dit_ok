@@ -56,14 +56,29 @@ const Item = () => {
   return (
     <div className={css.container}>
       <div className={css.breadcrumbs}>
-        <NavLink to="/home">
-          <span>Головна</span>
-        </NavLink>
-        <NavLink to="/category">
-          {currentAdvert && (
-            <span>{currentAdvert.category ? currentAdvert.category : ""}</span>
-          )}
-        </NavLink>
+        {location.state.orders ? (
+          <>
+            <NavLink to="/account">
+              <span>Аккаунт</span>
+            </NavLink>
+            <NavLink to="/account/orders">
+              <span>Мої замовлення</span>
+            </NavLink>
+          </>
+        ) : (
+          <>
+            <NavLink to="/home">
+              <span>Головна</span>
+            </NavLink>
+            <NavLink to="/category">
+              {currentAdvert && (
+                <span>
+                  {currentAdvert.category ? currentAdvert.category : ""}
+                </span>
+              )}
+            </NavLink>
+          </>
+        )}
       </div>
       {currentAdvert && (
         <div className={css.contentWrapper}>
@@ -116,110 +131,153 @@ const Item = () => {
                 )}
               </p>
             </div>
-            <form
-              onChange={(e) => {
-                setSize(e.target.value);
-              }}
-            >
-              <div className={css.sizesWrapper}>
-                <div>
-                  <p>Розміри:</p>
-                  <ul className={css.boxWrapper}>
-                    {currentAdvert.sizes.map((el) => {
-                      if (Number(size) === el.size) {
+            {location.state.orders ? (
+              <form>
+                <div className={css.sizesWrapper}>
+                  <div>
+                    <p>Розміри:</p>
+
+                    <ul className={css.boxWrapper}>
+                      {currentAdvert.sizes.map((el) => {
                         return (
                           <li key={nanoid(6)}>
-                            <input
-                              defaultChecked
-                              className={css.hidden}
-                              value={el.size}
-                              id={el.size}
-                              type="radio"
-                              name="size"
-                            />
-                            <label htmlFor={el.size}>{el.size}</label>
+                            <div className={css.label} id={el.size}>
+                              {el.size}
+                            </div>
                           </li>
                         );
-                      } else {
-                        return (
-                          <li key={nanoid(6)}>
-                            <input
-                              className={css.hidden}
-                              value={el.size}
-                              id={el.size}
-                              type="radio"
-                              name="size"
-                            />
-                            <label htmlFor={el.size}>{el.size}</label>
-                          </li>
-                        );
+                      })}
+                    </ul>
+                  </div>
+                  <div>
+                    <p>Кількість:</p>
+                    <div className={css.quantity}>
+                      <div className={css.label}>
+                        <span className={css.box}>9</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            ) : (
+              <form
+                onChange={(e) => {
+                  setSize(e.target.value);
+                }}
+              >
+                <div className={css.sizesWrapper}>
+                  <div>
+                    <p>Розміри:</p>
+
+                    <ul className={css.boxWrapper}>
+                      {currentAdvert.sizes.map((el) => {
+                        if (Number(size) === el.size) {
+                          return (
+                            <li key={nanoid(6)}>
+                              <input
+                                defaultChecked
+                                className={css.hidden}
+                                value={el.size}
+                                id={el.size}
+                                type="radio"
+                                name="size"
+                              />
+                              <label className={css.label} htmlFor={el.size}>
+                                {el.size}
+                              </label>
+                            </li>
+                          );
+                        } else {
+                          return (
+                            <li key={nanoid(6)}>
+                              <input
+                                className={css.hidden}
+                                value={el.size}
+                                id={el.size}
+                                type="radio"
+                                name="size"
+                              />
+                              <label className={css.label} htmlFor={el.size}>
+                                {el.size}
+                              </label>
+                            </li>
+                          );
+                        }
+                      })}
+                    </ul>
+                  </div>
+                  <div>
+                    <p>Кількість:</p>
+                    <div className={css.quantity}>
+                      {location.state.orders ? (
+                        <label>
+                          <span className={css.box}>9</span>
+                        </label>
+                      ) : (
+                        <>
+                          <button
+                            type="button"
+                            onClick={() => handleQuantityChange("decrement")}
+                          >
+                            -
+                          </button>
+                          <div className={css.label}>
+                            <span className={css.box}>{quantity}</span>
+                          </div>
+                          <button
+                            type="button"
+                            onClick={() => handleQuantityChange("increment")}
+                          >
+                            +
+                          </button>
+                        </>
+                      )}
+                    </div>
+                  </div>
+                </div>
+                <div className={css.btnWrapper}>
+                  <div
+                    onClick={(e) => {
+                      e.preventDefault();
+                      {
+                        isAuth ? handleBuyBtnClick() : setUnregisterModal(true);
                       }
-                    })}
-                  </ul>
-                </div>
-                <div>
-                  <p>Кількість:</p>
-                  <div className={css.quantity}>
-                    <button
-                      type="button"
-                      onClick={() => handleQuantityChange("decrement")}
-                    >
-                      -
-                    </button>
-                    <label>
-                      <span className={css.box}>{quantity}</span>
-                    </label>
-                    <button
-                      type="button"
-                      onClick={() => handleQuantityChange("increment")}
-                    >
-                      +
-                    </button>
-                  </div>
-                </div>
-              </div>
-              <div className={css.btnWrapper}>
-                <div
-                  onClick={(e) => {
-                    e.preventDefault();
-                    {
-                      isAuth ? handleBuyBtnClick() : setUnregisterModal(true);
-                    }
-                  }}
-                >
-                  <Button title={"Купити"} fontSize={"28"} />
-                </div>
-                {favourites.includes(currentAdvert.id) ? (
-                  <div
-                    onClick={(e) => {
-                      e.preventDefault();
-                      dispatch(removeFromFavourites(currentAdvert.id));
                     }}
                   >
-                    <Button
-                      title={`Видалити з "Улюбленого"`}
-                      fontSize={"28"}
-                      backgroundColor={"#fff"}
-                      border={"#fac917"}
-                    />
+                    <Button title={"Купити"} fontSize={"28"} />
                   </div>
-                ) : (
-                  <div
-                    onClick={(e) => {
-                      e.preventDefault();
-                      dispatch(addToFavourites(currentAdvert.id));
-                    }}
-                  >
-                    <Button
-                      title={`Додати в "Улюблене"`}
-                      fontSize={"28"}
-                      backgroundColor={"#fff"}
-                      border={"#fac917"}
-                    />
-                  </div>
-                )}
-              </div>
-            </form>
+                  {favourites.includes(currentAdvert.id) ? (
+                    <div
+                      onClick={(e) => {
+                        e.preventDefault();
+                        dispatch(removeFromFavourites(currentAdvert.id));
+                      }}
+                    >
+                      <Button
+                        title={`Видалити з "Улюбленого"`}
+                        fontSize={"28"}
+                        backgroundColor={"#fff"}
+                        border={"#fac917"}
+                      />
+                    </div>
+                  ) : (
+                    <div
+                      onClick={(e) => {
+                        e.preventDefault();
+                        dispatch(addToFavourites(currentAdvert.id));
+                      }}
+                    >
+                      <Button
+                        title={`Додати в "Улюблене"`}
+                        fontSize={"28"}
+                        backgroundColor={"#fff"}
+                        border={"#fac917"}
+                      />
+                    </div>
+                  )}
+                </div>
+              </form>
+            )}
           </div>
           {unregisterModal && (
             <Modal handleModalClose={handleUnregisterModalOpen}>

@@ -15,6 +15,7 @@ const Account = () => {
       <div className={css.inner}>
         <div className={css.btnWrapper}>
           <input
+            defaultChecked
             className={css.hidden}
             id="general"
             type="radio"

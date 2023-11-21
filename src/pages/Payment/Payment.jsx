@@ -27,6 +27,19 @@ const Payment = () => {
     navigate("/home");
   };
 
+  const handleSubmitForm = (e) => {
+    e.preventDefault();
+    const data = {};
+    const formData = new FormData(e.currentTarget);
+    formData.forEach((value, name) => (data[name] = value));
+    const orderDetails = {
+      ...location.state,
+      ...data,
+    };
+    dispatch(addToOrders(orderDetails));
+    setSuccessModalOpen(true);
+  };
+
   return (
     <div className={css.container}>
       <div className={css.breadcrumbs}>
@@ -39,7 +52,7 @@ const Payment = () => {
           )}
         </NavLink>
       </div>
-      <form className={css.form}>
+      <form className={css.form} onSubmit={handleSubmitForm}>
         <h2 className={css.title}>Оплата</h2>
         <div className={css.formInner}>
           <div className={css.inputWrapper}>
@@ -51,19 +64,34 @@ const Payment = () => {
           <div className={css.inputWrapper}>
             <div className={css.radioInput}>
               <label htmlFor="master card">
-                <input type="radio" id="master card" name="payment" />
+                <input
+                  type="radio"
+                  id="master card"
+                  name="payment"
+                  value={"Master card"}
+                />
                 <img src={masterCardIcon} alt="Master Card" />
               </label>
             </div>
             <div className={css.radioInput}>
               <label htmlFor="visa">
-                <input type="radio" id="visa" name="payment" />
+                <input
+                  type="radio"
+                  id="visa"
+                  name="payment"
+                  value={"Visa card"}
+                />
                 <img src={visaCardIcon} alt="Visa Card" />
               </label>
             </div>
             <div className={css.radioInput}>
               <label htmlFor="paypal">
-                <input type="radio" id="paypal" name="payment" />
+                <input
+                  type="radio"
+                  id="paypal"
+                  name="payment"
+                  value={"Pay Pal"}
+                />
                 <img src={payPalIcon} alt="Pay Pal" />
               </label>
             </div>
@@ -96,17 +124,10 @@ const Payment = () => {
           </div>
         </div>
         <label htmlFor="checkbox" className={css.checkbox}>
-          <input type="checkbox" name="checkbox" id="checkbox" />
+          <input type="checkbox" name="checkbox" id="checkbox" value={"ok"} />
           Запам’ятати мою картку
         </label>
-        <div
-          className={css.btnWrapper}
-          onClick={(e) => {
-            e.preventDefault();
-            dispatch(addToOrders(location.state?.key));
-            setSuccessModalOpen(true);
-          }}
-        >
+        <div className={css.btnWrapper}>
           <Button title={"Підтвердити"} fontSize={"28"} />
         </div>
       </form>

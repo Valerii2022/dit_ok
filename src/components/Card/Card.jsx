@@ -12,7 +12,7 @@ import {
 import { setCategoryFilter } from "../../redux/filtersSlice";
 
 const Card = (elem) => {
-  const { cardElement, openModal } = elem;
+  const { cardElement, openModal, orders } = elem;
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const isAuth = useSelector(getUserStatus);
@@ -65,33 +65,53 @@ const Card = (elem) => {
       ) : (
         <p>{cardElement.price} грн</p>
       )}
-      <div className={css.cardBottom} id={cardElement.id}>
+      {orders ? (
         <div
-          className={css.btnWrap}
+          className={css.cardBottom}
           onClick={() => {
             {
               isAuth
-                ? navigate("/order", {
+                ? navigate("/item", {
                     state: {
                       key: cardElement.id,
+                      orders: true,
                     },
                   })
                 : openModal(true);
             }
           }}
         >
-          <Button title={"Купити"} />
+          <Button title={"Переглянути дані"} />
         </div>
-        <button
-          className={css.moreBtn}
-          // onClick={() => {
-          //   isAuth ? handleMoreBtnClick : openModal(true);
-          // }}
-          onClick={handleMoreBtnClick}
-        >
-          Докладніше
-        </button>
-      </div>
+      ) : (
+        <div className={css.cardBottom} id={cardElement.id}>
+          <div
+            className={css.btnWrap}
+            onClick={() => {
+              {
+                isAuth
+                  ? navigate("/order", {
+                      state: {
+                        key: cardElement.id,
+                      },
+                    })
+                  : openModal(true);
+              }
+            }}
+          >
+            <Button title={"Купити"} />
+          </div>
+          <button
+            className={css.moreBtn}
+            // onClick={() => {
+            //   isAuth ? handleMoreBtnClick : openModal(true);
+            // }}
+            onClick={handleMoreBtnClick}
+          >
+            Докладніше
+          </button>
+        </div>
+      )}
     </div>
   );
 };

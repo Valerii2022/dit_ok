@@ -118,7 +118,7 @@
   width: 89px;
 }
 
-.boxWrapper label {
+.boxWrapper .label {
   cursor: pointer;
   border: 1px solid var(--black, #000);
   width: 100%;
