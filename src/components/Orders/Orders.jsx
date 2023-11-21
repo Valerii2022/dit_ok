@@ -3,22 +3,18 @@ import NotFound from "../NotFound/NotFound.jsx";
 import SearchForm from "../SearchhForm/SearchForm.jsx";
 import css from "./Orders.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { getAdverts, getOrders } from "../../redux/selectors.js";
+import { getOrders } from "../../redux/selectors.js";
 import { fetchAdverts } from "../../redux/operations.js";
 import Card from "../Card/Card.jsx";
+import { nanoid } from "nanoid";
 
 const Orders = () => {
   const currentOrders = useSelector(getOrders);
-  const ordersId = currentOrders.map((el) => el.key);
-
   const dispatch = useDispatch();
-  const { adverts } = useSelector(getAdverts);
 
   useEffect(() => {
     dispatch(fetchAdverts());
   }, [dispatch]);
-
-  const orders = adverts.filter((el) => ordersId.includes(el.id));
 
   return (
     <>
@@ -26,10 +22,19 @@ const Orders = () => {
         <SearchForm />
       </div>
       <ul className={css.carouselWrap}>
-        {orders.length ? (
-          orders.map((element) => {
+        {currentOrders.length ? (
+          currentOrders.map((element) => {
+            const orders = {
+              order: true,
+              size: element.size,
+              quantity: element.quantity,
+            };
             return (
-              <Card key={element.id} cardElement={element} orders={true} />
+              <Card
+                key={nanoid(6)}
+                cardElement={element.advert}
+                orders={orders}
+              />
             );
           })
         ) : (

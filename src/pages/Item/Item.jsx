@@ -45,7 +45,12 @@ const Item = () => {
 
   const handleBuyBtnClick = () => {
     navigate("/order", {
-      state: { key: currentAdvert.id, quantity: quantity, size: size },
+      state: {
+        key: currentAdvert.id,
+        quantity: quantity,
+        size: size,
+        advert: currentAdvert,
+      },
     });
   };
 
@@ -141,9 +146,19 @@ const Item = () => {
                       {currentAdvert.sizes.map((el) => {
                         return (
                           <li key={nanoid(6)}>
-                            <div className={css.label} id={el.size}>
-                              {el.size}
-                            </div>
+                            {Number(location.state.orders.size) === el.size ? (
+                              <div
+                                style={{ borderColor: "#fac917" }}
+                                className={css.label}
+                                id={el.size}
+                              >
+                                {el.size}
+                              </div>
+                            ) : (
+                              <div className={css.label} id={el.size}>
+                                {el.size}
+                              </div>
+                            )}
                           </li>
                         );
                       })}
@@ -153,7 +168,9 @@ const Item = () => {
                     <p>Кількість:</p>
                     <div className={css.quantity}>
                       <div className={css.label}>
-                        <span className={css.box}>9</span>
+                        <span className={css.box}>
+                          {location.state.orders.quantity}
+                        </span>
                       </div>
                     </div>
                   </div>

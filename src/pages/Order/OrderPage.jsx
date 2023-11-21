@@ -26,6 +26,9 @@ const OrderPage = () => {
       state: {
         key: currentAdvert.id,
         data,
+        size: location.state?.size,
+        quantity: location.state?.quantity,
+        advert: location.state?.advert,
       },
     });
   };

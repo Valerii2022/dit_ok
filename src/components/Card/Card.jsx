@@ -74,7 +74,7 @@ const Card = (elem) => {
                 ? navigate("/item", {
                     state: {
                       key: cardElement.id,
-                      orders: true,
+                      orders,
                     },
                   })
                 : openModal(true);

@@ -35,6 +35,9 @@ const Payment = () => {
     const orderDetails = {
       ...location.state,
       ...data,
+      size: location.state?.size,
+      quantity: location.state?.quantity,
+      advert: location.state?.advert,
     };
     dispatch(addToOrders(orderDetails));
     setSuccessModalOpen(true);
