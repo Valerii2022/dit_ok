@@ -25,7 +25,7 @@ const Item = () => {
   const isAuth = useSelector(getUserStatus);
   const { currentAdvert } = useSelector(getAdverts);
   const favourites = useSelector(getFavourites);
-  const [size, setSize] = useState(currentAdvert?.sizes[0].size);
+  const [size, setSize] = useState(location.state.size || null);
   const [quantity, setQuantity] = useState(location.state.quantity || 1);
 
   useEffect(() => {
@@ -116,24 +116,44 @@ const Item = () => {
                 )}
               </p>
             </div>
-            <form onChange={(e) => setSize(e.target.value)}>
+            <form
+              onChange={(e) => {
+                setSize(e.target.value);
+              }}
+            >
               <div className={css.sizesWrapper}>
                 <div>
                   <p>Розміри:</p>
                   <ul className={css.boxWrapper}>
                     {currentAdvert.sizes.map((el) => {
-                      return (
-                        <li key={nanoid(6)}>
-                          <input
-                            className={css.hidden}
-                            value={el.size}
-                            id={el.size}
-                            type="radio"
-                            name="size"
-                          />
-                          <label htmlFor={el.size}>{el.size}</label>
-                        </li>
-                      );
+                      if (Number(size) === el.size) {
+                        return (
+                          <li key={nanoid(6)}>
+                            <input
+                              defaultChecked
+                              className={css.hidden}
+                              value={el.size}
+                              id={el.size}
+                              type="radio"
+                              name="size"
+                            />
+                            <label htmlFor={el.size}>{el.size}</label>
+                          </li>
+                        );
+                      } else {
+                        return (
+                          <li key={nanoid(6)}>
+                            <input
+                              className={css.hidden}
+                              value={el.size}
+                              id={el.size}
+                              type="radio"
+                              name="size"
+                            />
+                            <label htmlFor={el.size}>{el.size}</label>
+                          </li>
+                        );
+                      }
                     })}
                   </ul>
                 </div>

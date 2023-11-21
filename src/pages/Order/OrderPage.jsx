@@ -58,6 +58,7 @@ const OrderPage = () => {
                     state: {
                       key: currentAdvert.id,
                       quantity: location.state?.quantity,
+                      size: location.state?.size,
                     },
                   })
                 }
@@ -84,6 +85,7 @@ const OrderPage = () => {
                       state: {
                         key: currentAdvert.id,
                         quantity: location.state?.quantity,
+                        size: location.state?.size,
                       },
                     })
                   }
@@ -104,6 +106,7 @@ const OrderPage = () => {
                       state: {
                         key: currentAdvert.id,
                         quantity: location.state?.quantity,
+                        size: location.state?.size,
                       },
                     })
                   }
