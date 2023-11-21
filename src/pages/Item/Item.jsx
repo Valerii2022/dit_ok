@@ -18,7 +18,6 @@ import {
 import { fetchCurrentAdvert } from "../../redux/operations";
 
 const Item = () => {
-  const [quantity, setQuantity] = useState(1);
   const [unregisterModal, setUnregisterModal] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
@@ -27,6 +26,7 @@ const Item = () => {
   const { currentAdvert } = useSelector(getAdverts);
   const favourites = useSelector(getFavourites);
   const [size, setSize] = useState(currentAdvert?.sizes[0].size);
+  const [quantity, setQuantity] = useState(location.state.quantity || 1);
 
   useEffect(() => {
     if (location.state) {

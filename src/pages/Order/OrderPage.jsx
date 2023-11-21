@@ -57,6 +57,7 @@ const OrderPage = () => {
                   navigate("/item", {
                     state: {
                       key: currentAdvert.id,
+                      quantity: location.state?.quantity,
                     },
                   })
                 }
@@ -82,6 +83,7 @@ const OrderPage = () => {
                     navigate("/item", {
                       state: {
                         key: currentAdvert.id,
+                        quantity: location.state?.quantity,
                       },
                     })
                   }
@@ -101,6 +103,7 @@ const OrderPage = () => {
                     navigate("/item", {
                       state: {
                         key: currentAdvert.id,
+                        quantity: location.state?.quantity,
                       },
                     })
                   }
@@ -131,7 +134,7 @@ const OrderPage = () => {
           </label>
           <div className={css.radioBtnWrapper}>
             <label>
-              <input type="radio" name="delivery" checked />
+              <input type="radio" name="delivery" />
               Нова пошта
             </label>
             <label>
