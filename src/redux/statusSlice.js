@@ -10,11 +10,15 @@ const statusSlice = createSlice({
       state.isLoggedIn = payload;
       return state;
     },
+    setAdminStatus(state, { payload }) {
+      state.isAdmin = payload;
+      return state;
+    },
   },
 });
 
 const persistConfig = { key: "status", storage };
 
-export const { setUserStatus } = statusSlice.actions;
+export const { setUserStatus, setAdminStatus } = statusSlice.actions;
 
 export const statusReducer = persistReducer(persistConfig, statusSlice.reducer);

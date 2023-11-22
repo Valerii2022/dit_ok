@@ -22,11 +22,11 @@ const Item = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const dispatch = useDispatch();
-  const isAuth = useSelector(getUserStatus);
+  const { isLoggedIn } = useSelector(getUserStatus);
   const { currentAdvert } = useSelector(getAdverts);
   const favourites = useSelector(getFavourites);
-  const [size, setSize] = useState(location.state.size || null);
-  const [quantity, setQuantity] = useState(location.state.quantity || 1);
+  const [size, setSize] = useState(location.state?.size || null);
+  const [quantity, setQuantity] = useState(location.state?.quantity || 1);
 
   useEffect(() => {
     if (location.state) {
@@ -61,7 +61,7 @@ const Item = () => {
   return (
     <div className={css.container}>
       <div className={css.breadcrumbs}>
-        {location.state.orders ? (
+        {location.state?.orders ? (
           <>
             <NavLink to="/account">
               <span>Аккаунт</span>
@@ -136,7 +136,7 @@ const Item = () => {
                 )}
               </p>
             </div>
-            {location.state.orders ? (
+            {location.state?.orders ? (
               <form>
                 <div className={css.sizesWrapper}>
                   <div>
@@ -226,7 +226,7 @@ const Item = () => {
                   <div>
                     <p>Кількість:</p>
                     <div className={css.quantity}>
-                      {location.state.orders ? (
+                      {location.state?.orders ? (
                         <label>
                           <span className={css.box}>9</span>
                         </label>
@@ -257,7 +257,9 @@ const Item = () => {
                     onClick={(e) => {
                       e.preventDefault();
                       {
-                        isAuth ? handleBuyBtnClick() : setUnregisterModal(true);
+                        isLoggedIn
+                          ? handleBuyBtnClick()
+                          : setUnregisterModal(true);
                       }
                     }}
                   >

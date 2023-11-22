@@ -13,6 +13,8 @@ import Account from "../pages/Account/Account.jsx";
 import Orders from "./Orders/Orders.jsx";
 import General from "./General/General.jsx";
 import Favourites from "./Favourites/Favourites.jsx";
+import { PrivateRoute } from "./PrivateRoute/PrivateRoute.jsx";
+import { RestrictedRoute } from "./RestrictedRoute/RestrictedRoute.jsx";
 
 const App = () => {
   return (
@@ -22,13 +24,36 @@ const App = () => {
           <Route index element={<Home />} />
           <Route path="/delivery" element={<Delivery />} />
           <Route path="/guarantee" element={<Guarantee />} />
-          <Route path="/login" element={<LogIn />} />
-          <Route path="/signup" element={<SignUp />} />
+          <Route
+            path="/login"
+            element={
+              <RestrictedRoute redirectTo="/contacts" component={<LogIn />} />
+            }
+          />
+          <Route
+            path="/signup"
+            element={
+              <RestrictedRoute redirectTo="/contacts" component={<SignUp />} />
+            }
+          />
           <Route path="/category" element={<Category />} />
           <Route path="/item" element={<Item />} />
-          <Route path="/order" element={<OrderPage />} />
-          <Route path="/payment" element={<Payment />} />
-          <Route path="/account" element={<Account />}>
+          <Route
+            path="/order"
+            element={<PrivateRoute redirectTo="/" component={<OrderPage />} />}
+          />
+          <Route
+            path="/payment"
+            element={
+              <PrivateRoute redirectTo="/login" component={<Payment />} />
+            }
+          />
+          <Route
+            path="/account"
+            element={
+              <PrivateRoute redirectTo="/login" component={<Account />} />
+            }
+          >
             <Route index element={<General />} />
             <Route path="favourites" element={<Favourites />} />
             <Route path="orders" element={<Orders />} />

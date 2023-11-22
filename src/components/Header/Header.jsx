@@ -5,7 +5,7 @@ import SearchForm from "../SearchhForm/SearchForm";
 import { useSelector } from "react-redux";
 
 const Header = () => {
-  const isLoggedIn = useSelector(getUserStatus);
+  const { isLoggedIn } = useSelector(getUserStatus);
 
   return (
     <header className={css.container}>

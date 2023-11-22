@@ -4,7 +4,7 @@ import Button from "../../components/Button/Button";
 import logImg from "../../images/login.png";
 import { useDispatch, useSelector } from "react-redux";
 import { getUsers } from "../../redux/selectors";
-import { setUserStatus } from "../../redux/statusSlice";
+import { setAdminStatus, setUserStatus } from "../../redux/statusSlice";
 import { useEffect, useState } from "react";
 import { fetchCurrentUser, fetchUsers } from "../../redux/operations";
 import iziToast from "izitoast";
@@ -48,6 +48,9 @@ const LogIn = () => {
       return;
     }
     dispatch(setUserStatus(true));
+    if (current.isAdmin) {
+      dispatch(setAdminStatus(true));
+    }
     navigate("/");
   };
 

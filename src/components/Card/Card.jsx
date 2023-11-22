@@ -15,7 +15,7 @@ const Card = (elem) => {
   const { cardElement, openModal, orders } = elem;
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const isAuth = useSelector(getUserStatus);
+  const { isLoggedIn } = useSelector(getUserStatus);
   const favourites = useSelector(getFavourites);
 
   const description = [
@@ -70,7 +70,7 @@ const Card = (elem) => {
           className={css.cardBottom}
           onClick={() => {
             {
-              isAuth
+              isLoggedIn
                 ? navigate("/item", {
                     state: {
                       key: cardElement.id,
@@ -89,7 +89,7 @@ const Card = (elem) => {
             className={css.btnWrap}
             onClick={() => {
               {
-                isAuth
+                isLoggedIn
                   ? navigate("/order", {
                       state: {
                         key: cardElement.id,
@@ -104,7 +104,7 @@ const Card = (elem) => {
           <button
             className={css.moreBtn}
             // onClick={() => {
-            //   isAuth ? handleMoreBtnClick : openModal(true);
+            //   isLoggedIn ? handleMoreBtnClick : openModal(true);
             // }}
             onClick={handleMoreBtnClick}
           >
