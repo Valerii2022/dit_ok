@@ -15,6 +15,7 @@ import General from "./General/General.jsx";
 import Favourites from "./Favourites/Favourites.jsx";
 import { PrivateRoute } from "./PrivateRoute/PrivateRoute.jsx";
 import { RestrictedRoute } from "./RestrictedRoute/RestrictedRoute.jsx";
+import AdminHome from "../pages/Admin/Admin.jsx";
 
 const App = () => {
   return (
@@ -58,8 +59,8 @@ const App = () => {
             <Route path="favourites" element={<Favourites />} />
             <Route path="orders" element={<Orders />} />
           </Route>
+          <Route path="/admin" element={<AdminHome />}></Route>
         </Route>
-
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </>

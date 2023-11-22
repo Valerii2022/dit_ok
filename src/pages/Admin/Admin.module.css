@@ -1,0 +1,40 @@
+/* =========================header=============== */
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+
+  width: 1440px;
+  padding: 30px 80px 23px;
+  margin: 0 auto;
+}
+
+.logoWrapper {
+  display: flex;
+  gap: 21px;
+
+  width: calc((100% - 30px) / 2);
+}
+
+.logo {
+  align-self: center;
+
+  font-family: "Sansation", sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.125;
+}
+
+.navigateList {
+  display: flex;
+  align-items: center;
+
+  line-height: 1.22;
+}
+
+.icon {
+  fill: currentColor;
+  margin-left: 50px;
+}
+/* ====================footer=============== */
