@@ -1,5 +1,11 @@
-/* =========================header=============== */
 .container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* =========================header=============== */
+.header {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -24,6 +30,12 @@
   font-size: 32px;
   font-weight: 700;
   line-height: 1.125;
+
+  transition: color var(--transition);
+}
+
+.logo:hover {
+  color: var(--yellow);
 }
 
 .navigateList {
@@ -33,8 +45,56 @@
   line-height: 1.22;
 }
 
+.navigateList li {
+  transition: color var(--transition);
+}
+
+.navigateList li:hover {
+  color: var(--yellow);
+}
+
 .icon {
   fill: currentColor;
   margin-left: 50px;
 }
+
+/* ===================main================ */
+
+.main {
+  flex-grow: 1;
+}
+
 /* ====================footer=============== */
+
+.footer {
+  background-color: var(--light-yellow);
+  padding: 25px 0;
+}
+
+.footerInner {
+  width: 1140px;
+  margin: 0 auto;
+  padding: 0 80px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.footerInner p {
+  line-height: 1.22;
+}
+
+.footerInner ul {
+  display: flex;
+  gap: 15px;
+}
+
+.footerInner li {
+  transition: color var(--transition);
+}
+
+.footerInner li:hover {
+  color: var(--yellow);
+}

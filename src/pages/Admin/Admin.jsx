@@ -3,8 +3,8 @@ import css from "./Admin.module.css";
 
 const AdminHome = () => {
   return (
-    <>
-      <header className={css.container}>
+    <div className={css.container}>
+      <header className={css.header}>
         <div className={css.logoWrapper}>
           <NavLink className={css.logo} to="/admin">
             DitOk
@@ -33,18 +33,23 @@ const AdminHome = () => {
           </ul>
         </nav>
       </header>
-      <footer>
-        <h2></h2>
-        <ul>
-          <li>
-            <Link></Link>
-          </li>
-          <li>
-            <Link></Link>
-          </li>
-        </ul>
+      <main className={css.main}></main>
+      <footer className={css.footer}>
+        <div className={css.footerInner}>
+          <p>Зв’язок з тех.підтримкою:</p>
+          <ul>
+            <li>
+              <Link to="tel:+300009090909">+300009090909</Link>
+            </li>
+            <li>
+              <Link to="mailto:tech.pidtrumka@gmail.com">
+                tech.pidtrumka@gmail.com
+              </Link>
+            </li>
+          </ul>
+        </div>
       </footer>
-    </>
+    </div>
   );
 };
 
