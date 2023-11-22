@@ -8,8 +8,11 @@ import { addUser } from "../../redux/operations";
 import { useState } from "react";
 import Modal from "../../components/Modal/Modal";
 import { getUsers } from "../../redux/selectors";
+import iziToast from "izitoast";
+import "izitoast/dist/css/iziToast.min.css";
 
 const SignUp = () => {
+  const [error, setError] = useState(false);
   const [successModal, setSuccessModal] = useState(false);
   const [success, setSuccess] = useState(false);
   const [warning, setSWarning] = useState(false);
@@ -51,8 +54,17 @@ const SignUp = () => {
       e.target.reset();
       setSuccessModal(true);
     } else {
-      setSuccess(true);
-      setSuccessModal(true);
+      iziToast.error({
+        title: "Помилка",
+        message: `Підтвердіть пароль!`,
+        layout: 2,
+        position: "topRight",
+        transitionIn: "fadeInLeft",
+        transitionOut: "fadeOutRight",
+      });
+      setError(true);
+      // setSuccess(true);
+      // setSuccessModal(true);
     }
   };
 
@@ -72,11 +84,23 @@ const SignUp = () => {
             <div className={css.inputWrapper}>
               <label className={css.label}>
                 Ім&#96;я
-                <input required type="text" name="name" className={css.input} />
+                <input
+                  autoComplete="off"
+                  pattern="[a-zA-Zа-яА-Я]+"
+                  title="Ім'я не повинно включати цифри"
+                  required
+                  type="text"
+                  name="name"
+                  className={css.input}
+                  min={3}
+                />
               </label>
               <label className={css.label}>
                 Прізвище
                 <input
+                  autoComplete="off"
+                  pattern="[a-zA-Zа-яА-Я]+"
+                  title="Прізвище не повинно включати цифри"
                   required
                   type="text"
                   name="surname"
@@ -85,11 +109,20 @@ const SignUp = () => {
               </label>
               <label className={css.label}>
                 Номер телефону
-                <input required type="tel" name="phone" className={css.input} />
+                <input
+                  autoComplete="off"
+                  pattern="[0-9]{3} [0-9]{2}-[0-9]{2}-[0-9]{3}"
+                  title="Телефон має бути у форматі 000 00-00-000"
+                  required
+                  type="tel"
+                  name="phone"
+                  className={css.input}
+                />
               </label>
               <label className={css.label}>
                 Email
                 <input
+                  autoComplete="off"
                   required
                   type="email"
                   name="email"
@@ -99,6 +132,7 @@ const SignUp = () => {
               <label className={css.label}>
                 Пароль
                 <input
+                  autoComplete="off"
                   required
                   type="password"
                   name="pass"
@@ -108,7 +142,12 @@ const SignUp = () => {
               <label className={css.label}>
                 Підтвердіть пароль
                 <input
+                  autoComplete="off"
+                  style={
+                    error ? { borderColor: "#ff3c3c" } : { borderColor: "#000" }
+                  }
                   required
+                  onFocus={() => setError(false)}
                   type="password"
                   name="confirm"
                   className={css.input}

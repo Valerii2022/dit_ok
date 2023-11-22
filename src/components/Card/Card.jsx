@@ -53,9 +53,9 @@ const Card = (elem) => {
         )}
       </div>
       <p className={css.description}>
-        {description.length < 120
+        {description.length < 110
           ? `${description}.`
-          : `${description.slice(0, 110)}...`}
+          : `${description.slice(0, 100)}...`}
       </p>
       {cardElement.sale ? (
         <p>

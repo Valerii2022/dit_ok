@@ -16,7 +16,6 @@ const SearchForm = (headerModal) => {
   const [query, setQuery] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  // const isLoggedIn = useSelector(getUserStatus);
   const category = useSelector(getCategoryFilter);
 
   const handleCategoryModalOpen = () => {
@@ -40,7 +39,6 @@ const SearchForm = (headerModal) => {
     e.preventDefault();
     dispatch(setAdvertFilter(query.trim()));
     navigate("/category");
-    // setQuery("");
   };
 
   return (
@@ -53,6 +51,7 @@ const SearchForm = (headerModal) => {
         <div className={css.inputWrapper}>
           <label>
             <input
+              autoComplete="off"
               value={query}
               onChange={(e) => setQuery(e.currentTarget.value)}
               type="text"
@@ -62,11 +61,9 @@ const SearchForm = (headerModal) => {
             />
           </label>
           <button className={css.categoryBtn} onClick={handleCategoryModalOpen}>
-            {category.length > 12
-              ? `${category.slice(0, 12)}...`
+            {category.length > 18
+              ? `${category.slice(0, 18)}...`
               : `${category}`}
-
-            {/* {isLoggedIn ? `${category}` : "Категорія"} */}
           </button>
         </div>
         <div className={css.btnWrap}>

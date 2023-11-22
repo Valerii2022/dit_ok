@@ -14,6 +14,9 @@ import { addToOrders } from "../../redux/currentUserSlice";
 
 const Payment = () => {
   const [successModalOpen, setSuccessModalOpen] = useState(false);
+  const [nameError, setNameError] = useState(false);
+  const [cardError, setCardError] = useState(false);
+  const [codeError, setCodeError] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const location = useLocation();
@@ -43,6 +46,30 @@ const Payment = () => {
     setSuccessModalOpen(true);
   };
 
+  const handleBlur = (e) => {
+    if (e.target.name === "paymentName") {
+      {
+        e.target.validity.patternMismatch
+          ? setNameError(true)
+          : setNameError(false);
+      }
+    }
+    if (e.target.name === "paymentCard") {
+      {
+        e.target.validity.patternMismatch
+          ? setCardError(true)
+          : setCardError(false);
+      }
+    }
+    if (e.target.name === "CVV") {
+      {
+        e.target.validity.patternMismatch
+          ? setCodeError(true)
+          : setCodeError(false);
+      }
+    }
+  };
+
   return (
     <div className={css.container}>
       <div className={css.breadcrumbs}>
@@ -61,40 +88,54 @@ const Payment = () => {
           <div className={css.inputWrapper}>
             <label className={css.inputFieldWrapper}>
               ПІБ
-              <input className={css.input} type="text" name="paymentName" />
+              <input
+                placeholder=""
+                required
+                pattern="[a-zA-Zа-яА-Я]+ ?[a-zA-Zа-яА-Я]+ ?[a-zA-Zа-яА-Я]+"
+                min={3}
+                className={css.input}
+                type="text"
+                name="paymentName"
+                onBlur={handleBlur}
+              />
             </label>
+            {nameError && <p className={css.error}>Введіть ПІБ</p>}
           </div>
           <div className={css.inputWrapper}>
             <div className={css.radioInput}>
+              <input
+                defaultChecked
+                type="radio"
+                id="master card"
+                name="payment"
+                value={"Master card"}
+                className={css.hidden}
+              />
               <label htmlFor="master card">
-                <input
-                  type="radio"
-                  id="master card"
-                  name="payment"
-                  value={"Master card"}
-                />
                 <img src={masterCardIcon} alt="Master Card" />
               </label>
             </div>
             <div className={css.radioInput}>
+              <input
+                type="radio"
+                id="visa"
+                name="payment"
+                value={"Visa card"}
+                className={css.hidden}
+              />
               <label htmlFor="visa">
-                <input
-                  type="radio"
-                  id="visa"
-                  name="payment"
-                  value={"Visa card"}
-                />
                 <img src={visaCardIcon} alt="Visa Card" />
               </label>
             </div>
             <div className={css.radioInput}>
+              <input
+                type="radio"
+                id="paypal"
+                name="payment"
+                value={"Pay Pal"}
+                className={css.hidden}
+              />
               <label htmlFor="paypal">
-                <input
-                  type="radio"
-                  id="paypal"
-                  name="payment"
-                  value={"Pay Pal"}
-                />
                 <img src={payPalIcon} alt="Pay Pal" />
               </label>
             </div>
@@ -102,8 +143,18 @@ const Payment = () => {
           <div className={css.inputWrapper}>
             <label className={css.inputFieldWrapper}>
               Номер картки
-              <input className={css.input} type="text" name="paymentName" />
+              <input
+                placeholder=""
+                required
+                className={css.input}
+                type="text"
+                name="paymentCard"
+                pattern="[0-9]{4} [0-9]{4} [0-9]{4} [0-9]{4}"
+                min={19}
+                onBlur={handleBlur}
+              />
             </label>
+            {cardError && <p className={css.error}>Перевірте номер карти</p>}
           </div>
           <div className={css.inputWrapper}>
             <div>
@@ -112,17 +163,22 @@ const Payment = () => {
                 <input className={css.input} type="date" name="cardDate" />
               </label>
             </div>
-            <div>
+            <div className={css.cvvWrap}>
               <label className={css.inputFieldWrapper}>
                 CVV
                 <input
+                  placeholder=""
+                  required
+                  min={3}
+                  autoComplete="CVV"
                   className={css.input}
                   type="password"
                   name="CVV"
-                  min={3}
-                  max={3}
+                  pattern="[0-9]{3}"
+                  onBlur={handleBlur}
                 />
               </label>
+              {codeError && <p className={css.error}>Введіть три цифри CVV</p>}
             </div>
           </div>
         </div>

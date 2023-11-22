@@ -5,10 +5,13 @@ import logImg from "../../images/login.png";
 import { useDispatch, useSelector } from "react-redux";
 import { getUsers } from "../../redux/selectors";
 import { setUserStatus } from "../../redux/statusSlice";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { fetchCurrentUser, fetchUsers } from "../../redux/operations";
+import iziToast from "izitoast";
+import "izitoast/dist/css/iziToast.min.css";
 
 const LogIn = () => {
+  const [error, setError] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { users } = useSelector(getUsers);
@@ -33,7 +36,16 @@ const LogIn = () => {
     if (current) {
       dispatch(fetchCurrentUser(current.id));
     } else {
-      return alert("Неправильний логін чи пароль");
+      setError(true);
+      iziToast.error({
+        title: "Помилка",
+        message: `Неправильний логін або пароль!`,
+        layout: 2,
+        position: "topRight",
+        transitionIn: "fadeInLeft",
+        transitionOut: "fadeOutRight",
+      });
+      return;
     }
     dispatch(setUserStatus(true));
     navigate("/");
@@ -49,6 +61,11 @@ const LogIn = () => {
             <label className={css.label}>
               Email
               <input
+                autoComplete="off"
+                style={
+                  error ? { borderColor: "#ff3c3c" } : { borderColor: "#000" }
+                }
+                onFocus={() => setError(false)}
                 required
                 type="email"
                 name="emailLogIn"
@@ -58,7 +75,11 @@ const LogIn = () => {
             <label className={css.label}>
               Пароль
               <input
-                autoComplete=""
+                autoComplete="off"
+                style={
+                  error ? { borderColor: "#ff3c3c" } : { borderColor: "#000" }
+                }
+                onFocus={() => setError(false)}
                 required
                 type="password"
                 name="passLogIn"
