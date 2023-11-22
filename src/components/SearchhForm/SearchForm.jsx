@@ -51,7 +51,7 @@ const SearchForm = (headerModal) => {
         <div className={css.inputWrapper}>
           <label>
             <input
-              autoComplete="off"
+              autoComplete="on"
               value={query}
               onChange={(e) => setQuery(e.currentTarget.value)}
               type="text"
@@ -77,9 +77,7 @@ const SearchForm = (headerModal) => {
         >
           <ul className={css.categoryList} onClick={handleCategoryClick}>
             <li className={css.category}>Категорія</li>
-            <li className={css.category} id={"Одяг та взуття"}>
-              Одяг і взуття
-            </li>
+            <li className={css.category}>Одяг та взуття</li>
             <li className={css.category}>Іграшки</li>
             <li className={css.category}>Дитяча кімната</li>
             <li className={css.category}>Коляски</li>

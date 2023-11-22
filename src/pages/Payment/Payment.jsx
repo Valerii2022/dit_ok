@@ -91,12 +91,13 @@ const Payment = () => {
               <input
                 placeholder=""
                 required
-                pattern="[a-zA-Zа-яА-Я]+ ?[a-zA-Zа-яА-Я]+ ?[a-zA-Zа-яА-Я]+"
+                pattern="[a-zA-Zа-яА-Я і є]+"
                 min={3}
                 className={css.input}
                 type="text"
                 name="paymentName"
                 onBlur={handleBlur}
+                onFocus={() => setNameError(false)}
               />
             </label>
             {nameError && <p className={css.error}>Введіть ПІБ</p>}
@@ -152,6 +153,7 @@ const Payment = () => {
                 pattern="[0-9]{4} [0-9]{4} [0-9]{4} [0-9]{4}"
                 min={19}
                 onBlur={handleBlur}
+                onFocus={() => setCardError(false)}
               />
             </label>
             {cardError && <p className={css.error}>Перевірте номер карти</p>}
@@ -176,6 +178,7 @@ const Payment = () => {
                   name="CVV"
                   pattern="[0-9]{3}"
                   onBlur={handleBlur}
+                  onFocus={() => setCodeError(false)}
                 />
               </label>
               {codeError && <p className={css.error}>Введіть три цифри CVV</p>}

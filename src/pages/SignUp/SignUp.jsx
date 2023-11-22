@@ -85,8 +85,8 @@ const SignUp = () => {
               <label className={css.label}>
                 Ім&#96;я
                 <input
-                  autoComplete="off"
-                  pattern="[a-zA-Zа-яА-Я]+"
+                  autoComplete="on"
+                  pattern="[a-zA-Zа-яА-Я і є]+"
                   title="Ім'я не повинно включати цифри"
                   required
                   type="text"
@@ -98,8 +98,8 @@ const SignUp = () => {
               <label className={css.label}>
                 Прізвище
                 <input
-                  autoComplete="off"
-                  pattern="[a-zA-Zа-яА-Я]+"
+                  autoComplete="on"
+                  pattern="[a-zA-Zа-яА-Я і є]+"
                   title="Прізвище не повинно включати цифри"
                   required
                   type="text"
@@ -110,7 +110,7 @@ const SignUp = () => {
               <label className={css.label}>
                 Номер телефону
                 <input
-                  autoComplete="off"
+                  autoComplete="on"
                   pattern="[0-9]{3} [0-9]{2}-[0-9]{2}-[0-9]{3}"
                   title="Телефон має бути у форматі 000 00-00-000"
                   required
@@ -122,7 +122,7 @@ const SignUp = () => {
               <label className={css.label}>
                 Email
                 <input
-                  autoComplete="off"
+                  autoComplete="on"
                   required
                   type="email"
                   name="email"

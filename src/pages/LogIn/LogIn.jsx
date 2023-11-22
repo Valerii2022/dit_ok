@@ -61,7 +61,7 @@ const LogIn = () => {
             <label className={css.label}>
               Email
               <input
-                autoComplete="off"
+                autoComplete="on"
                 style={
                   error ? { borderColor: "#ff3c3c" } : { borderColor: "#000" }
                 }
