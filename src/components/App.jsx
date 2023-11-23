@@ -13,9 +13,11 @@ import Account from "../pages/Account/Account.jsx";
 import Orders from "./Orders/Orders.jsx";
 import General from "./General/General.jsx";
 import Favourites from "./Favourites/Favourites.jsx";
-import { PrivateRoute } from "./PrivateRoute/PrivateRoute.jsx";
-import { RestrictedRoute } from "./RestrictedRoute/RestrictedRoute.jsx";
 import AdminHome from "../pages/Admin/Admin.jsx";
+import AdminMain from "../pages/AdminMain/AdminMain.jsx";
+import { RestrictedRoute } from "../routes/RestrictedRoute/RestrictedRoute.jsx";
+import { PrivateRoute } from "../routes/PrivateRoute/PrivateRoute.jsx";
+import { AdminRoute } from "../routes/AdminRoute/AdminRoute.jsx";
 
 const App = () => {
   return (
@@ -59,9 +61,15 @@ const App = () => {
             <Route path="favourites" element={<Favourites />} />
             <Route path="orders" element={<Orders />} />
           </Route>
-          <Route path="/admin" element={<AdminHome />}></Route>
+          <Route path="*" element={<Navigate to="/" />} />
         </Route>
-        <Route path="*" element={<Navigate to="/" />} />
+        <Route
+          path="/admin"
+          element={<AdminRoute redirectTo="/login" component={<AdminHome />} />}
+        >
+          <Route index element={<AdminMain />} />
+          <Route path="*" element={<Navigate to="/admin" />} />
+        </Route>
       </Routes>
     </>
   );

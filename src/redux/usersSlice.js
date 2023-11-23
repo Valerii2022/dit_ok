@@ -5,7 +5,7 @@ import {
   addUser,
   fetchCurrentUser,
   fetchUsers,
-  // updateUser,
+  updateUser,
 } from "./operations";
 
 const usersSlice = createSlice({
@@ -53,19 +53,19 @@ const usersSlice = createSlice({
       .addCase(addUser.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.error = payload;
+      })
+      .addCase(updateUser.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(updateUser.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = null;
+        console.log(payload);
+      })
+      .addCase(updateUser.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload;
       });
-    // .addCase(updateUser.pending, (state) => {
-    //   state.isLoading = true;
-    // })
-    // .addCase(updateUser.fulfilled, (state, { payload }) => {
-    //   state.isLoading = false;
-    //   state.error = null;
-    //   console.log(payload);
-    // })
-    // .addCase(updateUser.rejected, (state, { payload }) => {
-    //   state.isLoading = false;
-    //   state.error = payload;
-    // });
   },
 });
 

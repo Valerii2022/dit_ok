@@ -35,14 +35,15 @@ export const addUser = createAsyncThunk(
   }
 );
 
-// export const updateUser = createAsyncThunk(
-//   "users/updateUser",
-//   async (id, user, thunkAPI) => {
-//     try {
-//       const response = await axios.put(`/users/${id}`, user);
-//       return response.data;
-//     } catch (e) {
-//       return thunkAPI.rejectWithValue(e.message);
-//     }
-//   }
-// );
+export const updateUser = createAsyncThunk(
+  "users/updateUser",
+  async (user, thunkAPI) => {
+    console.log(user);
+    try {
+      const response = await axios.put(`/users/${user.id}`, user);
+      return response.data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);

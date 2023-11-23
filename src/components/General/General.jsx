@@ -1,7 +1,11 @@
+import { useDispatch } from "react-redux";
+import { updateUser } from "../../redux/operations";
 import Button from "../Button/Button";
 import css from "./General.module.css";
 
 const General = () => {
+  const dispatch = useDispatch();
+
   const handleSubmitForm = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
@@ -12,6 +16,21 @@ const General = () => {
       }
     });
     console.table(data);
+    dispatch(
+      updateUser({
+        id: "3",
+        orders: ["777", "rfdr"],
+        user: {
+          user: {
+            name: data.updatedName,
+            surname: data.updatedSurname,
+            phone: data.updatedPhone,
+            email: data.updatedEmail,
+            // password: "1444",
+          },
+        },
+      })
+    );
   };
 
   return (

@@ -47,11 +47,15 @@ const LogIn = () => {
       });
       return;
     }
-    dispatch(setUserStatus(true));
+
     if (current.isAdmin) {
       dispatch(setAdminStatus(true));
+      navigate("/admin");
+    } else {
+      dispatch(setAdminStatus(false));
+      dispatch(setUserStatus(true));
+      navigate("/");
     }
-    navigate("/");
   };
 
   return (

@@ -3,8 +3,8 @@ import { useAuth } from "../../hooks/isAuth";
 import PropTypes from "prop-types";
 
 export const PrivateRoute = ({ component: Component, redirectTo = "/" }) => {
-  const { isLoggedIn, isAdmin } = useAuth();
-  const shouldRedirect = !isLoggedIn && !isAdmin;
+  const { isLoggedIn } = useAuth();
+  const shouldRedirect = !isLoggedIn;
 
   return shouldRedirect ? <Navigate to={redirectTo} /> : Component;
 };

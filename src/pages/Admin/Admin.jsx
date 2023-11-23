@@ -1,5 +1,6 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, Outlet } from "react-router-dom";
 import css from "./Admin.module.css";
+import { Suspense } from "react";
 
 const AdminHome = () => {
   return (
@@ -33,7 +34,11 @@ const AdminHome = () => {
           </ul>
         </nav>
       </header>
-      <main className={css.main}></main>
+      <main className={css.main}>
+        <Suspense fallback={<div>Loading...</div>}>
+          <Outlet />
+        </Suspense>
+      </main>
       <footer className={css.footer}>
         <div className={css.footerInner}>
           <p>Зв’язок з тех.підтримкою:</p>
