@@ -1,21 +1,22 @@
 import css from "./AdminMain.module.css";
 import orders from "../../redux/orders.json";
 import Button from "../../components/Button/Button";
+import { useNavigate } from "react-router-dom";
 
 const AdminMain = () => {
-  const description = [
-    orders[0].advert.description,
-    orders[0].advert.color,
-    orders[0].advert.brand,
-    orders[0].advert.material,
-  ].join(". ");
-
+  const navigate = useNavigate();
   return (
     <div className={css.container}>
       <h1 className={css.title}>Нові замовлення</h1>
       <ul className={css.orderList}>
         {orders &&
           orders.map((el) => {
+            const description = [
+              el.advert.description,
+              el.advert.color,
+              el.advert.brand,
+              el.advert.material,
+            ].join(". ");
             return (
               <li key={el.id} className={css.card}>
                 <div className={css.imageWrap}>
@@ -34,7 +35,12 @@ const AdminMain = () => {
                 ) : (
                   <p>{el.advert.price} грн</p>
                 )}
-                <div className={css.cardBottom}>
+                <div
+                  className={css.cardBottom}
+                  onClick={() =>
+                    navigate("/admin/item", { state: { key: el.id } })
+                  }
+                >
                   <Button title={"Переглянути дані"} />
                 </div>
               </li>

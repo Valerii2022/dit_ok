@@ -18,6 +18,7 @@ import AdminMain from "../pages/AdminMain/AdminMain.jsx";
 import { RestrictedRoute } from "../routes/RestrictedRoute/RestrictedRoute.jsx";
 import { PrivateRoute } from "../routes/PrivateRoute/PrivateRoute.jsx";
 import { AdminRoute } from "../routes/AdminRoute/AdminRoute.jsx";
+import SendedItem from "../pages/AdminSendItem/AdminSendItem.jsx";
 
 const App = () => {
   return (
@@ -68,6 +69,7 @@ const App = () => {
           element={<AdminRoute redirectTo="/login" component={<AdminHome />} />}
         >
           <Route index element={<AdminMain />} />
+          <Route path="item" element={<SendedItem />} />
           <Route path="*" element={<Navigate to="/admin" />} />
         </Route>
       </Routes>
