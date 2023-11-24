@@ -4,7 +4,7 @@ import { createPortal } from "react-dom";
 
 const modalRoot = document.querySelector("#modal-root");
 
-const Modal = ({ children, handleModalClose, headerModal }) => {
+const Modal = ({ children, handleModalClose, styles }) => {
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.code === "Escape") {
@@ -27,12 +27,9 @@ const Modal = ({ children, handleModalClose, headerModal }) => {
 
   return createPortal(
     <div className={css.overlay} onClick={handleOverlayClick}>
-      {headerModal ? (
+      {styles ? (
         <div className={css.container} onClick={handleOverlayClick}>
-          <div
-            style={{ top: "96px", left: "188px", transform: "translateY(0)" }}
-            className={css.modal}
-          >
+          <div style={styles} className={css.modal}>
             {children}
           </div>
         </div>

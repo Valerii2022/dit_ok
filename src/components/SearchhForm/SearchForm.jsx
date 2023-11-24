@@ -10,13 +10,18 @@ import {
   setCategoryFilter,
 } from "../../redux/filtersSlice.js";
 
-const SearchForm = (headerModal) => {
+const SearchForm = () => {
   const [zIndex, setZIndex] = useState(0);
   const [isModalOpen, setIsOpenModal] = useState(false);
   const [query, setQuery] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const category = useSelector(getCategoryFilter);
+  const modalStyles = {
+    top: "96px",
+    left: "188px",
+    transform: "translateY(0)",
+  };
 
   const handleCategoryModalOpen = () => {
     if (zIndex === 1000) {
@@ -71,10 +76,7 @@ const SearchForm = (headerModal) => {
         </div>
       </form>
       {isModalOpen && (
-        <Modal
-          handleModalClose={handleCategoryModalOpen}
-          headerModal={headerModal}
-        >
+        <Modal handleModalClose={handleCategoryModalOpen} styles={modalStyles}>
           <ul className={css.categoryList} onClick={handleCategoryClick}>
             <li className={css.category}>Категорія</li>
             <li className={css.category}>Одяг та взуття</li>

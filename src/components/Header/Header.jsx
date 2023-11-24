@@ -13,7 +13,7 @@ const Header = () => {
         <NavLink className={css.logo} to="/">
           DitOk
         </NavLink>
-        <SearchForm headerModal={true} />
+        <SearchForm />
       </div>
       <nav className={css.navigation}>
         <ul className={css.navigateList}>
