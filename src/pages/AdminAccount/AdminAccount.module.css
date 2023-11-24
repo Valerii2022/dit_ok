@@ -1,7 +1,27 @@
 .container {
   width: 1440px;
   margin: 0 auto;
-  padding: 27px 80px 50px;
+  padding: 0 80px 50px;
+}
+
+.breadcrumbs {
+  margin-top: 27px;
+  margin-bottom: 50px;
+}
+
+.breadcrumbs span {
+  padding-right: 6px;
+}
+
+.breadcrumbs span::after {
+  content: "/";
+  padding-left: 6px;
+}
+
+.contentWrapper {
+  display: flex;
+  align-items: start;
+  gap: 20px;
 }
 
 .title {
@@ -49,6 +69,13 @@
 .description {
   flex-grow: 1;
   height: 80px;
+}
+
+.salePrice {
+  color: var(--grey);
+  text-decoration: line-through;
+  margin-left: 12px;
+  display: inline-block;
 }
 
 .cardBottom {

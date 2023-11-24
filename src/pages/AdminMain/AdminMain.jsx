@@ -30,7 +30,6 @@ const AdminMain = () => {
                 {el.advert.sale ? (
                   <p>
                     <span>{el.advert.sale} грн</span>
-                    <span className={css.salePrice}>{el.advert.price} грн</span>
                   </p>
                 ) : (
                   <p>{el.advert.price} грн</p>

@@ -19,6 +19,9 @@ import { RestrictedRoute } from "../routes/RestrictedRoute/RestrictedRoute.jsx";
 import { PrivateRoute } from "../routes/PrivateRoute/PrivateRoute.jsx";
 import { AdminRoute } from "../routes/AdminRoute/AdminRoute.jsx";
 import SendedItem from "../pages/AdminSendItem/AdminSendItem.jsx";
+import NewItem from "../pages/AdminNewItem/AdminNewItem.jsx";
+import AdminAccount from "../pages/AdminAccount/AdminAccount.jsx";
+import ItemDetails from "../pages/AdminItemDedails/AdminItemDetails.jsx";
 
 const App = () => {
   return (
@@ -70,6 +73,9 @@ const App = () => {
         >
           <Route index element={<AdminMain />} />
           <Route path="item" element={<SendedItem />} />
+          <Route path="new" element={<NewItem />} />
+          <Route path="account" element={<AdminAccount />} />
+          <Route path="details" element={<ItemDetails />} />
           <Route path="*" element={<Navigate to="/admin" />} />
         </Route>
       </Routes>

@@ -14,10 +14,10 @@ const AdminHome = () => {
         <nav className={css.navigate}>
           <ul className={css.navigateList}>
             <li>
-              <NavLink to="/admin">Створити позицію</NavLink>
+              <NavLink to="/admin/new">Створити позицію</NavLink>
             </li>
             <li>
-              <NavLink to="/admin">
+              <NavLink to="/admin/account">
                 <svg
                   className={css.icon}
                   width="40"
