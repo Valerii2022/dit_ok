@@ -5,10 +5,15 @@ import { getAdverts } from "../../redux/selectors";
 import { nanoid } from "nanoid";
 import Modal from "../../components/Modal/Modal";
 import { useState } from "react";
+import closeIcon from "../../images/close.svg";
+import Button from "../../components/Button/Button";
 
 const ItemDetails = () => {
   const [menuModal, setMenuModal] = useState();
+  const [discountModal, setDiscountModal] = useState();
+  const [discount, setDiscount] = useState("");
   const location = useLocation();
+  // const navigate = useNavigate();
   const { adverts } = useSelector(getAdverts);
   const modalStyles = {
     top: "186px",
@@ -21,6 +26,10 @@ const ItemDetails = () => {
 
   const handleMenuModalClose = () => {
     setMenuModal(false);
+  };
+
+  const handleDiscontModalClose = () => {
+    setDiscountModal(false);
   };
 
   return (
@@ -78,8 +87,13 @@ const ItemDetails = () => {
                 </p>
                 <p>
                   <span>Ціна:</span>
-                  {currentItem.sale ? (
-                    <span>{currentItem.sale} грн</span>
+                  {currentItem.sale || discount ? (
+                    <>
+                      <span>{discount || currentItem.sale} грн</span>
+                      <span className={css.salePrice}>
+                        {currentItem.price} грн
+                      </span>
+                    </>
                   ) : (
                     <span>{currentItem.price} грн</span>
                   )}
@@ -113,10 +127,48 @@ const ItemDetails = () => {
             <div className={css.targetArrow}></div>
             <ul className={css.modalList}>
               <li>Змінити дані про товар</li>
-              <li>Додати знижку</li>
+              <li
+                onClick={() => {
+                  setDiscount(currentItem.sale || "");
+                  setMenuModal(false);
+                  setDiscountModal(true);
+                }}
+              >
+                Додати знижку
+              </li>
               <li>Видалити товар</li>
             </ul>
           </>
+        </Modal>
+      )}
+      {discountModal && (
+        <Modal handleModalClose={handleDiscontModalClose}>
+          <div className={css.modalContainer}>
+            <img
+              className={css.closeIcon}
+              src={closeIcon}
+              alt="Close icon"
+              onClick={handleDiscontModalClose}
+            />
+            <p>Поточна ціна: {currentItem.price}</p>
+            <label className={css.discountLabel}>
+              Встановити акційну ціну:
+              <input
+                onChange={(e) => setDiscount(e.target.value)}
+                value={discount}
+                type="tel"
+              />
+            </label>
+            <div
+              className={css.modalBtnWrap}
+              onClick={() => {
+                handleDiscontModalClose();
+                console.log("updated");
+              }}
+            >
+              <Button title={"Підтвердити"} fontSize={"28"} />
+            </div>
+          </div>
         </Modal>
       )}
     </>

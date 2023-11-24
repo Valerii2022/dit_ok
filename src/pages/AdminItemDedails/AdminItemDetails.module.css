@@ -107,6 +107,13 @@
   margin-bottom: 40px;
 }
 
+.salePrice {
+  color: var(--grey);
+  text-decoration: line-through;
+  margin-left: 12px;
+  display: inline-block;
+}
+
 .sizesWrapper {
   display: flex;
   gap: 126px;
@@ -234,4 +241,58 @@
 
 .modalList li:last-child {
   color: var(--red);
+}
+
+/* ======================================doscont modal======== */
+
+.modalContainer {
+  padding: 70px 60px 40px;
+  text-align: center;
+  position: relative;
+}
+
+.closeIcon {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  cursor: pointer;
+}
+
+.modalContainer p {
+  margin-bottom: 40px;
+
+  font-family: "Sansation", sans-serif;
+  font-size: 28px;
+  line-height: 1.12;
+  text-align: left;
+}
+
+.discountLabel {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 50px;
+
+  font-family: "Sansation", sans-serif;
+  font-size: 28px;
+  line-height: 1.12;
+  text-align: left;
+}
+
+.discountLabel input {
+  padding: 0 23px;
+  width: 142px;
+  height: 79px;
+  border-radius: 20px;
+  border: 1px solid var(--black, #000);
+
+  font-size: 28px;
+  line-height: 1.12;
+  text-align: left;
+}
+
+.modalBtnWrap {
+  width: 414px;
+  height: 79px;
+  margin: 0 auto;
 }
