@@ -23,7 +23,7 @@
       "id": "1",
       "category": "Коляски",
       "sizes": [
-        { "size": 122, "quantity": 5 },
+        { "size": "XL", "quantity": 5 },
         { "size": 124, "quantity": 10 },
         { "size": 126, "quantity": 4 },
         { "size": 130, "quantity": 2 }
