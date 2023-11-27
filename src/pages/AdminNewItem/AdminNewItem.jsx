@@ -10,10 +10,9 @@ const NewItem = () => {
   const [zIndex, setZIndex] = useState(0);
   const [zIndexSizes, setZIndexSizes] = useState(0);
   const [isCategoryOpen, setIsCategoryModal] = useState(false);
-  const [isSizesModalNumOpen, setIsSizesModalNumOpen] = useState(false);
   const [isSizesModalOpen, setIsSizesModalOpen] = useState(false);
   const [category, setCategory] = useState("");
-  const [size, setSize] = useState([]);
+  const [size, setSize] = useState("");
   const categoryModalStyles = {
     top: "669px",
     left: "513px",
@@ -43,7 +42,6 @@ const NewItem = () => {
     } else {
       setZIndexSizes(1000);
     }
-    setIsSizesModalNumOpen(!isSizesModalNumOpen);
     setIsSizesModalOpen(!isSizesModalOpen);
   };
 
@@ -61,8 +59,17 @@ const NewItem = () => {
 
   const handleSizesClick = (e) => {
     // handleSizesModalOpen(false);
-    setSize(e.target.textContent);
-    // setZIndexSizes(0);
+
+    setSize(e.target.id);
+    setZIndexSizes(0);
+  };
+
+  const handleAddedNewItemForm = (e) => {
+    e.preventDefault();
+    const data = {};
+    const formData = new FormData(e.target);
+    formData.forEach((value, name) => (data[name] = value));
+    console.table(data);
   };
 
   return (
@@ -85,7 +92,7 @@ const NewItem = () => {
               </li>
             </ul>
           </div>
-          <form className={css.form}>
+          <form className={css.form} onSubmit={handleAddedNewItemForm}>
             <label>
               Назва
               <input required type="text" name="description" id="description" />
@@ -110,7 +117,7 @@ const NewItem = () => {
                 style={{ zIndex: `${zIndex}` }}
                 required
                 type="text"
-                name="brand"
+                name="category"
               />
               <img
                 style={{ zIndex: `${zIndex}` }}
@@ -125,7 +132,7 @@ const NewItem = () => {
             </label>
             <label>
               Колір
-              <input required name="brand" />
+              <input required name="color" />
             </label>
             {isSizesOpen && (
               <label>
@@ -136,7 +143,7 @@ const NewItem = () => {
                   style={{ zIndex: `${zIndexSizes}` }}
                   required
                   type="text"
-                  name="brand"
+                  name="sizes"
                 />
                 <img
                   style={{ zIndex: `${zIndexSizes}` }}
@@ -150,7 +157,7 @@ const NewItem = () => {
             )}
             <label className={css.textarea}>
               Опис
-              <textarea required type="textarea" name="brand" />
+              <textarea required type="textarea" name="text" />
             </label>
             <div className={css.btnWrapper}>
               <Button title={"Створити позицію"} fontSize={"28"} />
@@ -175,13 +182,13 @@ const NewItem = () => {
           </ul>
         </Modal>
       )}
-      {isSizesModalNumOpen && (
+      {isSizesModalOpen && (
         <Modal
           handleModalClose={handleSizesModalOpen}
           styles={sizeNumModalStyles}
         >
           <div className={css.sizesListsWrapper}>
-            <ul className={css.sizesList} onClick={handleSizesClick}>
+            <form className={css.sizesList} onClick={handleSizesClick}>
               <input
                 className={css.checkbox}
                 type="checkbox"
@@ -254,8 +261,8 @@ const NewItem = () => {
               <label htmlFor="172" className={css.sizes}>
                 172
               </label>
-            </ul>
-            <ul className={css.sizesList} onClick={handleSizesClick}>
+            </form>
+            <form className={css.sizesList} onClick={handleSizesClick}>
               <input
                 className={css.checkbox}
                 type="checkbox"
@@ -328,7 +335,7 @@ const NewItem = () => {
               <label htmlFor="XXXL" className={css.sizes}>
                 XXXL
               </label>
-            </ul>
+            </form>
           </div>
         </Modal>
       )}

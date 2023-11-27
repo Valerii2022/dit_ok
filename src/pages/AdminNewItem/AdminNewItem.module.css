@@ -110,6 +110,10 @@
   height: 79px;
 }
 
+.form input:disabled {
+  background-color: transparent;
+}
+
 .form textarea {
   height: 446px;
   width: 847px;
