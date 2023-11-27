@@ -62,6 +62,36 @@
 
 .form {
   width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.form label {
+  display: flex;
+  /* flex-direction: column;
+  row-gap: 25px; */
+
+  font-size: 28px;
+  line-height: 1.12;
+}
+
+.form input,
+.form textarea {
+  border-radius: 20px;
+  border: 1px solid var(--black);
+
+  font-size: 28px;
+  padding: 10px 23px;
+}
+
+.form input {
+  height: 79px;
+}
+
+.form textarea {
+  height: 446px;
+  min-width: 100%;
 }
 
 .btnWrapper {
