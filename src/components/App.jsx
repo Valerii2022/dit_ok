@@ -21,7 +21,7 @@ import { AdminRoute } from "../routes/AdminRoute/AdminRoute.jsx";
 import SendedItem from "../pages/AdminSendItem/AdminSendItem.jsx";
 import NewItem from "../pages/AdminNewItem/AdminNewItem.jsx";
 import AdminAccount from "../pages/AdminAccount/AdminAccount.jsx";
-import ItemDetails from "../pages/AdminItemDedails/AdminItemDetails.jsx";
+import ItemDetails from "../pages/AdminItemDetails/AdminItemDetails.jsx";
 
 const App = () => {
   return (

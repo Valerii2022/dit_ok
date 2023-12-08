@@ -4,6 +4,8 @@ import targetImg from "../../images/target.png";
 import categoryArrowImg from "../../images/arrow-category.png";
 import { useState } from "react";
 import Modal from "../../components/Modal/Modal";
+import { addAdvert } from "../../redux/operations";
+import { useDispatch } from "react-redux";
 
 const NewItem = () => {
   const [isSizesOpen, setIsSizesOpen] = useState(false);
@@ -13,11 +15,14 @@ const NewItem = () => {
   const [isSizesModalOpen, setIsSizesModalOpen] = useState(false);
   const [category, setCategory] = useState("");
   const [size, setSize] = useState("");
+  const dispatch = useDispatch();
+
   const categoryModalStyles = {
     top: "669px",
     left: "513px",
     transform: "translateY(0)",
   };
+
   const sizeNumModalStyles = {
     backgroundColor: "transparent",
     border: "none",
@@ -70,6 +75,23 @@ const NewItem = () => {
     const formData = new FormData(e.target);
     formData.forEach((value, name) => (data[name] = value));
     console.table(data);
+    dispatch(
+      addAdvert({
+        src: "",
+        color: data.color,
+        alt: "",
+        sale: false,
+        new: true,
+        material: data.material,
+        brand: data.brand,
+        description: `${data.description}. ${data.text} `,
+        price: data.price,
+        category: data.category,
+        sizes: [],
+        images: [],
+      })
+    );
+    e.target.reset();
   };
 
   return (
@@ -81,14 +103,14 @@ const NewItem = () => {
         <div className={css.contentWrapper}>
           <div>
             <div className={css.mainImageWrap}>
-              <img src={targetImg} alt="Child on play" width={100} />
+              <img src={targetImg} alt="" width={100} />
             </div>
             <ul className={css.imageList}>
               <li>
-                <img src={targetImg} alt="Child on play" width={50} />
+                <img src={targetImg} alt="" width={50} />
               </li>
               <li>
-                <img src={targetImg} alt="Child on play" width={50} />
+                <img src={targetImg} alt="" width={50} />
               </li>
             </ul>
           </div>

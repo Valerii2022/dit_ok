@@ -1,20 +1,25 @@
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import css from "./AdminItemDetails.module.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getAdverts } from "../../redux/selectors";
 import { nanoid } from "nanoid";
 import Modal from "../../components/Modal/Modal";
 import { useState } from "react";
 import closeIcon from "../../images/close.svg";
 import Button from "../../components/Button/Button";
+import { deleteAdvert } from "../../redux/operations";
 
 const ItemDetails = () => {
-  const [menuModal, setMenuModal] = useState();
-  const [discountModal, setDiscountModal] = useState();
+  const [menuModal, setMenuModal] = useState(false);
+  const [discountModal, setDiscountModal] = useState(false);
   const [discount, setDiscount] = useState("");
+  const [removalModal, setRemovalModal] = useState(false);
+  const [successRemovalModal, setSuccessRemovalModal] = useState(false);
   const location = useLocation();
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { adverts } = useSelector(getAdverts);
+
   const modalStyles = {
     top: "186px",
     left: "1013px",
@@ -30,6 +35,15 @@ const ItemDetails = () => {
 
   const handleDiscontModalClose = () => {
     setDiscountModal(false);
+  };
+
+  const handleRemovalModalClose = () => {
+    setRemovalModal(false);
+  };
+
+  const handleSuccessRemovalModalClose = () => {
+    setSuccessRemovalModal(false);
+    navigate("/admin/account");
   };
 
   return (
@@ -126,7 +140,9 @@ const ItemDetails = () => {
           <>
             <div className={css.targetArrow}></div>
             <ul className={css.modalList}>
-              <li>Змінити дані про товар</li>
+              <li onClick={() => navigate("/admin/new")}>
+                Змінити дані про товар
+              </li>
               <li
                 onClick={() => {
                   setDiscount(currentItem.sale || "");
@@ -136,7 +152,14 @@ const ItemDetails = () => {
               >
                 Додати знижку
               </li>
-              <li>Видалити товар</li>
+              <li
+                onClick={() => {
+                  setMenuModal(false);
+                  setRemovalModal(true);
+                }}
+              >
+                Видалити товар
+              </li>
             </ul>
           </>
         </Modal>
@@ -168,6 +191,50 @@ const ItemDetails = () => {
             >
               <Button title={"Підтвердити"} fontSize={"28"} />
             </div>
+          </div>
+        </Modal>
+      )}
+      {removalModal && (
+        <Modal handleModalClose={handleRemovalModalClose}>
+          <div className={css.modalContainer}>
+            <img
+              className={css.closeIcon}
+              src={closeIcon}
+              alt="Close icon"
+              onClick={handleRemovalModalClose}
+            />
+            <p>Ви дійсно хочете видалити товар?</p>
+            <div
+              className={css.modalBtnWrap}
+              onClick={() => {
+                handleRemovalModalClose();
+              }}
+            >
+              <Button title={"Назад"} fontSize={"28"} />
+            </div>
+            <div
+              className={css.modalBtnWrap}
+              onClick={() => {
+                handleRemovalModalClose();
+                setSuccessRemovalModal(true);
+                dispatch(deleteAdvert(currentItem.id));
+              }}
+            >
+              <Button title={"Підтвердити"} fontSize={"28"} />
+            </div>
+          </div>
+        </Modal>
+      )}
+      {successRemovalModal && (
+        <Modal handleModalClose={handleSuccessRemovalModalClose}>
+          <div className={css.modalContainer}>
+            <img
+              className={css.closeIcon}
+              src={closeIcon}
+              alt="Close icon"
+              onClick={handleSuccessRemovalModalClose}
+            />
+            <p className={css.removalTitle}>Товар успішно видалений</p>
           </div>
         </Modal>
       )}
