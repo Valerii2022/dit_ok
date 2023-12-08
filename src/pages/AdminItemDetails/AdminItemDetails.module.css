@@ -116,7 +116,7 @@
 
 .sizesWrapper {
   display: flex;
-  gap: 126px;
+  flex-direction: column;
 }
 
 .sizesWrapper p {
@@ -124,15 +124,9 @@
 }
 
 .boxWrapper {
-  width: 416px;
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
-}
-
-.boxWrapper .box {
-  width: calc((100% - 60px) / 4);
-  cursor: pointer;
 }
 
 .boxWrapper li {
@@ -141,7 +135,7 @@
 }
 
 .boxWrapper .label {
-  cursor: pointer;
+  cursor: default;
   border: 1px solid var(--black, #000);
   width: 100%;
   height: 100%;
@@ -164,31 +158,6 @@
 
   font-size: 28px;
   line-height: 1.12;
-}
-
-.quantity {
-  display: flex;
-  gap: 20px;
-  align-items: center;
-}
-
-.quantity input {
-  text-align: center;
-}
-
-.quantity .box {
-  width: 89px;
-}
-
-.quantity button {
-  border: none;
-  outline: none;
-  background-color: transparent;
-  font-family: "Montserrat", sans-serif;
-  font-size: 48px;
-  font-weight: 200;
-  line-height: 1.22;
-  cursor: pointer;
 }
 
 .btnWrapper {
@@ -301,4 +270,14 @@
 
 .removalTitle {
   padding-bottom: 30px;
+}
+
+.removalButtonsWrapper {
+  display: flex;
+  gap: 20px;
+}
+
+.modalRemovalBtnWrap {
+  width: calc((100% - 20px) / 2);
+  height: 79px;
 }

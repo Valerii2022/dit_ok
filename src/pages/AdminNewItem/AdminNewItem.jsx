@@ -6,6 +6,7 @@ import { useState } from "react";
 import Modal from "../../components/Modal/Modal";
 import { addAdvert } from "../../redux/operations";
 import { useDispatch } from "react-redux";
+// import Avatar from "react-avatar-edit";
 
 const NewItem = () => {
   const [isSizesOpen, setIsSizesOpen] = useState(false);
@@ -15,7 +16,12 @@ const NewItem = () => {
   const [isSizesModalOpen, setIsSizesModalOpen] = useState(false);
   const [category, setCategory] = useState("");
   const [size, setSize] = useState("");
+  const [images, setImages] = useState([]);
+  // const [imageURLs, setImageURLs] = useState([]);
+  // const [preview, setPreview] = useState(null);
   const dispatch = useDispatch();
+
+  // const src = "";
 
   const categoryModalStyles = {
     top: "669px",
@@ -77,7 +83,7 @@ const NewItem = () => {
     console.table(data);
     dispatch(
       addAdvert({
-        src: "",
+        src: "blob:http://localhost:5173/f2b94e00-2f75-4a5a-b766-cd3e208f127d",
         color: data.color,
         alt: "",
         sale: false,
@@ -94,6 +100,31 @@ const NewItem = () => {
     e.target.reset();
   };
 
+  // const onClose = () => {
+  //   setPreview(null);
+  // };
+
+  // const onCrop = (preview) => {
+  //   setPreview(preview);
+  // };
+
+  // const onBeforeFileLoad = (e) => {
+  //   console.log(e.target.value);
+  //   if (e.target.files[0].size > 200000) {
+  //     alert("File is too big!");
+  //     e.target.value = "";
+  //   }
+  // };
+
+  const onImageChange = (e) => {
+    setImages([...e.target.files]);
+    const newImageURLs = [];
+    images.forEach((el) => {
+      newImageURLs.push(URL.createObjectURL(el));
+    });
+    console.log(newImageURLs);
+  };
+
   return (
     <>
       <div className={css.container}>
@@ -102,6 +133,33 @@ const NewItem = () => {
         </div>
         <div className={css.contentWrapper}>
           <div>
+            <label className={css.mainImageWrap}>
+              <input
+                type="file"
+                name="imageMain"
+                multiple
+                accept="image/*"
+                onChange={onImageChange}
+              />
+              {/* <img src={targetImg} alt="" width={100} /> */}
+              {/* <Avatar
+                width={413}
+                height={413}
+                onCrop={onCrop}
+                onClose={onClose}
+                onBeforeFileLoad={onBeforeFileLoad}
+                src={src}
+                label={"+"}
+                labelStyle={{
+                  fontSize: 200,
+                  cursor: "pointer",
+                  fontWeight: 100,
+                }}
+              /> */}
+              {/* <img src={preview} alt="Preview" /> */}
+              <img src="blob:http://localhost:5173/f2b94e00-2f75-4a5a-b766-cd3e208f127d"></img>
+            </label>
+
             <div className={css.mainImageWrap}>
               <img src={targetImg} alt="" width={100} />
             </div>

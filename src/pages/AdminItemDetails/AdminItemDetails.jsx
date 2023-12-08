@@ -88,6 +88,10 @@ const ItemDetails = () => {
               <div className={css.generalInfo}>
                 <p>{currentItem.description}</p>
                 <p>
+                  <span>Категорія:</span>
+                  <span>{currentItem.category}</span>
+                </p>
+                <p>
                   <span>Колір:</span>
                   <span>{currentItem.color}</span>
                 </p>
@@ -113,24 +117,22 @@ const ItemDetails = () => {
                   )}
                 </p>
               </div>
-              <div>
+              {currentItem.sizes.length !== 0 && (
                 <div className={css.sizesWrapper}>
-                  <div>
-                    <p>Розміри:</p>
-                    <ul className={css.boxWrapper}>
-                      {currentItem.sizes.map((el) => {
-                        return (
-                          <li key={nanoid(6)}>
-                            <div className={css.label} id={el.size}>
-                              {el.size}
-                            </div>
-                          </li>
-                        );
-                      })}
-                    </ul>
-                  </div>
+                  <p>Розміри:</p>
+                  <ul className={css.boxWrapper}>
+                    {currentItem.sizes.map((el) => {
+                      return (
+                        <li key={nanoid(6)}>
+                          <div className={css.label} id={el.size}>
+                            {el.size}
+                          </div>
+                        </li>
+                      );
+                    })}
+                  </ul>
                 </div>
-              </div>
+              )}
             </div>
           </div>
         )}
@@ -204,23 +206,25 @@ const ItemDetails = () => {
               onClick={handleRemovalModalClose}
             />
             <p>Ви дійсно хочете видалити товар?</p>
-            <div
-              className={css.modalBtnWrap}
-              onClick={() => {
-                handleRemovalModalClose();
-              }}
-            >
-              <Button title={"Назад"} fontSize={"28"} />
-            </div>
-            <div
-              className={css.modalBtnWrap}
-              onClick={() => {
-                handleRemovalModalClose();
-                setSuccessRemovalModal(true);
-                dispatch(deleteAdvert(currentItem.id));
-              }}
-            >
-              <Button title={"Підтвердити"} fontSize={"28"} />
+            <div className={css.removalButtonsWrapper}>
+              <div
+                className={css.modalRemovalBtnWrap}
+                onClick={() => {
+                  handleRemovalModalClose();
+                }}
+              >
+                <Button title={"Назад"} fontSize={"28"} />
+              </div>
+              <div
+                className={css.modalRemovalBtnWrap}
+                onClick={() => {
+                  handleRemovalModalClose();
+                  setSuccessRemovalModal(true);
+                  dispatch(deleteAdvert(currentItem.id));
+                }}
+              >
+                <Button title={"Підтвердити"} fontSize={"28"} />
+              </div>
             </div>
           </div>
         </Modal>
