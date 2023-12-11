@@ -78,7 +78,7 @@ const NewItem = () => {
     console.table(data);
     dispatch(
       addAdvert({
-        src: "",
+        src: image,
         color: data.color,
         alt: "",
         sale: false,
@@ -89,10 +89,14 @@ const NewItem = () => {
         price: data.price,
         category: data.category,
         sizes: [],
-        images: [],
+        images: [imageListOne, imageListTwo],
       })
     );
     e.target.reset();
+    setImage("");
+    setImageListOne("");
+    setCategory("");
+    setImageListTwo("");
   };
 
   const onImageChange = (e) => {
@@ -113,25 +117,28 @@ const NewItem = () => {
         <div className={css.breadcrumbs}>
           <span>Створити позицію</span>
         </div>
-        <div className={css.contentWrapper}>
+        <form className={css.contentWrapper} onSubmit={handleAddedNewItemForm}>
           <div>
             <label className={css.mainImageWrap}>
               <input
+                className={css.hidden}
                 type="file"
                 name="imageMain"
                 multiple
                 accept="image/*"
                 onChange={onImageChange}
               />
-
-              <img src={image}></img>
-              <img src={targetImg} alt="" width={100} />
+              {image ? (
+                <img src={image} />
+              ) : (
+                <img src={targetImg} alt="" width={100} />
+              )}
             </label>
-
             <ul className={css.imageList}>
               <li>
                 <label>
                   <input
+                    className={css.hidden}
                     type="file"
                     name="imageListOne"
                     multiple
@@ -139,12 +146,16 @@ const NewItem = () => {
                     onChange={onImageListOneChange}
                   />
                 </label>
-                <img src={imageListOne}></img>
-                <img src={targetImg} alt="" width={50} />
+                {imageListOne ? (
+                  <img src={imageListOne} />
+                ) : (
+                  <img src={targetImg} alt="" width={50} />
+                )}
               </li>
               <li>
                 <label>
                   <input
+                    className={css.hidden}
                     type="file"
                     name="imageListOne"
                     multiple
@@ -152,12 +163,15 @@ const NewItem = () => {
                     onChange={onImageListTwoChange}
                   />
                 </label>
-                <img src={imageListTwo}></img>
-                <img src={targetImg} alt="" width={50} />
+                {imageListTwo ? (
+                  <img src={imageListTwo} />
+                ) : (
+                  <img src={targetImg} alt="" width={50} />
+                )}
               </li>
             </ul>
           </div>
-          <form className={css.form} onSubmit={handleAddedNewItemForm}>
+          <div className={css.form}>
             <label>
               Назва
               <input required type="text" name="description" id="description" />
@@ -227,8 +241,8 @@ const NewItem = () => {
             <div className={css.btnWrapper}>
               <Button title={"Створити позицію"} fontSize={"28"} />
             </div>
-          </form>
-        </div>
+          </div>
+        </form>
       </div>
       {isCategoryOpen && (
         <Modal
