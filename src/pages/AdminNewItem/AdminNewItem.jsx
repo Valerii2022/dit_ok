@@ -6,7 +6,6 @@ import { useState } from "react";
 import Modal from "../../components/Modal/Modal";
 import { addAdvert } from "../../redux/operations";
 import { useDispatch } from "react-redux";
-// import Avatar from "react-avatar-edit";
 
 const NewItem = () => {
   const [isSizesOpen, setIsSizesOpen] = useState(false);
@@ -16,12 +15,10 @@ const NewItem = () => {
   const [isSizesModalOpen, setIsSizesModalOpen] = useState(false);
   const [category, setCategory] = useState("");
   const [size, setSize] = useState("");
-  const [images, setImages] = useState([]);
-  // const [imageURLs, setImageURLs] = useState([]);
-  // const [preview, setPreview] = useState(null);
+  const [image, setImage] = useState("");
+  const [imageListOne, setImageListOne] = useState("");
+  const [imageListTwo, setImageListTwo] = useState("");
   const dispatch = useDispatch();
-
-  // const src = "";
 
   const categoryModalStyles = {
     top: "669px",
@@ -69,8 +66,6 @@ const NewItem = () => {
   };
 
   const handleSizesClick = (e) => {
-    // handleSizesModalOpen(false);
-
     setSize(e.target.id);
     setZIndexSizes(0);
   };
@@ -83,7 +78,7 @@ const NewItem = () => {
     console.table(data);
     dispatch(
       addAdvert({
-        src: "blob:http://localhost:5173/f2b94e00-2f75-4a5a-b766-cd3e208f127d",
+        src: "",
         color: data.color,
         alt: "",
         sale: false,
@@ -100,29 +95,16 @@ const NewItem = () => {
     e.target.reset();
   };
 
-  // const onClose = () => {
-  //   setPreview(null);
-  // };
-
-  // const onCrop = (preview) => {
-  //   setPreview(preview);
-  // };
-
-  // const onBeforeFileLoad = (e) => {
-  //   console.log(e.target.value);
-  //   if (e.target.files[0].size > 200000) {
-  //     alert("File is too big!");
-  //     e.target.value = "";
-  //   }
-  // };
-
   const onImageChange = (e) => {
-    setImages([...e.target.files]);
-    const newImageURLs = [];
-    images.forEach((el) => {
-      newImageURLs.push(URL.createObjectURL(el));
-    });
-    console.log(newImageURLs);
+    setImage(URL.createObjectURL(e.target.files[0]));
+  };
+
+  const onImageListOneChange = (e) => {
+    setImageListOne(URL.createObjectURL(e.target.files[0]));
+  };
+
+  const onImageListTwoChange = (e) => {
+    setImageListTwo(URL.createObjectURL(e.target.files[0]));
   };
 
   return (
@@ -141,33 +123,36 @@ const NewItem = () => {
                 accept="image/*"
                 onChange={onImageChange}
               />
-              {/* <img src={targetImg} alt="" width={100} /> */}
-              {/* <Avatar
-                width={413}
-                height={413}
-                onCrop={onCrop}
-                onClose={onClose}
-                onBeforeFileLoad={onBeforeFileLoad}
-                src={src}
-                label={"+"}
-                labelStyle={{
-                  fontSize: 200,
-                  cursor: "pointer",
-                  fontWeight: 100,
-                }}
-              /> */}
-              {/* <img src={preview} alt="Preview" /> */}
-              <img src="blob:http://localhost:5173/f2b94e00-2f75-4a5a-b766-cd3e208f127d"></img>
+
+              <img src={image}></img>
+              <img src={targetImg} alt="" width={100} />
             </label>
 
-            <div className={css.mainImageWrap}>
-              <img src={targetImg} alt="" width={100} />
-            </div>
             <ul className={css.imageList}>
               <li>
+                <label>
+                  <input
+                    type="file"
+                    name="imageListOne"
+                    multiple
+                    accept="image/*"
+                    onChange={onImageListOneChange}
+                  />
+                </label>
+                <img src={imageListOne}></img>
                 <img src={targetImg} alt="" width={50} />
               </li>
               <li>
+                <label>
+                  <input
+                    type="file"
+                    name="imageListOne"
+                    multiple
+                    accept="image/*"
+                    onChange={onImageListTwoChange}
+                  />
+                </label>
+                <img src={imageListTwo}></img>
                 <img src={targetImg} alt="" width={50} />
               </li>
             </ul>
