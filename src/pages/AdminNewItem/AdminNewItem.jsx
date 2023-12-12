@@ -14,13 +14,15 @@ const NewItem = () => {
   const [zIndexSizes, setZIndexSizes] = useState(0);
   const [isCategoryOpen, setIsCategoryModal] = useState(false);
   const [isSizesModalOpen, setIsSizesModalOpen] = useState(false);
-  const [successRemovalModal, setSuccessRemovalModal] = useState(false);
+  const [successModal, setSuccessModal] = useState(false);
   const [category, setCategory] = useState("");
   const [size, setSize] = useState("");
   const [image, setImage] = useState("");
   const [imageListOne, setImageListOne] = useState("");
   const [imageListTwo, setImageListTwo] = useState("");
   const [imageURL, setImageURL] = useState("");
+  const [imageListOneURL, setImageListOneURL] = useState("");
+  const [imageListTwoURL, setImageListTwoURL] = useState("");
   const dispatch = useDispatch();
 
   const categoryModalStyles = {
@@ -92,7 +94,7 @@ const NewItem = () => {
         price: data.price,
         category: data.category,
         sizes: [],
-        images: [imageListOne, imageListTwo],
+        images: [imageListOneURL, imageListTwoURL],
       })
     );
     e.target.reset();
@@ -100,23 +102,21 @@ const NewItem = () => {
     setImageListOne("");
     setCategory("");
     setImageListTwo("");
-    setSuccessRemovalModal(true);
+    setSuccessModal(true);
   };
 
-  const onImageListOneChange = (e) => {
-    setImageListOne(URL.createObjectURL(e.target.files[0]));
-  };
-
-  const onImageListTwoChange = (e) => {
-    setImageListTwo(URL.createObjectURL(e.target.files[0]));
-  };
-
-  const handleSuccessRemovalModalClose = () => {
-    setSuccessRemovalModal(false);
+  const handleSuccessModalClose = () => {
+    setSuccessModal(false);
   };
 
   const onImageChange = async (e) => {
-    setImage(URL.createObjectURL(e.target.files[0]));
+    if (e.target.name === "imageMain")
+      setImage(URL.createObjectURL(e.target.files[0]));
+    if (e.target.name === "imageListOne")
+      setImageListOne(URL.createObjectURL(e.target.files[0]));
+    if (e.target.name === "imageListTwo")
+      setImageListTwo(URL.createObjectURL(e.target.files[0]));
+
     try {
       const formData = new FormData();
       formData.append("file", e.target.files[0]);
@@ -129,12 +129,17 @@ const NewItem = () => {
           body: formData,
         }
       );
-
-      const data = await response.json();
-      setImageURL(data.url);
+      const { url } = await response.json();
+      uploadImageFromCloudinary(e.target.name, url);
     } catch (error) {
       console.error("Error uploading image:", error);
     }
+  };
+
+  const uploadImageFromCloudinary = (name, data) => {
+    if (name === "imageMain") setImageURL(data);
+    if (name === "imageListOne") setImageListOneURL(data);
+    if (name === "imageListTwo") setImageListTwoURL(data);
   };
 
   return (
@@ -169,7 +174,7 @@ const NewItem = () => {
                     name="imageListOne"
                     multiple
                     accept="image/*"
-                    onChange={onImageListOneChange}
+                    onChange={onImageChange}
                   />
                 </label>
                 {imageListOne ? (
@@ -183,10 +188,10 @@ const NewItem = () => {
                   <input
                     className={css.hidden}
                     type="file"
-                    name="imageListOne"
+                    name="imageListTwo"
                     multiple
                     accept="image/*"
-                    onChange={onImageListTwoChange}
+                    onChange={onImageChange}
                   />
                 </label>
                 {imageListTwo ? (
@@ -444,14 +449,14 @@ const NewItem = () => {
           </div>
         </Modal>
       )}
-      {successRemovalModal && (
-        <Modal handleModalClose={handleSuccessRemovalModalClose}>
+      {successModal && (
+        <Modal handleModalClose={handleSuccessModalClose}>
           <div className={css.modalContainer}>
             <img
               className={css.closeIcon}
               src={closeIcon}
               alt="Close icon"
-              onClick={handleSuccessRemovalModalClose}
+              onClick={handleSuccessModalClose}
             />
             <p className={css.removalTitle}>Товар успішно створений</p>
           </div>
