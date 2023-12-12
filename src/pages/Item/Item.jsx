@@ -139,31 +139,34 @@ const Item = () => {
             {location.state?.orders ? (
               <form>
                 <div className={css.sizesWrapper}>
-                  <div>
-                    <p>Розміри:</p>
+                  {currentAdvert.sizes.length > 0 && (
+                    <div>
+                      <p>Розміри:</p>
 
-                    <ul className={css.boxWrapper}>
-                      {currentAdvert.sizes.map((el) => {
-                        return (
-                          <li key={nanoid(6)}>
-                            {Number(location.state.orders.size) === el.size ? (
-                              <div
-                                style={{ borderColor: "#fac917" }}
-                                className={css.label}
-                                id={el.size}
-                              >
-                                {el.size}
-                              </div>
-                            ) : (
-                              <div className={css.label} id={el.size}>
-                                {el.size}
-                              </div>
-                            )}
-                          </li>
-                        );
-                      })}
-                    </ul>
-                  </div>
+                      <ul className={css.boxWrapper}>
+                        {currentAdvert.sizes.map((el) => {
+                          return (
+                            <li key={nanoid(6)}>
+                              {Number(location.state.orders.size) ===
+                              el.size ? (
+                                <div
+                                  style={{ borderColor: "#fac917" }}
+                                  className={css.label}
+                                  id={el.size}
+                                >
+                                  {el.size}
+                                </div>
+                              ) : (
+                                <div className={css.label} id={el.size}>
+                                  {el.size}
+                                </div>
+                              )}
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    </div>
+                  )}
                   <div>
                     <p>Кількість:</p>
                     <div className={css.quantity}>
@@ -183,46 +186,48 @@ const Item = () => {
                 }}
               >
                 <div className={css.sizesWrapper}>
-                  <div>
-                    <p>Розміри:</p>
+                  {currentAdvert.sizes.length > 0 && (
+                    <div>
+                      <p>Розміри:</p>
 
-                    <ul className={css.boxWrapper}>
-                      {currentAdvert.sizes.map((el) => {
-                        if (Number(size) === el.size) {
-                          return (
-                            <li key={nanoid(6)}>
-                              <input
-                                defaultChecked
-                                className={css.hidden}
-                                value={el.size}
-                                id={el.size}
-                                type="radio"
-                                name="size"
-                              />
-                              <label className={css.label} htmlFor={el.size}>
-                                {el.size}
-                              </label>
-                            </li>
-                          );
-                        } else {
-                          return (
-                            <li key={nanoid(6)}>
-                              <input
-                                className={css.hidden}
-                                value={el.size}
-                                id={el.size}
-                                type="radio"
-                                name="size"
-                              />
-                              <label className={css.label} htmlFor={el.size}>
-                                {el.size}
-                              </label>
-                            </li>
-                          );
-                        }
-                      })}
-                    </ul>
-                  </div>
+                      <ul className={css.boxWrapper}>
+                        {currentAdvert.sizes.map((el) => {
+                          if (Number(size) === el.size) {
+                            return (
+                              <li key={nanoid(6)}>
+                                <input
+                                  defaultChecked
+                                  className={css.hidden}
+                                  value={el.size}
+                                  id={el.size}
+                                  type="radio"
+                                  name="size"
+                                />
+                                <label className={css.label} htmlFor={el.size}>
+                                  {el.size}
+                                </label>
+                              </li>
+                            );
+                          } else {
+                            return (
+                              <li key={nanoid(6)}>
+                                <input
+                                  className={css.hidden}
+                                  value={el.size}
+                                  id={el.size}
+                                  type="radio"
+                                  name="size"
+                                />
+                                <label className={css.label} htmlFor={el.size}>
+                                  {el.size}
+                                </label>
+                              </li>
+                            );
+                          }
+                        })}
+                      </ul>
+                    </div>
+                  )}
                   <div>
                     <p>Кількість:</p>
                     <div className={css.quantity}>
