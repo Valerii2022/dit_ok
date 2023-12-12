@@ -6,6 +6,7 @@ import { useState } from "react";
 import Modal from "../../components/Modal/Modal";
 import { addAdvert } from "../../redux/operations";
 import { useDispatch } from "react-redux";
+import closeIcon from "../../images/close.svg";
 
 const NewItem = () => {
   const [isSizesOpen, setIsSizesOpen] = useState(false);
@@ -13,6 +14,7 @@ const NewItem = () => {
   const [zIndexSizes, setZIndexSizes] = useState(0);
   const [isCategoryOpen, setIsCategoryModal] = useState(false);
   const [isSizesModalOpen, setIsSizesModalOpen] = useState(false);
+  const [successRemovalModal, setSuccessRemovalModal] = useState(false);
   const [category, setCategory] = useState("");
   const [size, setSize] = useState("");
   const [image, setImage] = useState("");
@@ -80,7 +82,7 @@ const NewItem = () => {
       addAdvert({
         src: image,
         color: data.color,
-        alt: "",
+        alt: data.description,
         sale: false,
         new: true,
         material: data.material,
@@ -97,6 +99,7 @@ const NewItem = () => {
     setImageListOne("");
     setCategory("");
     setImageListTwo("");
+    setSuccessRemovalModal(true);
   };
 
   const onImageChange = (e) => {
@@ -109,6 +112,10 @@ const NewItem = () => {
 
   const onImageListTwoChange = (e) => {
     setImageListTwo(URL.createObjectURL(e.target.files[0]));
+  };
+
+  const handleSuccessRemovalModalClose = () => {
+    setSuccessRemovalModal(false);
   };
 
   return (
@@ -415,6 +422,19 @@ const NewItem = () => {
                 XXXL
               </label>
             </form>
+          </div>
+        </Modal>
+      )}
+      {successRemovalModal && (
+        <Modal handleModalClose={handleSuccessRemovalModalClose}>
+          <div className={css.modalContainer}>
+            <img
+              className={css.closeIcon}
+              src={closeIcon}
+              alt="Close icon"
+              onClick={handleSuccessRemovalModalClose}
+            />
+            <p className={css.removalTitle}>Товар успішно створений</p>
           </div>
         </Modal>
       )}

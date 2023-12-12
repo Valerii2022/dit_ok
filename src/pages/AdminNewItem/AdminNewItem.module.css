@@ -229,3 +229,29 @@
 .checkbox:checked + label {
   color: var(--yellow);
 }
+
+.modalContainer {
+  padding: 70px 60px 40px;
+  text-align: center;
+  position: relative;
+}
+
+.closeIcon {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  cursor: pointer;
+}
+
+.modalContainer p {
+  margin-bottom: 40px;
+
+  font-family: "Sansation", sans-serif;
+  font-size: 28px;
+  line-height: 1.12;
+  text-align: left;
+}
+
+.removalTitle {
+  padding-bottom: 30px;
+}
