@@ -16,6 +16,7 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.5.1",
+    "cloudinary": "^1.41.0",
     "izitoast": "^1.4.0",
     "nanoid": "^5.0.3",
     "prop-types": "^15.8.1",

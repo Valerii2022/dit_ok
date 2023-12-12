@@ -20,6 +20,7 @@ const NewItem = () => {
   const [image, setImage] = useState("");
   const [imageListOne, setImageListOne] = useState("");
   const [imageListTwo, setImageListTwo] = useState("");
+  const [imageURL, setImageURL] = useState("");
   const dispatch = useDispatch();
 
   const categoryModalStyles = {
@@ -74,13 +75,13 @@ const NewItem = () => {
 
   const handleAddedNewItemForm = (e) => {
     e.preventDefault();
+    console.log(imageURL);
     const data = {};
     const formData = new FormData(e.target);
     formData.forEach((value, name) => (data[name] = value));
-    console.table(data);
     dispatch(
       addAdvert({
-        src: image,
+        src: imageURL,
         color: data.color,
         alt: data.description,
         sale: false,
@@ -102,10 +103,6 @@ const NewItem = () => {
     setSuccessRemovalModal(true);
   };
 
-  const onImageChange = (e) => {
-    setImage(URL.createObjectURL(e.target.files[0]));
-  };
-
   const onImageListOneChange = (e) => {
     setImageListOne(URL.createObjectURL(e.target.files[0]));
   };
@@ -116,6 +113,28 @@ const NewItem = () => {
 
   const handleSuccessRemovalModalClose = () => {
     setSuccessRemovalModal(false);
+  };
+
+  const onImageChange = async (e) => {
+    setImage(URL.createObjectURL(e.target.files[0]));
+    try {
+      const formData = new FormData();
+      formData.append("file", e.target.files[0]);
+      formData.append("upload_preset", "ml_default");
+
+      const response = await fetch(
+        `https://api.cloudinary.com/v1_1/dqyjr9t6r/upload`,
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
+
+      const data = await response.json();
+      setImageURL(data.url);
+    } catch (error) {
+      console.error("Error uploading image:", error);
+    }
   };
 
   return (

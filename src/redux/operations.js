@@ -65,7 +65,6 @@ export const addAdvert = createAsyncThunk(
 export const deleteAdvert = createAsyncThunk(
   "adverts/deleteAdvert",
   async (id, thunkAPI) => {
-    console.log(id);
     try {
       const response = await axios.delete(`/adverts/${id}`);
       return response.data;
@@ -74,3 +73,22 @@ export const deleteAdvert = createAsyncThunk(
     }
   }
 );
+
+// export const cloudinaryUpload = async (image) => {
+//   try {
+//     const formData = new FormData();
+//     formData.append("file", image);
+//     formData.append("upload_preset", "ml_default");
+
+//     const response = await fetch(
+//       `https://api.cloudinary.com/v1_1/dqyjr9t6r/upload`,
+//       {
+//         method: "POST",
+//         body: formData,
+//       }
+//     );
+//     return await response.json();
+//   } catch (error) {
+//     console.error("Error uploading image:", error);
+//   }
+// };
