@@ -94,27 +94,29 @@ const OrderPage = () => {
                 <span>Виробник:</span>
                 <span>{currentAdvert.brand}</span>
               </p>
-              <p>
-                <span
-                  onClick={() =>
-                    navigate("/item", {
-                      state: {
-                        key: currentAdvert.id,
-                        quantity: location.state?.quantity,
-                        size: location.state?.size,
-                      },
-                    })
-                  }
-                  className={css.detailsLink}
-                >
-                  Розмір:
-                </span>
-                <span>
-                  {location.state.size
-                    ? location.state.size
-                    : currentAdvert.sizes[0].size}
-                </span>
-              </p>
+              {location.state.size && (
+                <p>
+                  <span
+                    onClick={() =>
+                      navigate("/item", {
+                        state: {
+                          key: currentAdvert.id,
+                          quantity: location.state?.quantity,
+                          size: location.state?.size,
+                        },
+                      })
+                    }
+                    className={css.detailsLink}
+                  >
+                    Розмір:
+                  </span>
+                  <span>
+                    {location.state.size
+                      ? location.state.size
+                      : currentAdvert.sizes[0].size}
+                  </span>
+                </p>
+              )}
               <p>
                 <span
                   onClick={() =>
